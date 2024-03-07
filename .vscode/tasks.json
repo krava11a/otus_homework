@@ -1,0 +1,83 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "go",
+            "label": "go: build package",
+            "options": {
+                "cwd": "${workspaceFolder}/homework-backend/",
+                "env": {
+                    "CGO_ENABLED": "0",
+                    "GOOS": "linux"
+                }
+            },
+            "command": "build",
+            "args": [
+                "-a",
+                "-installsuffix",
+                "cgo",
+                "-o",
+                "${workspaceFolder}/homework-backend/build/",
+                ".",
+                "."
+            ],
+            "problemMatcher": [
+                "$go"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "cd ${workspaceFolder}/homework-backend;CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o  ${workspaceFolder}/homework-backend/build/hw_backend ."
+        },
+        {
+            "label": "Build homework-backend docker image",
+            "type": "docker-build",
+            "dockerBuild": {
+                "context": "${workspaceFolder}/homework-backend",
+                "dockerfile": "${workspaceFolder}/homework-backend/build/Dockerfile",
+                "tag": "homework_backend:0.0.4"
+            }
+        },
+        {
+            "label": "Run docker-compose up",
+            "type": "docker-compose",
+            "dockerCompose": {
+                "up": {
+                    "detached": true,
+                    "build": true,
+                    "services": [
+                        "db",
+                        "backend"
+                    ]
+                },
+                "files": [
+                    "${workspaceFolder}/build/docker-compose.yml"
+                ],
+                "projectName": "otus",
+                "down": {
+                    "removeImages": "local",
+                    "removeVolumes": false
+                }
+            },
+            "dependsOn": [
+                "Build homework-backend docker image",
+                "go: build package"
+            ]
+        },
+        {
+            "label": "Run docker-compose down",
+            "type": "docker-compose",
+            "dockerCompose": {
+                "files": [
+                    "${workspaceFolder}/build/docker-compose.yml"
+                ],
+                "projectName": "otus",
+                "down": {
+                    "removeImages": "local",
+                    "removeVolumes": false
+                }
+            }           
+        }
+    ]
+}
