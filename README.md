@@ -6,7 +6,7 @@
 
 # gRPC
 
-Вместо REST/HTTP использовал gRPC. Реализованы следующие процедуры:
+Вместо REST/HTTP использовала gRPC. Реализованы следующие процедуры:
 - /login (gRPC: UserLogin)
 - /user/register (gRPC: UserRegister)
 - /user/get/{id} (gRPC: UserGetById)
@@ -16,4 +16,4 @@
 # Deploy
 
 Для запуска использую задачу "Run docker-compose up" из файла [tasks.json](.vscode/tasks.json) в среде VSCode. 
-После запуска задачи "Run docker-compose up" необходимо создать БД otus_homework в контейнере с образом postgresql и выполнить миграции из папки [homework-db/migrations](homework-db/migrations/). Для работы с миграциями я использовал [goose](https://github.com/pressly/goose).
+После запуска задачи "Run docker-compose up" необходимо создать БД otus_homework в контейнере с образом postgresql и выполнить миграции из папки [homework-db/migrations](homework-db/migrations/). Для работы с миграциями я использовала [goose](https://github.com/pressly/goose).
