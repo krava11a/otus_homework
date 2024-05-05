@@ -1,0 +1,31 @@
+services:
+  db:
+    image: postgres
+    command: -c 'max_connections=2000'
+    #restart: always
+    # set shared memory limit when using docker-compose
+    shm_size: 128mb
+    # or set shared memory limit when deploy via swarm stack
+    #volumes:
+    #  - type: tmpfs
+    #    target: /dev/shm
+    #    tmpfs:
+    #      size: 134217728 # 128*2^20 bytes = 128Mb
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: example
+      POSTGRES_DB: otus_homework
+    volumes:
+      - /home/krava/DOCKER/OTUS/HIGHLOAD/postgres:/var/lib/postgresql/data
+  
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+  
+  backend:
+    image: homework_backend:0.0.9
+    ports:
+      - 9001:9001

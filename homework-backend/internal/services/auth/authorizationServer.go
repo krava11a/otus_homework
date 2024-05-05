@@ -12,6 +12,7 @@ type GrpcAuth interface {
 	CreateUser(user models.User) (string, error)
 	LoginUser(user_id, password string, app models.App) (string, error)
 	GetUserById(user_id string) (models.User, error)
+	UsersGetByPrefixFirstNameAndSecondName(first_name, last_name string) ([]models.User, error)
 }
 
 func Register(gRPCServer *grpc.Server, auth GrpcAuth) {
@@ -84,5 +85,30 @@ func (as *AuthorizationServer) UserGetById(ctx context.Context, req *proto.UserI
 			Biography:  user.Biography,
 			City:       user.City,
 		},
+	}, nil
+}
+
+func (as *AuthorizationServer) UsersGetByPrefixFirstNameAndSecondName(ctx context.Context, req *proto.UserSearchRequest) (*proto.UserSearchResponse, error) {
+	users, err := as.auth.UsersGetByPrefixFirstNameAndSecondName(req.FirstName, req.SecondName)
+	if err != nil {
+		return &proto.UserSearchResponse{
+			Users: []*proto.User{},
+		}, err
+	}
+	usersToResponse := make([]*proto.User, 0, len(users))
+
+	for _, user := range users {
+		usersToResponse = append(usersToResponse, &proto.User{
+			Id:         user.Id,
+			FirstName:  user.First_name,
+			SecondName: user.Second_name,
+			Birthdate:  user.Birthdate,
+			Biography:  user.Biography,
+			City:       user.City,
+		})
+	}
+
+	return &proto.UserSearchResponse{
+		Users: usersToResponse,
 	}, nil
 }

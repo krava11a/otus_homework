@@ -10,6 +10,7 @@ type UserCreater interface {
 
 type UserProvider interface {
 	GetUserById(user_id string) (user models.User, err error)
+	UsersGetByPrefixFirstNameAndSecondName(first_name, second_name string) ([]models.User, error)
 }
 
 type AppProvider interface {

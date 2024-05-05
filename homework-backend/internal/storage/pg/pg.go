@@ -59,7 +59,7 @@ func (s *Storage) GetUserById(user_id string) (models.User, error) {
 	// }
 
 	// resRow := stmt.Query(user_id)
-	resRow := s.db.QueryRow(`SELECT id,first_name, second_name,birthdate,biography,city,hP FROM users WHERE id = $1`, user_id)
+	resRow := s.db.QueryRow(`SELECT id,first_name, second_name,TO_CHAR(birthdate, 'yyyy-mm-dd'),biography,city,hP FROM users WHERE id = $1`, user_id)
 
 	// resRow := s.db.QueryRow(`SELECT * FROM users`)
 	// if err != nil {
@@ -77,6 +77,44 @@ func (s *Storage) GetUserById(user_id string) (models.User, error) {
 	}
 	return user, nil
 
+}
+
+func (s *Storage) UsersGetByPrefixFirstNameAndSecondName(first_name, second_name string) ([]models.User, error) {
+
+	// fmt.Println(s.db)
+
+	const op = "storage.sqlite.UsersGetByPrefixFirstNameAndSecondName"
+	// urlExample := "postgres://postgres:example@localhost:5432/otus_homework"
+
+	// conn, err := pgx.Connect(context.Background(), urlExample)
+	// if err != nil {
+	// 	fmt.Fprintf(os.Stderr, "Unable to connect to database: %v\n", err)
+	// 	os.Exit(1)
+	// }
+	// defer conn.Close(context.Background())
+
+	// resRows, err := conn.Query(context.Background(), `SELECT id,first_name, second_name,TO_CHAR(birthdate, 'yyyy-mm-dd'),biography,city,hP FROM users WHERE first_name LIKE $1||'%' AND second_name LIKE $2||'%' ORDER BY id`, first_name, second_name)
+	resRows, err := s.db.Query(`SELECT id,first_name, second_name,TO_CHAR(birthdate, 'yyyy-mm-dd'),biography,city,hP FROM users WHERE first_name LIKE $1||'%' AND second_name LIKE $2||'%' ORDER BY id`, first_name, second_name)
+	// if errors.Is(err, sql.ErrNoRows) {
+	// 	return []models.User{}, err
+	// }
+	if err != nil {
+		return []models.User{}, err
+	}
+	defer resRows.Close()
+	users := make([]models.User, 0, 100)
+	for resRows.Next() {
+		var user models.User
+		err := resRows.Scan(&user.Id, &user.First_name, &user.Second_name, &user.Birthdate, &user.Biography, &user.City, &user.Hp)
+		// err := resRows.Scan(&user)
+		if err != nil {
+			return []models.User{}, err
+		}
+		users = append(users, user)
+
+	}
+
+	return users, nil
 }
 
 func (s *Storage) App() (models.App, error) {

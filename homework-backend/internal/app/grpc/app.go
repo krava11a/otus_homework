@@ -24,7 +24,8 @@ func New(log *slog.Logger, grpcauth auth.GrpcAuth, port uint) *App {
 
 	loggingOpts := []logging.Option{
 		logging.WithLogOnEvents(
-			logging.PayloadReceived, logging.PayloadSent,
+			logging.PayloadReceived,
+			//  logging.PayloadSent,
 		),
 	}
 

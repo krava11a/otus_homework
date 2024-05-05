@@ -1,0 +1,34 @@
+create index indexusers on users (first_name,second_name text_pattern_ops);
+
+explain analyze SELECT * FROM users where first_name LIKE 'П%' AND second_name like 'Р%' order by id;
+
+
+
+ QUERY PLAN BEFORE INDEX CREATION
+Gather Merge  (cost=59487.43..59559.77 rows=620 width=106) (actual time=377.558..385.367 rows=778 loops=1)
+  Workers Planned: 2
+  Workers Launched: 2
+  ->  Sort  (cost=58487.40..58488.18 rows=310 width=106) (actual time=370.388..370.427 rows=259 loops=3)
+        Sort Key: id
+        Sort Method: quicksort  Memory: 57kB
+        Worker 0:  Sort Method: quicksort  Memory: 58kB
+        Worker 1:  Sort Method: quicksort  Memory: 59kB
+        ->  Parallel Seq Scan on users  (cost=0.00..58474.57 rows=310 width=106) (actual time=163.118..369.968 rows=259 loops=3)
+              Filter: (((first_name)::text ~~ 'П%'::text) AND ((second_name)::text ~~ 'Р%'::text))
+              Rows Removed by Filter: 333052
+Planning Time: 57.161 ms
+Execution Time: 385.532 ms
+
+
+QUERY PLAN AFTER INDEX CREATION
+Sort  (cost=54807.38..54809.24 rows=743 width=106) (actual time=43.448..43.605 rows=778 loops=1)
+  Sort Key: id
+  Sort Method: quicksort  Memory: 126kB
+  ->  Bitmap Heap Scan on users  (cost=14903.94..54771.95 rows=743 width=106) (actual time=25.992..42.530 rows=778 loops=1)
+        Filter: (((first_name)::text ~~ 'П%'::text) AND ((second_name)::text ~~ 'Р%'::text))
+        Rows Removed by Filter: 23608
+        Heap Blocks: exact=607
+        ->  Bitmap Index Scan on indexusers  (cost=0.00..14903.75 rows=20964 width=0) (actual time=24.913..24.914 rows=24386 loops=1)
+              Index Cond: (((second_name)::text ~>=~ 'Р'::text) AND ((second_name)::text ~<~ 'С'::text))
+Planning Time: 61.740 ms
+Execution Time: 43.734 ms

@@ -1,0 +1,5 @@
+env: "local"
+storage_path: "host=localhost port=5432 user=postgres password=example dbname=otus_homework sslmode=disable"
+grpc:  
+  port: 9001  
+  timeout: 10h

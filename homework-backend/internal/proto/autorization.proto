@@ -8,6 +8,7 @@ service AuthorizationService {
     rpc UserRegister(CreateUserRequest) returns (CreateUserResponse);
     rpc UserLogin(UserLoginRequest) returns(UserLoginResponse);
     rpc UserGetById(UserIdRequest) returns(UserGetByIdResponse);
+    rpc UsersGetByPrefixFirstNameAndSecondName(UserSearchRequest) returns(UserSearchResponse);
 }
 
 
@@ -49,6 +50,7 @@ message UserGetByIdResponse{
     User user = 3;
 }
 
+
 message User{
     string id = 1;
     string first_name = 2;
@@ -56,5 +58,22 @@ message User{
     string birthdate = 4;
     string biography =5;
     string city = 6;    
+}
+
+// Поиск анкет
+// Запрос
+message UserSearchRequest{
+    // Часть имени для поиска
+    string first_name = 1;
+    // Часть фамилии для поиска
+    string second_name = 2;
+    
+}
+
+
+// Поиск анкет
+// Ответ
+message UserSearchResponse{
+    repeated User users = 1;
 }
 

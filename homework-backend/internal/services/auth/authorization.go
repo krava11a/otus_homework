@@ -209,3 +209,25 @@ func (a *Auth) GetUserById(user_id string) (user models.User, err error) {
 	return user, nil
 
 }
+
+func (a *Auth) UsersGetByPrefixFirstNameAndSecondName(first_name, second_name string) (users []models.User, err error) {
+	const op = "Auth.Search"
+	log := a.log.With(
+		slog.String("op", op),
+		slog.String(fmt.Sprintf("User: first_name: %s ,second_name: %s", first_name, second_name), ""),
+	)
+	log.Info("attempting to SEARCH user by first_name and second_name")
+
+	// if user_id == "" {
+	// 	return models.User{}, status.Error(codes.InvalidArgument, "user_id is required")
+	// }
+
+	users, err = a.usrProvider.UsersGetByPrefixFirstNameAndSecondName(first_name, second_name)
+	if err != nil {
+		a.log.Error("failed to get user by Prefix First and Second Name", sl.Err(err))
+
+		return []models.User{}, fmt.Errorf("%s: %w", op, err)
+	}
+	return users, nil
+
+}

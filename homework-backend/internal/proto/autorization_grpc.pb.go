@@ -19,9 +19,10 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	AuthorizationService_UserRegister_FullMethodName = "/proto.AuthorizationService/UserRegister"
-	AuthorizationService_UserLogin_FullMethodName    = "/proto.AuthorizationService/UserLogin"
-	AuthorizationService_UserGetById_FullMethodName  = "/proto.AuthorizationService/UserGetById"
+	AuthorizationService_UserRegister_FullMethodName                           = "/proto.AuthorizationService/UserRegister"
+	AuthorizationService_UserLogin_FullMethodName                              = "/proto.AuthorizationService/UserLogin"
+	AuthorizationService_UserGetById_FullMethodName                            = "/proto.AuthorizationService/UserGetById"
+	AuthorizationService_UsersGetByPrefixFirstNameAndSecondName_FullMethodName = "/proto.AuthorizationService/UsersGetByPrefixFirstNameAndSecondName"
 )
 
 // AuthorizationServiceClient is the client API for AuthorizationService service.
@@ -31,6 +32,7 @@ type AuthorizationServiceClient interface {
 	UserRegister(ctx context.Context, in *CreateUserRequest, opts ...grpc.CallOption) (*CreateUserResponse, error)
 	UserLogin(ctx context.Context, in *UserLoginRequest, opts ...grpc.CallOption) (*UserLoginResponse, error)
 	UserGetById(ctx context.Context, in *UserIdRequest, opts ...grpc.CallOption) (*UserGetByIdResponse, error)
+	UsersGetByPrefixFirstNameAndSecondName(ctx context.Context, in *UserSearchRequest, opts ...grpc.CallOption) (*UserSearchResponse, error)
 }
 
 type authorizationServiceClient struct {
@@ -68,6 +70,15 @@ func (c *authorizationServiceClient) UserGetById(ctx context.Context, in *UserId
 	return out, nil
 }
 
+func (c *authorizationServiceClient) UsersGetByPrefixFirstNameAndSecondName(ctx context.Context, in *UserSearchRequest, opts ...grpc.CallOption) (*UserSearchResponse, error) {
+	out := new(UserSearchResponse)
+	err := c.cc.Invoke(ctx, AuthorizationService_UsersGetByPrefixFirstNameAndSecondName_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AuthorizationServiceServer is the server API for AuthorizationService service.
 // All implementations must embed UnimplementedAuthorizationServiceServer
 // for forward compatibility
@@ -75,6 +86,7 @@ type AuthorizationServiceServer interface {
 	UserRegister(context.Context, *CreateUserRequest) (*CreateUserResponse, error)
 	UserLogin(context.Context, *UserLoginRequest) (*UserLoginResponse, error)
 	UserGetById(context.Context, *UserIdRequest) (*UserGetByIdResponse, error)
+	UsersGetByPrefixFirstNameAndSecondName(context.Context, *UserSearchRequest) (*UserSearchResponse, error)
 	mustEmbedUnimplementedAuthorizationServiceServer()
 }
 
@@ -90,6 +102,9 @@ func (UnimplementedAuthorizationServiceServer) UserLogin(context.Context, *UserL
 }
 func (UnimplementedAuthorizationServiceServer) UserGetById(context.Context, *UserIdRequest) (*UserGetByIdResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UserGetById not implemented")
+}
+func (UnimplementedAuthorizationServiceServer) UsersGetByPrefixFirstNameAndSecondName(context.Context, *UserSearchRequest) (*UserSearchResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UsersGetByPrefixFirstNameAndSecondName not implemented")
 }
 func (UnimplementedAuthorizationServiceServer) mustEmbedUnimplementedAuthorizationServiceServer() {}
 
@@ -158,6 +173,24 @@ func _AuthorizationService_UserGetById_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AuthorizationService_UsersGetByPrefixFirstNameAndSecondName_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserSearchRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthorizationServiceServer).UsersGetByPrefixFirstNameAndSecondName(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AuthorizationService_UsersGetByPrefixFirstNameAndSecondName_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthorizationServiceServer).UsersGetByPrefixFirstNameAndSecondName(ctx, req.(*UserSearchRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AuthorizationService_ServiceDesc is the grpc.ServiceDesc for AuthorizationService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -176,6 +209,10 @@ var AuthorizationService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UserGetById",
 			Handler:    _AuthorizationService_UserGetById_Handler,
+		},
+		{
+			MethodName: "UsersGetByPrefixFirstNameAndSecondName",
+			Handler:    _AuthorizationService_UsersGetByPrefixFirstNameAndSecondName_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

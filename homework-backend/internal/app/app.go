@@ -3,7 +3,7 @@ package app
 import (
 	grpcapp "homework-backend/internal/app/grpc"
 	"homework-backend/internal/services/auth"
-	"homework-backend/internal/storage/pg"
+	"homework-backend/internal/storage/pgx"
 	"log/slog"
 	"time"
 )
@@ -18,7 +18,7 @@ func New(
 	storagePath string,
 	tokenTTL time.Duration,
 ) *App {
-	storage, err := pg.New(storagePath)
+	storage, err := pgx.New(storagePath)
 	if err != nil {
 		panic(err)
 	}
