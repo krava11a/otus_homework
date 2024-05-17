@@ -16,6 +16,7 @@ func New(
 	log *slog.Logger,
 	grpcPort uint,
 	storagePath string,
+	storagePathForRead string,
 	tokenTTL time.Duration,
 ) *App {
 	storage, err := pgx.New(storagePath)
@@ -23,7 +24,12 @@ func New(
 		panic(err)
 	}
 
-	authService := auth.New(log, storage, storage, storage, tokenTTL)
+	storageForRead, err := pgx.New(storagePathForRead)
+	if err != nil {
+		panic(err)
+	}
+
+	authService := auth.New(log, storage, storageForRead, storage, tokenTTL)
 
 	grpcApp := grpcapp.New(log, authService, grpcPort)
 

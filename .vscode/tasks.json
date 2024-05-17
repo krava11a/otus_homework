@@ -36,83 +36,14 @@
             "dockerBuild": {
                 "context": "${workspaceFolder}/homework-backend",
                 "dockerfile": "${workspaceFolder}/homework-backend/build/Dockerfile",
-                "tag": "homework_backend:0.0.6"
+                "tag": "homework_backend:0.0.12"
             },
-
             "dependsOn": [
                 "go: build package"
-            ]
-        },
-        {
-            "label": "Run docker-compose up",
-            "type": "docker-compose",
-            "dockerCompose": {
-                "up": {
-                    "detached": true,
-                    "build": true,
-                    "services": [
-                        "db",
-                        "backend",
-                        "adminer",
-                    ]
-                },
-                "files": [
-                    "${workspaceFolder}/build/docker-compose.yml"
-                ],
-                "projectName": "otus",
-                "down": {
-                    "removeImages": "local",
-                    "removeVolumes": false
-                }
-            },
-            "dependsOn": [
-                "Build homework-backend docker image",
-                "go: build package"
-            ]
-        },
-        {
-            "label": "Run docker-compose down",
-            "type": "docker-compose",
-            "dockerCompose": {
-                "files": [
-                    "${workspaceFolder}/build/docker-compose.local.yml"
-                ],
-                "projectName": "otus",
-                "down": {
-                    "removeImages": "local",
-                    "removeVolumes": false
-                }
-            }           
-        },
-        {
-            "label": "Local: Run docker-compose up",
-            "type": "docker-compose",
-            "dockerCompose": {
-                "up": {
-                    "detached": true,
-                    "build": true,
-                    "services": [
-                        "db",
-                        "backend",
-                        "adminer"
-                    ]
-                },
-                "files": [
-                    "${workspaceFolder}/build/debug/docker-compose.yml"
-                ],
-                "projectName": "otus",
-                "down": {
-                    "removeImages": "local",
-                    "removeVolumes": false
-                }
-            },
-            "dependsOn": [
-                "Build homework-backend docker image",
-                // "go: build package"
             ]
         },
         // {
-        //     "label": "Local: Run docker-compose down",
+        //     "label": "Run docker-compose up",
         //     "type": "docker-compose",
         //     "dockerCompose": {
         //         "up": {
@@ -120,11 +51,12 @@
         //             "build": true,
         //             "services": [
         //                 "db",
-        //                 "backend"
+        //                 "backend",
+        //                 "adminer",
         //             ]
         //         },
         //         "files": [
-        //             "${workspaceFolder}/build/docker-compose.local.yml"
+        //             "${workspaceFolder}/build/docker-compose.yml"
         //         ],
         //         "projectName": "otus",
         //         "down": {
@@ -132,6 +64,49 @@
         //             "removeVolumes": false
         //         }
         //     },
-        // },
+        //     "dependsOn": [
+        //         "Build homework-backend docker image",
+        //         "go: build package"
+        //     ]
+        // },        
+        {
+            "label": "Debug: Run docker-compose up from shell",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}/build/debug/",
+                
+            },
+            "command":"docker-compose -f docker-compose.yml up -d",          
+            "dependsOn": [
+                "Build homework-backend docker image",
+                // "go: build package"
+            ],
+        },   
+        {
+            "label": "Replication homework up",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}/homework3-replication/",
+                
+            },
+            "command":"docker-compose -f docker-compose.yml up -d",          
+            // "dependsOn": [
+            //     "Build homework-backend docker image",
+            //     // "go: build package"
+            // ],
+        },    
+        {
+            "label": "Replication homework down",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}/homework3-replication/",
+                
+            },
+            "command":"docker-compose down",          
+            // "dependsOn": [
+            //     "Build homework-backend docker image",
+            //     // "go: build package"
+            // ],
+        },    
     ]
 }

@@ -20,7 +20,11 @@ func Run() {
 	// TODO: инициализировать логгер
 	log := setupLogger(cfg.Env)
 	// TODO: инициализировать приложение (app)
-	application := app.New(log, cfg.GRPC.Port, cfg.StoragePath, cfg.TokenTTL)
+	var application *app.App
+	if cfg.StoragePathForRead == "" {
+		application = app.New(log, cfg.GRPC.Port, cfg.StoragePath, cfg.StoragePath, cfg.TokenTTL)
+	}
+	application = app.New(log, cfg.GRPC.Port, cfg.StoragePath, cfg.StoragePathForRead, cfg.TokenTTL)
 
 	// TODO: запустить gRPC-сервер приложения
 	application.GRPCServer.MustRun()
