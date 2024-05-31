@@ -1,5 +1,5 @@
 # Добавление файла миграций 
-goose -dir homework-db/db/migrations create new_user_table sql
+goose -dir homework-db/migrations create new_user_table sql
 # Приминение миграций из папки
 goose -dir homework-db/migrations postgres "postgresql://postgres:example@127.0.0.1:5432/otus_homework?sslmode=disable" up
 # Откат миграции

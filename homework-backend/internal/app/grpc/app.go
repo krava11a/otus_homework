@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"homework-backend/internal/services/auth"
+	"homework-backend/internal/services/post"
 	"log/slog"
 	"net"
 
@@ -20,7 +21,7 @@ type App struct {
 	port       uint
 }
 
-func New(log *slog.Logger, grpcauth auth.GrpcAuth, port uint) *App {
+func New(log *slog.Logger, grpcauth auth.GrpcAuth, grpcPost post.GrpcPost, port uint) *App {
 
 	loggingOpts := []logging.Option{
 		logging.WithLogOnEvents(
@@ -48,6 +49,8 @@ func New(log *slog.Logger, grpcauth auth.GrpcAuth, port uint) *App {
 
 	// TODO: зарегистрировать у сервера наш gRPC-сервис Auth
 	auth.Register(gRPCServer, grpcauth)
+
+	post.Register(gRPCServer, grpcPost)
 
 	// TODO: вернуть объект App со всеми необходимыми полями
 	return &App{

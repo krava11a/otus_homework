@@ -52,7 +52,7 @@
           <stringProp name="variableNames"></stringProp>
         </JDBCSampler>
         <hashTree/>
-        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="INSERT">
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="INSERT" enabled="true">
           <stringProp name="dataSource">pg_master</stringProp>
           <stringProp name="query"> insert into test(id) values(${__counter(,)}); </stringProp>
           <stringProp name="queryArguments"></stringProp>
@@ -65,7 +65,7 @@
           <stringProp name="variableNames"></stringProp>
         </JDBCSampler>
         <hashTree/>
-        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>

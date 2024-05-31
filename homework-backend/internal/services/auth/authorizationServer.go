@@ -13,6 +13,10 @@ type GrpcAuth interface {
 	LoginUser(user_id, password string, app models.App) (string, error)
 	GetUserById(user_id string) (models.User, error)
 	UsersGetByPrefixFirstNameAndSecondName(first_name, last_name string) ([]models.User, error)
+
+	// FriendSet(user_id string, friend_id string) error
+	// FriendDelete(user_id string, friend_id string) error
+	// GetFriends(user_id string) (user_ids []string, err error)
 }
 
 func Register(gRPCServer *grpc.Server, auth GrpcAuth) {
@@ -112,3 +116,17 @@ func (as *AuthorizationServer) UsersGetByPrefixFirstNameAndSecondName(ctx contex
 		Users: usersToResponse,
 	}, nil
 }
+
+// func (as *AuthorizationServer) GetFriends(user_id string) (user_ids []string, err error) {
+// 	friend_ids, err := as.auth.GetFriends(req.UserId)
+// 	if err != nil {
+// 		return &proto.FriendResponse{
+// 			Status:  500,
+// 			Message: err.Error(),
+// 		}, err
+// 	}
+// 	return &proto.FriendResponse{
+// 		Status:  200,
+// 		Message: "Все хорошо",
+// 	}, err
+// }

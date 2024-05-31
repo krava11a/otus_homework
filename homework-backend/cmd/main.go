@@ -22,9 +22,9 @@ func Run() {
 	// TODO: инициализировать приложение (app)
 	var application *app.App
 	if cfg.StoragePathForRead == "" {
-		application = app.New(log, cfg.GRPC.Port, cfg.StoragePath, cfg.StoragePath, cfg.TokenTTL)
+		application = app.New(log, cfg.GRPC.Port, cfg.StoragePath, cfg.StoragePath, cfg.CachePath, cfg.TokenTTL)
 	}
-	application = app.New(log, cfg.GRPC.Port, cfg.StoragePath, cfg.StoragePathForRead, cfg.TokenTTL)
+	application = app.New(log, cfg.GRPC.Port, cfg.StoragePath, cfg.StoragePathForRead, cfg.CachePath, cfg.TokenTTL)
 
 	// TODO: запустить gRPC-сервер приложения
 	application.GRPCServer.MustRun()

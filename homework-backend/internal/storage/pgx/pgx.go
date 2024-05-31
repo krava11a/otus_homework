@@ -28,7 +28,7 @@ func New(pgConnectioString string) (*Storage, error) {
 }
 
 func (s *Storage) CreateUser(user models.User) (string, error) {
-	const op = "storage.sqlite.CreateUser"
+	const op = "storage.pgx.CreateUser"
 
 	_, err := s.dbpool.Exec(context.Background(), `INSERT INTO users (first_name, second_name,birthdate,biography,city,hP) VALUES($1,$2,$3,$4,$5,$6)`,
 		user.First_name, user.Second_name, user.Birthdate, user.Biography, user.City, user.Hp)
@@ -53,7 +53,7 @@ func (s *Storage) getUUIDbyAllStaticFields(user models.User) (uuid string, err e
 }
 
 func (s *Storage) GetUserById(user_id string) (models.User, error) {
-	const op = "storage.sqlite.GetUserById"
+	const op = "storage.pgx.GetUserById"
 	var user models.User
 	// query := "SELECT id,first_name, second_name,birthdate,biography,city,hP FROM users WHERE id = $1"
 	// stmt, err := s.db.Prepare()
@@ -86,7 +86,7 @@ func (s *Storage) UsersGetByPrefixFirstNameAndSecondName(first_name, second_name
 
 	// fmt.Println(s.db)
 
-	const op = "storage.sqlite.UsersGetByPrefixFirstNameAndSecondName"
+	const op = "storage.pgx.UsersGetByPrefixFirstNameAndSecondName"
 	// urlExample := "postgres://postgres:example@localhost:5432/otus_homework"
 
 	// conn, err := pgx.Connect(context.Background(), urlExample)
@@ -126,4 +126,28 @@ func (s *Storage) App() (models.App, error) {
 		Name:   "otus_homework",
 		Secret: "",
 	}, nil
+}
+
+func (s *Storage) FriendSet(user_id, friend_id string) error {
+	const op = "storage.pgx.FriendSet"
+
+	_, err := s.dbpool.Exec(context.Background(), `INSERT INTO friends (id,id_friend) VALUES($1,$2)`,
+		user_id, friend_id)
+	if err != nil {
+		return fmt.Errorf("%s: %w", op, err)
+	}
+
+	return nil
+}
+
+func (s *Storage) FriendDelete(user_id, friend_id string) error {
+	const op = "storage.pgx.FriendDelete"
+
+	_, err := s.dbpool.Exec(context.Background(), `DELETE FROM friends WHERE id= $1  AND id_friend = $2`,
+		user_id, friend_id)
+	if err != nil {
+		return fmt.Errorf("%s: %w", op, err)
+	}
+
+	return nil
 }

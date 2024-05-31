@@ -1,0 +1,83 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package="./proto";
+
+service PostService {
+    rpc PostCreate(PostCreateRequest) returns (PostCreateResponse);
+    rpc PostUpdate(PostUpdateRequest) returns(PostMainResponse);
+    rpc PostDelete(PostMainRequest) returns(PostMainResponse);
+    rpc PostGet(PostMainRequest) returns(PostGetResponse);
+
+    rpc PostFeed(PostFeedRequest) returns(PostFeedResponse);
+
+    rpc FriendSet(FriendRequest) returns (FriendResponse);
+    rpc FriendDelete(FriendRequest) returns(FriendResponse);
+}
+
+
+message PostCreateRequest {
+    string user_id = 1;
+    string text = 2;
+}
+
+message PostCreateResponse {
+    uint32 status = 1;
+    string message = 2;
+    string post_id = 3;    
+}
+
+message PostUpdateRequest {
+    string post_id = 1;
+    string text = 2;
+}
+
+message PostMainResponse{
+    uint32 status = 1;
+    string message = 2;
+}
+
+message PostMainRequest {
+    string post_id = 1;    
+}
+
+message PostGetResponse {
+    uint32 status = 1;
+    string message = 2;
+    Post post = 3;
+}
+
+message Post {
+    string user_id = 1;
+    string text = 2;
+    string post_id = 3;
+}
+
+message PostFeedRequest {
+    // Оффсет с которого начинать выдачу
+    uint32 offset = 1;
+    // Лимит, ограничивающий кол-во возвращенных сущностей
+    uint32 limit = 2;
+
+    string user_id = 3;
+    
+}
+
+message PostFeedResponse{
+    // Успешно получены посты друзей
+    uint32 status = 1;
+    string message = 2;
+    // Полученные посты друзей
+    repeated Post posts = 3;
+}
+
+message FriendRequest{
+    string user_id = 1;
+    string friend_id = 2;
+}
+
+message FriendResponse {
+    uint32 status = 1;
+    string message = 2;
+}

@@ -9,9 +9,8 @@ service AuthorizationService {
     rpc UserLogin(UserLoginRequest) returns(UserLoginResponse);
     rpc UserGetById(UserIdRequest) returns(UserGetByIdResponse);
     rpc UsersGetByPrefixFirstNameAndSecondName(UserSearchRequest) returns(UserSearchResponse);
+
 }
-
-
 
 message CreateUserRequest{
     string first_name = 1;

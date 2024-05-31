@@ -12,6 +12,7 @@ type Config struct {
 	Env                string     `yaml:"env" env-default:"local"`
 	StoragePath        string     `yaml:"storage_path" env-required:"true"`
 	StoragePathForRead string     `yaml:"storage_path_for_read" env-required:"false"`
+	CachePath          string     `yaml:"cache_path" env-required:"false"`
 	GRPC               GRPCConfig `yaml:"grpc"`
 	MigrationsPath     string
 	TokenTTL           time.Duration `yaml:"token_ttl" env-default:"1h"`

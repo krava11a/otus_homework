@@ -1,6 +1,7 @@
 env: "local"
-storage_path: "host=pg_master port=5432 user=postgres password=example dbname=otus_homework sslmode=disable"
-storage_path_for_read: "host=pg_slave port=5432 user=postgres password=example dbname=otus_homework sslmode=disable"
+storage_path: "host=localhost port=15432 user=postgres password=example dbname=otus_homework sslmode=disable"
+storage_path_for_read: "host=localhost port=5432 user=postgres password=example dbname=otus_homework sslmode=disable"
+cache_path: "redis://localhost:6379/1"
 grpc:  
   port: 9001  
   timeout: 10h

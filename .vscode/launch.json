@@ -12,7 +12,7 @@
             "program": "${workspaceFolder}/homework-backend",
             "args": [
                 "-config",
-                "${workspaceFolder}/homework-backend/internal/config/config_local.yaml"
+                "${workspaceFolder}/homework-backend/internal/config/config_for_docker.yaml"
             ]
         },
         {
@@ -21,6 +21,14 @@
             "request": "launch",
             "mode": "auto",
             "program": "${workspaceFolder}/utils/faker/"
+            
+        },
+        {
+            "name": "develop_homework_posts",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/utils/parserPosts/"
             
         }
     ]

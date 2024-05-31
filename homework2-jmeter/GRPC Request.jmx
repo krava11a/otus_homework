@@ -1,234 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jmeterTestPlan version="1.2" properties="5.0" jmeter="5.6.3">
   <hashTree>
-    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan">
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Homework4-cache">
       <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
         <collectionProp name="Arguments.arguments"/>
       </elementProp>
     </TestPlan>
     <hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group">
-        <intProp name="ThreadGroup.num_threads">100</intProp>
-        <intProp name="ThreadGroup.ramp_time">30</intProp>
-        <longProp name="ThreadGroup.duration">30</longProp>
-        <boolProp name="ThreadGroup.same_user_on_next_iteration">false</boolProp>
-        <boolProp name="ThreadGroup.scheduler">true</boolProp>
-        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
-        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
-          <intProp name="LoopController.loops">-1</intProp>
-          <boolProp name="LoopController.continue_forever">false</boolProp>
-        </elementProp>
-      </ThreadGroup>
-      <hashTree>
-        <vn.zalopay.benchmark.GRPCSampler guiclass="vn.zalopay.benchmark.GRPCSamplerGui" testclass="vn.zalopay.benchmark.GRPCSampler" testname="/search">
-          <stringProp name="GRPCSampler.protoFolder">/home/krava/Projects/GoProjects/OTUS/homework/homework-backend/internal/proto</stringProp>
-          <stringProp name="GRPCSampler.libFolder">/home/krava/Projects/GoProjects/OTUS/homework/build/debug</stringProp>
-          <stringProp name="GRPCSampler.metadata"></stringProp>
-          <stringProp name="GRPCSampler.host">localhost</stringProp>
-          <stringProp name="GRPCSampler.port">9001</stringProp>
-          <stringProp name="GRPCSampler.fullMethod">proto.AuthorizationService/UsersGetByPrefixFirstNameAndSecondName</stringProp>
-          <stringProp name="GRPCSampler.deadline">1000000</stringProp>
-          <boolProp name="GRPCSampler.tls">false</boolProp>
-          <boolProp name="GRPCSampler.tlsDisableVerification">false</boolProp>
-          <stringProp name="GRPCSampler.channelAwaitTermination">1000000</stringProp>
-          <stringProp name="GRPCSampler.maxInboundMessageSize">419430400</stringProp>
-          <stringProp name="GRPCSampler.maxInboundMetadataSize">819200</stringProp>
-          <stringProp name="GRPCSampler.requestJson">{
-	&quot;first_name&quot;:${__RandomString(1,АБВГДЕЖЗИКЛМНОПРСТУ,)},
-	&quot;second_name&quot;:${__RandomString(1,АБВГДЕЖЗИКЛМНОПРСТУ,)}
-}</stringProp>
-        </vn.zalopay.benchmark.GRPCSampler>
-        <hashTree/>
-        <vn.zalopay.benchmark.GRPCSampler guiclass="vn.zalopay.benchmark.GRPCSamplerGui" testclass="vn.zalopay.benchmark.GRPCSampler" testname="/searchById">
-          <stringProp name="GRPCSampler.protoFolder">/home/krava/Projects/GoProjects/OTUS/homework/homework-backend/internal/proto</stringProp>
-          <stringProp name="GRPCSampler.libFolder">/home/krava/Projects/GoProjects/OTUS/homework/build/debug</stringProp>
-          <stringProp name="GRPCSampler.metadata"></stringProp>
-          <stringProp name="GRPCSampler.host">localhost</stringProp>
-          <stringProp name="GRPCSampler.port">9001</stringProp>
-          <stringProp name="GRPCSampler.fullMethod">proto.AuthorizationService/UserGetById</stringProp>
-          <stringProp name="GRPCSampler.deadline">1000000</stringProp>
-          <boolProp name="GRPCSampler.tls">false</boolProp>
-          <boolProp name="GRPCSampler.tlsDisableVerification">false</boolProp>
-          <stringProp name="GRPCSampler.channelAwaitTermination">1000000</stringProp>
-          <stringProp name="GRPCSampler.maxInboundMessageSize">419430400</stringProp>
-          <stringProp name="GRPCSampler.maxInboundMetadataSize">819200</stringProp>
-          <stringProp name="GRPCSampler.requestJson">{
-	&quot;user_id&quot;:${__UUID}
-}</stringProp>
-        </vn.zalopay.benchmark.GRPCSampler>
-        <hashTree/>
-        <vn.zalopay.benchmark.GRPCSampler guiclass="vn.zalopay.benchmark.GRPCSamplerGui" testclass="vn.zalopay.benchmark.GRPCSampler" testname="/SLAVE-search" enabled="false">
-          <stringProp name="GRPCSampler.protoFolder">/home/krava/Projects/GoProjects/OTUS/homework/homework-backend/internal/proto</stringProp>
-          <stringProp name="GRPCSampler.libFolder">/home/krava/Projects/GoProjects/OTUS/homework/build/debug</stringProp>
-          <stringProp name="GRPCSampler.metadata"></stringProp>
-          <stringProp name="GRPCSampler.host">localhost</stringProp>
-          <stringProp name="GRPCSampler.port">9002</stringProp>
-          <stringProp name="GRPCSampler.fullMethod">proto.AuthorizationService/UsersGetByPrefixFirstNameAndSecondName</stringProp>
-          <stringProp name="GRPCSampler.deadline">1000000</stringProp>
-          <boolProp name="GRPCSampler.tls">false</boolProp>
-          <boolProp name="GRPCSampler.tlsDisableVerification">false</boolProp>
-          <stringProp name="GRPCSampler.channelAwaitTermination">1000000</stringProp>
-          <stringProp name="GRPCSampler.maxInboundMessageSize">419430400</stringProp>
-          <stringProp name="GRPCSampler.maxInboundMetadataSize">819200</stringProp>
-          <stringProp name="GRPCSampler.requestJson">{
-	&quot;first_name&quot;:${__RandomString(1,АБВГДЕЖЗИКЛМНОПРСТУ,)},
-	&quot;second_name&quot;:${__RandomString(1,АБВГДЕЖЗИКЛМНОПРСТУ,)}
-}</stringProp>
-        </vn.zalopay.benchmark.GRPCSampler>
-        <hashTree/>
-        <vn.zalopay.benchmark.GRPCSampler guiclass="vn.zalopay.benchmark.GRPCSamplerGui" testclass="vn.zalopay.benchmark.GRPCSampler" testname="/SLAVE-searchById" enabled="false">
-          <stringProp name="GRPCSampler.protoFolder">/home/krava/Projects/GoProjects/OTUS/homework/homework-backend/internal/proto</stringProp>
-          <stringProp name="GRPCSampler.libFolder">/home/krava/Projects/GoProjects/OTUS/homework/build/debug</stringProp>
-          <stringProp name="GRPCSampler.metadata"></stringProp>
-          <stringProp name="GRPCSampler.host">localhost</stringProp>
-          <stringProp name="GRPCSampler.port">9002</stringProp>
-          <stringProp name="GRPCSampler.fullMethod">proto.AuthorizationService/UserGetById</stringProp>
-          <stringProp name="GRPCSampler.deadline">1000000</stringProp>
-          <boolProp name="GRPCSampler.tls">false</boolProp>
-          <boolProp name="GRPCSampler.tlsDisableVerification">false</boolProp>
-          <stringProp name="GRPCSampler.channelAwaitTermination">1000000</stringProp>
-          <stringProp name="GRPCSampler.maxInboundMessageSize">419430400</stringProp>
-          <stringProp name="GRPCSampler.maxInboundMetadataSize">819200</stringProp>
-          <stringProp name="GRPCSampler.requestJson">{
-	&quot;user_id&quot;:${__UUID}
-}</stringProp>
-        </vn.zalopay.benchmark.GRPCSampler>
-        <hashTree/>
-        <vn.zalopay.benchmark.GRPCSampler guiclass="vn.zalopay.benchmark.GRPCSamplerGui" testclass="vn.zalopay.benchmark.GRPCSampler" testname="/userRegister" enabled="false">
-          <stringProp name="GRPCSampler.protoFolder">/home/krava/Projects/GoProjects/OTUS/homework/homework-backend/internal/proto</stringProp>
-          <stringProp name="GRPCSampler.libFolder">/home/krava/Projects/GoProjects/OTUS/homework/build/debug</stringProp>
-          <stringProp name="GRPCSampler.metadata"></stringProp>
-          <stringProp name="GRPCSampler.host">localhost</stringProp>
-          <stringProp name="GRPCSampler.port">9001</stringProp>
-          <stringProp name="GRPCSampler.fullMethod">proto.AuthorizationService/UserRegister</stringProp>
-          <stringProp name="GRPCSampler.deadline">100000</stringProp>
-          <boolProp name="GRPCSampler.tls">false</boolProp>
-          <boolProp name="GRPCSampler.tlsDisableVerification">false</boolProp>
-          <stringProp name="GRPCSampler.channelAwaitTermination">100000</stringProp>
-          <stringProp name="GRPCSampler.maxInboundMessageSize">41943040</stringProp>
-          <stringProp name="GRPCSampler.maxInboundMetadataSize">81920</stringProp>
-          <stringProp name="GRPCSampler.requestJson">{
-	&quot;first_name&quot;:${__RandomString(1,АБВГДЕЖЗИКЛМНОПРСТУ,)},
-	&quot;second_name&quot;:${__RandomString(1,АБВГДЕЖЗИКЛМНОПРСТУ,)},
-	&quot;birthdate&quot;:&quot;1945-09-09&quot;,
-	&quot;biography&quot;:${__RandomString(1,АБВГДЕЖЗИКЛМНОПРСТУ,)},
-	&quot;city&quot;:${__RandomString(1,АБВГДЕЖЗИКЛМНОПРСТУ,)},
-	&quot;password&quot;:&quot;password&quot;
-}</stringProp>
-        </vn.zalopay.benchmark.GRPCSampler>
-        <hashTree/>
-        <vn.zalopay.benchmark.GRPCSampler guiclass="vn.zalopay.benchmark.GRPCSamplerGui" testclass="vn.zalopay.benchmark.GRPCSampler" testname="/SLAVE-userRegister" enabled="false">
-          <stringProp name="GRPCSampler.protoFolder">/home/krava/Projects/GoProjects/OTUS/homework/homework-backend/internal/proto</stringProp>
-          <stringProp name="GRPCSampler.libFolder">/home/krava/Projects/GoProjects/OTUS/homework/build/debug</stringProp>
-          <stringProp name="GRPCSampler.metadata"></stringProp>
-          <stringProp name="GRPCSampler.host">localhost</stringProp>
-          <stringProp name="GRPCSampler.port">9002</stringProp>
-          <stringProp name="GRPCSampler.fullMethod">proto.AuthorizationService/UserRegister</stringProp>
-          <stringProp name="GRPCSampler.deadline">100000</stringProp>
-          <boolProp name="GRPCSampler.tls">false</boolProp>
-          <boolProp name="GRPCSampler.tlsDisableVerification">false</boolProp>
-          <stringProp name="GRPCSampler.channelAwaitTermination">100000</stringProp>
-          <stringProp name="GRPCSampler.maxInboundMessageSize">41943040</stringProp>
-          <stringProp name="GRPCSampler.maxInboundMetadataSize">81920</stringProp>
-          <stringProp name="GRPCSampler.requestJson">{
-	&quot;first_name&quot;:${__RandomString(1,АБВГДЕЖЗИКЛМНОПРСТУ,)},
-	&quot;second_name&quot;:${__RandomString(1,АБВГДЕЖЗИКЛМНОПРСТУ,)},
-	&quot;birthdate&quot;:&quot;1945-09-09&quot;,
-	&quot;biography&quot;:${__RandomString(1,АБВГДЕЖЗИКЛМНОПРСТУ,)},
-	&quot;city&quot;:${__RandomString(1,АБВГДЕЖЗИКЛМНОПРСТУ,)},
-	&quot;password&quot;:&quot;password&quot;
-}</stringProp>
-        </vn.zalopay.benchmark.GRPCSampler>
-        <hashTree/>
-        <vn.zalopay.benchmark.GRPCSampler guiclass="vn.zalopay.benchmark.GRPCSamplerGui" testclass="vn.zalopay.benchmark.GRPCSampler" testname="/userLogin" enabled="false">
-          <stringProp name="GRPCSampler.protoFolder">/home/krava/GoProjects/OTUS/homework/homework-backend/internal/proto</stringProp>
-          <stringProp name="GRPCSampler.libFolder">/home/krava/GoProjects/OTUS/homework/build/debug</stringProp>
-          <stringProp name="GRPCSampler.metadata"></stringProp>
-          <stringProp name="GRPCSampler.host">localhost</stringProp>
-          <stringProp name="GRPCSampler.port">9001</stringProp>
-          <stringProp name="GRPCSampler.fullMethod">proto.AuthorizationService/UserLogin</stringProp>
-          <stringProp name="GRPCSampler.deadline">100000</stringProp>
-          <boolProp name="GRPCSampler.tls">false</boolProp>
-          <boolProp name="GRPCSampler.tlsDisableVerification">false</boolProp>
-          <stringProp name="GRPCSampler.channelAwaitTermination">100000</stringProp>
-          <stringProp name="GRPCSampler.maxInboundMessageSize">41943040</stringProp>
-          <stringProp name="GRPCSampler.maxInboundMetadataSize">81920</stringProp>
-          <stringProp name="GRPCSampler.requestJson">{
-	&quot;user_id&quot;:&quot;05886670-90a7-4850-a385-62d7e7f175e7&quot;,
-	&quot;password&quot;:&quot;password&quot;
-}</stringProp>
-        </vn.zalopay.benchmark.GRPCSampler>
-        <hashTree/>
-        <vn.zalopay.benchmark.GRPCSampler guiclass="vn.zalopay.benchmark.GRPCSamplerGui" testclass="vn.zalopay.benchmark.GRPCSampler" testname="/search/kravtsova" enabled="false">
-          <stringProp name="GRPCSampler.protoFolder">/home/krava/GoProjects/OTUS/homework/homework-backend/internal/proto</stringProp>
-          <stringProp name="GRPCSampler.libFolder">/home/krava/Distrib/jmeter</stringProp>
-          <stringProp name="GRPCSampler.metadata"></stringProp>
-          <stringProp name="GRPCSampler.host">localhost</stringProp>
-          <stringProp name="GRPCSampler.port">9001</stringProp>
-          <stringProp name="GRPCSampler.fullMethod">proto.AuthorizationService/UsersGetByPrefixFirstNameAndSecondName</stringProp>
-          <stringProp name="GRPCSampler.deadline">10000</stringProp>
-          <boolProp name="GRPCSampler.tls">false</boolProp>
-          <boolProp name="GRPCSampler.tlsDisableVerification">false</boolProp>
-          <stringProp name="GRPCSampler.channelAwaitTermination">10000</stringProp>
-          <stringProp name="GRPCSampler.maxInboundMessageSize">4194304</stringProp>
-          <stringProp name="GRPCSampler.maxInboundMetadataSize">8192</stringProp>
-          <stringProp name="GRPCSampler.requestJson">{
-	&quot;first_name&quot;:&quot;А&quot;,
-	&quot;second_name&quot;:&quot;К&quot;
-}</stringProp>
-        </vn.zalopay.benchmark.GRPCSampler>
-        <hashTree/>
-        <ResultCollector guiclass="StatGraphVisualizer" testclass="ResultCollector" testname="Aggregate Graph" enabled="false">
-          <boolProp name="ResultCollector.error_logging">false</boolProp>
-          <objProp>
-            <name>saveConfig</name>
-            <value class="SampleSaveConfiguration">
-              <time>true</time>
-              <latency>true</latency>
-              <timestamp>true</timestamp>
-              <success>true</success>
-              <label>true</label>
-              <code>true</code>
-              <message>true</message>
-              <threadName>true</threadName>
-              <dataType>true</dataType>
-              <encoding>false</encoding>
-              <assertions>true</assertions>
-              <subresults>true</subresults>
-              <responseData>false</responseData>
-              <samplerData>false</samplerData>
-              <xml>false</xml>
-              <fieldNames>true</fieldNames>
-              <responseHeaders>false</responseHeaders>
-              <requestHeaders>false</requestHeaders>
-              <responseDataOnError>false</responseDataOnError>
-              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
-              <assertionsResultsToSave>0</assertionsResultsToSave>
-              <bytes>true</bytes>
-              <sentBytes>true</sentBytes>
-              <url>true</url>
-              <threadCounts>true</threadCounts>
-              <idleTime>true</idleTime>
-              <connectTime>true</connectTime>
-            </value>
-          </objProp>
-          <stringProp name="filename"></stringProp>
-        </ResultCollector>
-        <hashTree/>
-        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="JDBC Request" enabled="false">
-          <stringProp name="dataSource"></stringProp>
-          <stringProp name="query"></stringProp>
-          <stringProp name="queryArguments"></stringProp>
-          <stringProp name="queryArgumentsTypes"></stringProp>
-          <stringProp name="queryTimeout"></stringProp>
-          <stringProp name="queryType">Select Statement</stringProp>
-          <stringProp name="resultSetHandler">Store as String</stringProp>
-          <stringProp name="resultSetMaxRows"></stringProp>
-          <stringProp name="resultVariable"></stringProp>
-          <stringProp name="variableNames"></stringProp>
-        </JDBCSampler>
-        <hashTree/>
-      </hashTree>
       <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="false">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
@@ -311,7 +89,7 @@
         <boolProp name="exclude_checkbox_state">false</boolProp>
       </kg.apc.jmeter.vizualizers.CorrectedResultCollector>
       <hashTree/>
-      <kg.apc.jmeter.vizualizers.CorrectedResultCollector guiclass="kg.apc.jmeter.vizualizers.ResponseTimesOverTimeGui" testclass="kg.apc.jmeter.vizualizers.CorrectedResultCollector" testname="jp@gc - Response Times Over Time">
+      <kg.apc.jmeter.vizualizers.CorrectedResultCollector guiclass="kg.apc.jmeter.vizualizers.ResponseTimesOverTimeGui" testclass="kg.apc.jmeter.vizualizers.CorrectedResultCollector" testname="jp@gc - Response Times Over Time" enabled="false">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
           <name>saveConfig</name>
@@ -356,7 +134,7 @@
         <boolProp name="exclude_checkbox_state">false</boolProp>
       </kg.apc.jmeter.vizualizers.CorrectedResultCollector>
       <hashTree/>
-      <kg.apc.jmeter.vizualizers.CorrectedResultCollector guiclass="kg.apc.jmeter.vizualizers.TransactionsPerSecondGui" testclass="kg.apc.jmeter.vizualizers.CorrectedResultCollector" testname="jp@gc - Transactions per Second" enabled="false">
+      <kg.apc.jmeter.vizualizers.CorrectedResultCollector guiclass="kg.apc.jmeter.vizualizers.TransactionsPerSecondGui" testclass="kg.apc.jmeter.vizualizers.CorrectedResultCollector" testname="jp@gc - Transactions per Second" enabled="true">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
           <name>saveConfig</name>
@@ -491,7 +269,7 @@
         <boolProp name="exclude_checkbox_state">false</boolProp>
       </kg.apc.jmeter.vizualizers.CorrectedResultCollector>
       <hashTree/>
-      <kg.apc.jmeter.vizualizers.CorrectedResultCollector guiclass="kg.apc.jmeter.vizualizers.TransactionsPerSecondGui" testclass="kg.apc.jmeter.vizualizers.CorrectedResultCollector" testname="jp@gc - Transactions per Second">
+      <kg.apc.jmeter.vizualizers.CorrectedResultCollector guiclass="kg.apc.jmeter.vizualizers.TransactionsPerSecondGui" testclass="kg.apc.jmeter.vizualizers.CorrectedResultCollector" testname="jp@gc - Transactions per Second" enabled="false">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
           <name>saveConfig</name>
@@ -536,7 +314,7 @@
         <boolProp name="exclude_checkbox_state">false</boolProp>
       </kg.apc.jmeter.vizualizers.CorrectedResultCollector>
       <hashTree/>
-      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
           <name>saveConfig</name>
@@ -610,6 +388,298 @@
         <stringProp name="filename"></stringProp>
       </ResultCollector>
       <hashTree/>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Friends">
+        <intProp name="ThreadGroup.num_threads">10</intProp>
+        <intProp name="ThreadGroup.ramp_time">10</intProp>
+        <longProp name="ThreadGroup.duration">11</longProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+        <boolProp name="ThreadGroup.scheduler">true</boolProp>
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
+          <intProp name="LoopController.loops">-1</intProp>
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+        </elementProp>
+      </ThreadGroup>
+      <hashTree>
+        <JDBCDataSource guiclass="TestBeanGUI" testclass="JDBCDataSource" testname="JDBC Connection Configuration">
+          <boolProp name="autocommit">true</boolProp>
+          <stringProp name="checkQuery"></stringProp>
+          <stringProp name="connectionAge">5000</stringProp>
+          <stringProp name="connectionProperties"></stringProp>
+          <stringProp name="dataSource">pg_master</stringProp>
+          <stringProp name="dbUrl">jdbc:postgresql://localhost:15432/otus_homework?autoReconnect=true</stringProp>
+          <stringProp name="driver">org.postgresql.Driver</stringProp>
+          <stringProp name="initQuery"></stringProp>
+          <boolProp name="keepAlive">true</boolProp>
+          <stringProp name="password">example</stringProp>
+          <stringProp name="poolMax">0</stringProp>
+          <boolProp name="preinit">false</boolProp>
+          <stringProp name="timeout">10000</stringProp>
+          <stringProp name="transactionIsolation">DEFAULT</stringProp>
+          <stringProp name="trimInterval">60000</stringProp>
+          <stringProp name="username">postgres</stringProp>
+        </JDBCDataSource>
+        <hashTree/>
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="SELECT " enabled="false">
+          <stringProp name="dataSource">pg_master</stringProp>
+          <stringProp name="query">SELECT * FROM test;</stringProp>
+          <stringProp name="queryArguments"></stringProp>
+          <stringProp name="queryArgumentsTypes"></stringProp>
+          <stringProp name="queryTimeout"></stringProp>
+          <stringProp name="queryType">Select Statement</stringProp>
+          <stringProp name="resultSetHandler">Store as String</stringProp>
+          <stringProp name="resultSetMaxRows"></stringProp>
+          <stringProp name="resultVariable"></stringProp>
+          <stringProp name="variableNames"></stringProp>
+        </JDBCSampler>
+        <hashTree/>
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="INSERT FRIENDS">
+          <stringProp name="dataSource">pg_master</stringProp>
+          <stringProp name="query">INSERT INTO friends (id,id_friend) VALUES((SELECT id FROM users LIMIT 1 OFFSET floor(random() * (100)+10)),(SELECT id FROM users LIMIT 1 OFFSET floor(random() * (100)+10))); </stringProp>
+          <stringProp name="queryArguments"></stringProp>
+          <stringProp name="queryArgumentsTypes"></stringProp>
+          <stringProp name="queryTimeout"></stringProp>
+          <stringProp name="queryType">Update Statement</stringProp>
+          <stringProp name="resultSetHandler">Store as String</stringProp>
+          <stringProp name="resultSetMaxRows"></stringProp>
+          <stringProp name="resultVariable"></stringProp>
+          <stringProp name="variableNames"></stringProp>
+        </JDBCSampler>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell PreProcessor" enabled="false">
+          <stringProp name="filename"></stringProp>
+          <stringProp name="parameters"></stringProp>
+          <boolProp name="resetInterpreter">false</boolProp>
+          <stringProp name="script"></stringProp>
+        </BeanShellPreProcessor>
+        <hashTree/>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="INSERT POSTS">
+        <intProp name="ThreadGroup.num_threads">10</intProp>
+        <intProp name="ThreadGroup.ramp_time">100</intProp>
+        <longProp name="ThreadGroup.duration">100</longProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">false</boolProp>
+        <boolProp name="ThreadGroup.scheduler">true</boolProp>
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
+          <stringProp name="LoopController.loops">100</stringProp>
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+        </elementProp>
+      </ThreadGroup>
+      <hashTree>
+        <JDBCDataSource guiclass="TestBeanGUI" testclass="JDBCDataSource" testname="JDBC Connection Configuration">
+          <boolProp name="autocommit">true</boolProp>
+          <stringProp name="checkQuery"></stringProp>
+          <stringProp name="connectionAge">5000</stringProp>
+          <stringProp name="connectionProperties"></stringProp>
+          <stringProp name="dataSource">pg_master</stringProp>
+          <stringProp name="dbUrl">jdbc:postgresql://localhost:15432/otus_homework?autoReconnect=true</stringProp>
+          <stringProp name="driver">org.postgresql.Driver</stringProp>
+          <stringProp name="initQuery"></stringProp>
+          <boolProp name="keepAlive">true</boolProp>
+          <stringProp name="password">example</stringProp>
+          <stringProp name="poolMax">0</stringProp>
+          <boolProp name="preinit">false</boolProp>
+          <stringProp name="timeout">10000</stringProp>
+          <stringProp name="transactionIsolation">DEFAULT</stringProp>
+          <stringProp name="trimInterval">60000</stringProp>
+          <stringProp name="username">postgres</stringProp>
+        </JDBCDataSource>
+        <hashTree/>
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="SELECT ">
+          <stringProp name="dataSource">pg_master</stringProp>
+          <stringProp name="query">SELECT id FROM users LIMIT 1 OFFSET floor(random() * (100)+10);</stringProp>
+          <stringProp name="queryArguments"></stringProp>
+          <stringProp name="queryArgumentsTypes"></stringProp>
+          <stringProp name="queryTimeout"></stringProp>
+          <stringProp name="queryType">Select Statement</stringProp>
+          <stringProp name="resultSetHandler">Store as String</stringProp>
+          <stringProp name="resultSetMaxRows"></stringProp>
+          <stringProp name="resultVariable"></stringProp>
+          <stringProp name="variableNames"></stringProp>
+        </JDBCSampler>
+        <hashTree>
+          <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="Записать id автора поста впеременную" enabled="false">
+            <stringProp name="JSONPostProcessor.referenceNames">id_owner</stringProp>
+            <stringProp name="JSONPostProcessor.jsonPathExprs">$.idOwner</stringProp>
+            <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
+          </JSONPostProcessor>
+          <hashTree/>
+          <BoundaryExtractor guiclass="BoundaryExtractorGui" testclass="BoundaryExtractor" testname="Boundary Extractor" enabled="false">
+            <stringProp name="BoundaryExtractor.useHeaders">false</stringProp>
+            <stringProp name="BoundaryExtractor.refname">id_owner</stringProp>
+            <stringProp name="BoundaryExtractor.lboundary">id//n</stringProp>
+            <stringProp name="BoundaryExtractor.rboundary"></stringProp>
+            <stringProp name="BoundaryExtractor.default"></stringProp>
+            <boolProp name="BoundaryExtractor.default_empty_value">true</boolProp>
+            <stringProp name="BoundaryExtractor.match_number"></stringProp>
+          </BoundaryExtractor>
+          <hashTree/>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">idOwner</stringProp>
+            <stringProp name="RegexExtractor.regex">[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}</stringProp>
+            <stringProp name="RegexExtractor.template"></stringProp>
+            <stringProp name="RegexExtractor.default"></stringProp>
+            <boolProp name="RegexExtractor.default_empty_value">true</boolProp>
+            <stringProp name="RegexExtractor.match_number"></stringProp>
+          </RegexExtractor>
+          <hashTree/>
+        </hashTree>
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="SELECT ">
+          <stringProp name="dataSource">pg_master</stringProp>
+          <stringProp name="query">SELECT concat(&apos;a123a&apos;, text,&apos;a124a&apos;) FROM debug_posts LIMIT 1 OFFSET floor(random() * (117759)+10);</stringProp>
+          <stringProp name="queryArguments"></stringProp>
+          <stringProp name="queryArgumentsTypes"></stringProp>
+          <stringProp name="queryTimeout"></stringProp>
+          <stringProp name="queryType">Select Statement</stringProp>
+          <stringProp name="resultSetHandler">Store as String</stringProp>
+          <stringProp name="resultSetMaxRows"></stringProp>
+          <stringProp name="resultVariable"></stringProp>
+          <stringProp name="variableNames"></stringProp>
+        </JDBCSampler>
+        <hashTree>
+          <BoundaryExtractor guiclass="BoundaryExtractorGui" testclass="BoundaryExtractor" testname="Boundary Extractor">
+            <stringProp name="BoundaryExtractor.useHeaders">false</stringProp>
+            <stringProp name="BoundaryExtractor.refname">text</stringProp>
+            <stringProp name="BoundaryExtractor.lboundary">a123a</stringProp>
+            <stringProp name="BoundaryExtractor.rboundary">a124a</stringProp>
+            <stringProp name="BoundaryExtractor.default"></stringProp>
+            <boolProp name="BoundaryExtractor.default_empty_value">true</boolProp>
+            <stringProp name="BoundaryExtractor.match_number">1</stringProp>
+          </BoundaryExtractor>
+          <hashTree/>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="false">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">idOwner</stringProp>
+            <stringProp name="RegexExtractor.regex">[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}</stringProp>
+            <stringProp name="RegexExtractor.template"></stringProp>
+            <stringProp name="RegexExtractor.default"></stringProp>
+            <boolProp name="RegexExtractor.default_empty_value">true</boolProp>
+            <stringProp name="RegexExtractor.match_number"></stringProp>
+          </RegexExtractor>
+          <hashTree/>
+        </hashTree>
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="INSERT FRIENDS" enabled="false">
+          <stringProp name="dataSource">pg_master</stringProp>
+          <stringProp name="query">INSERT INTO friends (id,id_friend) VALUES((SELECT id FROM users LIMIT 1 OFFSET floor(random() * (999933)+10)),(SELECT id FROM users LIMIT 1 OFFSET floor(random() * (999933)+10))); </stringProp>
+          <stringProp name="queryArguments"></stringProp>
+          <stringProp name="queryArgumentsTypes"></stringProp>
+          <stringProp name="queryTimeout"></stringProp>
+          <stringProp name="queryType">Update Statement</stringProp>
+          <stringProp name="resultSetHandler">Store as String</stringProp>
+          <stringProp name="resultSetMaxRows"></stringProp>
+          <stringProp name="resultVariable"></stringProp>
+          <stringProp name="variableNames"></stringProp>
+        </JDBCSampler>
+        <hashTree/>
+        <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler">
+          <boolProp name="displayJMeterProperties">false</boolProp>
+          <boolProp name="displayJMeterVariables">true</boolProp>
+          <boolProp name="displaySystemProperties">false</boolProp>
+        </DebugSampler>
+        <hashTree/>
+        <vn.zalopay.benchmark.GRPCSampler guiclass="vn.zalopay.benchmark.GRPCSamplerGui" testclass="vn.zalopay.benchmark.GRPCSampler" testname="/PostCreate">
+          <stringProp name="GRPCSampler.protoFolder">/home/krava/Projects/GoProjects/OTUS/homework/homework-backend/internal/proto</stringProp>
+          <stringProp name="GRPCSampler.libFolder">/home/krava/Projects/GoProjects/OTUS/homework/build/debug</stringProp>
+          <stringProp name="GRPCSampler.metadata"></stringProp>
+          <stringProp name="GRPCSampler.host">localhost</stringProp>
+          <stringProp name="GRPCSampler.port">9001</stringProp>
+          <stringProp name="GRPCSampler.fullMethod">proto.PostService/PostCreate</stringProp>
+          <stringProp name="GRPCSampler.deadline">1000000</stringProp>
+          <boolProp name="GRPCSampler.tls">false</boolProp>
+          <boolProp name="GRPCSampler.tlsDisableVerification">false</boolProp>
+          <stringProp name="GRPCSampler.channelAwaitTermination">1000000</stringProp>
+          <stringProp name="GRPCSampler.maxInboundMessageSize">419430400</stringProp>
+          <stringProp name="GRPCSampler.maxInboundMetadataSize">819200</stringProp>
+          <stringProp name="GRPCSampler.requestJson">{
+	&quot;user_id&quot;:${idOwner_g0},
+	&quot;text&quot;: &quot;${text}&quot;
+}</stringProp>
+        </vn.zalopay.benchmark.GRPCSampler>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell PreProcessor" enabled="false">
+          <stringProp name="filename"></stringProp>
+          <stringProp name="parameters"></stringProp>
+          <boolProp name="resetInterpreter">false</boolProp>
+          <stringProp name="script"></stringProp>
+        </BeanShellPreProcessor>
+        <hashTree/>
+      </hashTree>
     </hashTree>
   </hashTree>
 </jmeterTestPlan>
