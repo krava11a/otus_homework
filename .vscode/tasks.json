@@ -36,7 +36,7 @@
             "dockerBuild": {
                 "context": "${workspaceFolder}/homework-backend",
                 "dockerfile": "${workspaceFolder}/homework-backend/build/Dockerfile",
-                "tag": "homework_backend:0.0.12"
+                "tag": "homework_backend:0.0.17"
             },
             "dependsOn": [
                 "go: build package"

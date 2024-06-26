@@ -1,6 +1,7 @@
 package jwt
 
 import (
+	"fmt"
 	"homework-backend/internal/models"
 	"time"
 
@@ -24,4 +25,24 @@ func NewToken(user_id string, app models.App, duration time.Duration) (string, e
 
 	return tokenString, nil
 
+}
+
+func GetUserId(token string, app models.App) (string, error) {
+	claims := jwt.MapClaims{}
+	_, err := jwt.ParseWithClaims(token, claims, func(token *jwt.Token) (interface{}, error) {
+		return []byte([]byte(app.Secret)), nil
+	})
+	if err != nil {
+		return "", err
+	}
+
+	// do something with decoded claims
+	for key, val := range claims {
+		if key == "uuid" {
+			return fmt.Sprintf("%v", val), nil
+		}
+		fmt.Printf("Key: %v, value: %v\n", key, val)
+	}
+
+	return "", nil
 }

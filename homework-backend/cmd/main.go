@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"homework-backend/internal/app"
+	grpcweb "homework-backend/internal/app/grpc-web"
 	"homework-backend/internal/config"
 	"log/slog"
 	"os"
@@ -22,27 +23,15 @@ func Run() {
 	// TODO: инициализировать приложение (app)
 	var application *app.App
 	if cfg.StoragePathForRead == "" {
-		application = app.New(log, cfg.GRPC.Port, cfg.StoragePath, cfg.StoragePath, cfg.CachePath, cfg.TokenTTL)
+		application = app.New(log, cfg.GRPC.Port, cfg.StoragePath, cfg.StoragePath, cfg.CachePath, cfg.QueuePath, cfg.TokenTTL)
 	}
-	application = app.New(log, cfg.GRPC.Port, cfg.StoragePath, cfg.StoragePathForRead, cfg.CachePath, cfg.TokenTTL)
+	application = app.New(log, cfg.GRPC.Port, cfg.StoragePath, cfg.StoragePathForRead, cfg.CachePath, cfg.QueuePath, cfg.TokenTTL)
 
 	// TODO: запустить gRPC-сервер приложения
-	application.GRPCServer.MustRun()
+	go application.GRPCServer.MustRun()
 
-	// lis, err := net.Listen("tcp", "[::1]:9001")
-	// if err != nil {
-	// 	log.Fatalf("failed to listen: %v", err)
-	// }
+	grpcweb.Run(cfg.GRPC.Port, cfg.GRPC.WebPort, cfg.GRPC.WsPort, cfg.QueuePath, log)
 
-	// grpcServer := grpc.NewServer()
-	// service := &services.AuthorizationServer{}
-
-	// proto.RegisterAuthorizationServiceServer(grpcServer, service)
-	// err = grpcServer.Serve(lis)
-
-	// if err != nil {
-	// 	log.Fatalf("Error strating server: %v", err)
-	// }
 }
 
 func setupLogger(env string) *slog.Logger {

@@ -49,7 +49,6 @@ func New(log *slog.Logger, grpcauth auth.GrpcAuth, grpcPost post.GrpcPost, port 
 
 	// TODO: зарегистрировать у сервера наш gRPC-сервис Auth
 	auth.Register(gRPCServer, grpcauth)
-
 	post.Register(gRPCServer, grpcPost)
 
 	// TODO: вернуть объект App со всеми необходимыми полями

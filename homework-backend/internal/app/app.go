@@ -6,6 +6,7 @@ import (
 	"homework-backend/internal/services/auth"
 	"homework-backend/internal/services/post"
 	"homework-backend/internal/storage/pgx"
+	"homework-backend/internal/storage/rabbit"
 	"homework-backend/internal/storage/redis"
 	"log/slog"
 	"time"
@@ -21,6 +22,7 @@ func New(
 	storagePath string,
 	storagePathForRead string,
 	cachePath string,
+	queuePath string,
 	tokenTTL time.Duration,
 ) *App {
 	storage, err := pgx.New(storagePath)
@@ -38,8 +40,13 @@ func New(
 		log.Log(context.Background(), slog.LevelError, err.Error())
 	}
 
+	rqueue, err := rabbit.New(queuePath)
+	if err != nil {
+		log.Log(context.Background(), slog.LevelError, err.Error())
+	}
+
 	authService := auth.New(log, storage, storageForRead, storage, tokenTTL)
-	postService := post.New(log, storage, storageForRead, cache)
+	postService := post.New(log, storage, storageForRead, cache, rqueue)
 
 	grpcApp := grpcapp.New(log, authService, postService, grpcPort)
 

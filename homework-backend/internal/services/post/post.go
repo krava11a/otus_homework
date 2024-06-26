@@ -19,6 +19,7 @@ type Post struct {
 	pstCreater  PostCreater
 	pstProvider PostProvider
 	cache       Cache
+	rqueue      RQueuePublisher
 }
 
 func New(
@@ -26,6 +27,7 @@ func New(
 	postCreater PostCreater,
 	postProvider PostProvider,
 	cache Cache,
+	rqueue RQueuePublisher,
 ) *Post {
 
 	p := Post{
@@ -33,6 +35,7 @@ func New(
 		pstCreater:  postCreater,
 		pstProvider: postProvider,
 		cache:       cache,
+		rqueue:      rqueue,
 	}
 	go p.UpdateFeedAll()
 
@@ -64,6 +67,8 @@ func (p *Post) PostCreate(post models.Post) (string, error) {
 
 		return "", fmt.Errorf("%s: %w", op, err)
 	}
+	go p.PublishTo(post.Id_user, post.Text)
+
 	post.Id_post = uuid
 	// posts := Posts{}
 
@@ -239,17 +244,12 @@ func (p *Post) UpdateFeed(author_id string) error {
 	)
 	log.Info("attempting to update feed posts by author_id")
 
-	if author_id == "" {
-		return status.Error(codes.InvalidArgument, "user_id is required")
-	}
-
-	f_ids, err := p.pstProvider.PostFriends(author_id)
+	f_ids, err := p.getFriends(author_id)
 	if err != nil {
 		p.log.Error("failed to get friends by user_id", sl.Err(err))
 
 		return fmt.Errorf("%s: %w", op, err)
 	}
-
 	for _, f_id := range f_ids {
 		posts, err := p.pstProvider.PostFeed(f_id, 0, 1000)
 		if err != nil {
@@ -262,6 +262,23 @@ func (p *Post) UpdateFeed(author_id string) error {
 
 	return nil
 
+}
+
+func (p *Post) getFriends(author_id string) ([]string, error) {
+	const op = "Post.UpdateLenta"
+
+	if author_id == "" {
+		return []string{}, status.Error(codes.InvalidArgument, "user_id is required")
+	}
+
+	f_ids, err := p.pstProvider.PostFriends(author_id)
+	if err != nil {
+		p.log.Error("failed to get friends by user_id", sl.Err(err))
+
+		return []string{}, fmt.Errorf("%s: %w", op, err)
+	}
+
+	return f_ids, nil
 }
 
 func (p *Post) UpdateFeedAll() error {
@@ -293,7 +310,7 @@ func (p *Post) UpdateFeedAll() error {
 }
 
 func (p *Post) FriendSet(user_id, friend_id string) (err error) {
-	const op = "Auth.FriendSet"
+	const op = "Post.FriendSet"
 	log := p.log.With(
 		slog.String("op", op),
 		slog.String("user_id", user_id),
@@ -321,7 +338,7 @@ func (p *Post) FriendSet(user_id, friend_id string) (err error) {
 }
 
 func (p *Post) FriendDelete(user_id, friend_id string) (err error) {
-	const op = "Auth.FriendDelete"
+	const op = "Post.FriendDelete"
 	log := p.log.With(
 		slog.String("op", op),
 		slog.String("user_id", user_id),
@@ -344,5 +361,27 @@ func (p *Post) FriendDelete(user_id, friend_id string) (err error) {
 	}
 	go p.UpdateFeedAll()
 	return nil
+
+}
+
+func (p *Post) PublishTo(name, message string) {
+	const op = "Post.PublishTo"
+	log := p.log.With(
+		slog.String("op", op),
+		slog.String("name", name),
+		slog.String("message", message),
+	)
+	log.Info("attempting to publish to RQueue")
+
+	f_ids, err := p.getFriends(name)
+	if err != nil {
+		log.Error("failed to publish messages to RQUEUE", sl.Err(err))
+
+		return
+	}
+
+	for _, id_subscriber := range f_ids {
+		err = p.rqueue.PublishTo(id_subscriber, message)
+	}
 
 }

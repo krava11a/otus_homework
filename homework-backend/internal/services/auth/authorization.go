@@ -184,7 +184,6 @@ func (a *Auth) LoginUser(user_id, password string, app models.App) (string, erro
 
 		return "", fmt.Errorf("%s: %w", op, err)
 	}
-
 	return token, nil
 }
 
@@ -229,5 +228,28 @@ func (a *Auth) UsersGetByPrefixFirstNameAndSecondName(first_name, second_name st
 		return []models.User{}, fmt.Errorf("%s: %w", op, err)
 	}
 	return users, nil
+
+}
+
+func (a *Auth) GetUUIDfrom(token string) (string, error) {
+	const op = "Auth.GetUUIDdrom"
+	log := a.log.With(
+		slog.String("op", op),
+		slog.String(fmt.Sprintf("Get uuid from token : %s", token), ""),
+	)
+	log.Info("attempting to get uuid from token")
+
+	// if user_id == "" {
+	// 	return models.User{}, status.Error(codes.InvalidArgument, "user_id is required")
+	// }
+	app, _ := a.appProvider.App()
+
+	uuid, err := jwt.GetUserId(token, app)
+	if err != nil {
+		a.log.Error("failed to get get uuid from token", sl.Err(err))
+
+		return "", fmt.Errorf("%s: %w", op, err)
+	}
+	return uuid, nil
 
 }

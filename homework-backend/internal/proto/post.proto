@@ -4,16 +4,49 @@ package proto;
 
 option go_package="./proto";
 
+import "google/api/annotations.proto";
+
 service PostService {
-    rpc PostCreate(PostCreateRequest) returns (PostCreateResponse);
-    rpc PostUpdate(PostUpdateRequest) returns(PostMainResponse);
-    rpc PostDelete(PostMainRequest) returns(PostMainResponse);
-    rpc PostGet(PostMainRequest) returns(PostGetResponse);
+    rpc PostCreate(PostCreateRequest) returns (PostCreateResponse){
+        option (google.api.http) = {
+            post: "/post/create"
+            body: "*" 
+        };
+    };
+    rpc PostUpdate(PostUpdateRequest) returns(PostMainResponse){
+        option (google.api.http) = {
+            put: "/post/update"
+            body: "*"            
+        };
+    };
+    rpc PostDelete(PostMainRequest) returns(PostMainResponse){
+        option (google.api.http) = {
+            delete: "/post/delete/{post_id}"            
+        };
+    };
+    rpc PostGet(PostMainRequest) returns(PostGetResponse){
+        option (google.api.http) = {
+            get: "/post/get/{post_id}"            
+        };
+    };
 
-    rpc PostFeed(PostFeedRequest) returns(PostFeedResponse);
+    rpc PostFeed(PostFeedRequest) returns(PostFeedResponse){
+        option (google.api.http) = {
+            get: "/post/feed"                        
+        };
+    };
 
-    rpc FriendSet(FriendRequest) returns (FriendResponse);
-    rpc FriendDelete(FriendRequest) returns(FriendResponse);
+    rpc FriendSet(FriendRequest) returns (FriendResponse){
+        option (google.api.http) = {
+            put: "/friend/set/{friend_id}"                        
+        };
+    };
+
+    rpc FriendDelete(FriendRequest) returns(FriendResponse){
+        option (google.api.http) = {
+            put: "/friend/delete/{friend_id}"                        
+        };
+    };
 }
 
 

@@ -15,4 +15,5 @@ type UserProvider interface {
 
 type AppProvider interface {
 	App() (models.App, error)
+	// GetUUIDfrom(token string) (string, error)
 }

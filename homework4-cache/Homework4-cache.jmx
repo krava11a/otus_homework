@@ -136,7 +136,7 @@
         <boolProp name="exclude_checkbox_state">false</boolProp>
       </kg.apc.jmeter.vizualizers.CorrectedResultCollector>
       <hashTree/>
-      <kg.apc.jmeter.vizualizers.CorrectedResultCollector guiclass="kg.apc.jmeter.vizualizers.TransactionsPerSecondGui" testclass="kg.apc.jmeter.vizualizers.CorrectedResultCollector" testname="jp@gc - Transactions per Second" enabled="true">
+      <kg.apc.jmeter.vizualizers.CorrectedResultCollector guiclass="kg.apc.jmeter.vizualizers.TransactionsPerSecondGui" testclass="kg.apc.jmeter.vizualizers.CorrectedResultCollector" testname="jp@gc - Transactions per Second">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
           <name>saveConfig</name>
@@ -316,7 +316,7 @@
         <boolProp name="exclude_checkbox_state">false</boolProp>
       </kg.apc.jmeter.vizualizers.CorrectedResultCollector>
       <hashTree/>
-      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
           <name>saveConfig</name>
@@ -611,7 +611,7 @@
           <stringProp name="username">postgres</stringProp>
         </JDBCDataSource>
         <hashTree/>
-        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="SELECT " enabled="true">
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="SELECT ">
           <stringProp name="dataSource">pg_master</stringProp>
           <stringProp name="query">SELECT id FROM users LIMIT 1 OFFSET floor(random() * (100)+10);</stringProp>
           <stringProp name="queryArguments"></stringProp>
@@ -651,7 +651,7 @@
           </RegexExtractor>
           <hashTree/>
         </hashTree>
-        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="SELECT " enabled="true">
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="SELECT ">
           <stringProp name="dataSource">pg_master</stringProp>
           <stringProp name="query">SELECT concat(&apos;a123a&apos;, text,&apos;a124a&apos;) FROM debug_posts LIMIT 1 OFFSET floor(random() * (117759)+10);</stringProp>
           <stringProp name="queryArguments"></stringProp>
@@ -704,7 +704,7 @@
           <boolProp name="displaySystemProperties">false</boolProp>
         </DebugSampler>
         <hashTree/>
-        <vn.zalopay.benchmark.GRPCSampler guiclass="vn.zalopay.benchmark.GRPCSamplerGui" testclass="vn.zalopay.benchmark.GRPCSampler" testname="/PostCreate">
+        <vn.zalopay.benchmark.GRPCSampler guiclass="vn.zalopay.benchmark.GRPCSamplerGui" testclass="vn.zalopay.benchmark.GRPCSampler" testname="/PostCreate" enabled="true">
           <stringProp name="GRPCSampler.protoFolder">/home/krava/Projects/GoProjects/OTUS/homework/homework-backend/internal/proto</stringProp>
           <stringProp name="GRPCSampler.libFolder">/home/krava/Projects/GoProjects/OTUS/homework/build/debug</stringProp>
           <stringProp name="GRPCSampler.metadata"></stringProp>

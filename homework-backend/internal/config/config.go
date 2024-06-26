@@ -13,6 +13,7 @@ type Config struct {
 	StoragePath        string     `yaml:"storage_path" env-required:"true"`
 	StoragePathForRead string     `yaml:"storage_path_for_read" env-required:"false"`
 	CachePath          string     `yaml:"cache_path" env-required:"false"`
+	QueuePath          string     `yaml:"rqueue_path" env-required:"false"`
 	GRPC               GRPCConfig `yaml:"grpc"`
 	MigrationsPath     string
 	TokenTTL           time.Duration `yaml:"token_ttl" env-default:"1h"`
@@ -20,6 +21,8 @@ type Config struct {
 
 type GRPCConfig struct {
 	Port    uint          `yaml:"port"`
+	WebPort uint          `yaml:"web_port"`
+	WsPort  uint          `yaml:"ws_port"`
 	Timeout time.Duration `yaml:"timeout"`
 }
 

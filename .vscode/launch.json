@@ -12,7 +12,7 @@
             "program": "${workspaceFolder}/homework-backend",
             "args": [
                 "-config",
-                "${workspaceFolder}/homework-backend/internal/config/config_for_docker.yaml"
+                "${workspaceFolder}/homework-backend/internal/config/config_local.yaml"
             ]
         },
         {
