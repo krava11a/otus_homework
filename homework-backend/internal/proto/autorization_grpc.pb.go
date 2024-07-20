@@ -24,8 +24,9 @@ const _ = grpc.SupportPackageIsVersion7
 type AuthorizationServiceClient interface {
 	UserRegister(ctx context.Context, in *CreateUserRequest, opts ...grpc.CallOption) (*CreateUserResponse, error)
 	UserLogin(ctx context.Context, in *UserLoginRequest, opts ...grpc.CallOption) (*UserLoginResponse, error)
-	UserGetById(ctx context.Context, in *UserIdRequest, opts ...grpc.CallOption) (*UserGetByIdResponse, error)
+	UserGetById(ctx context.Context, in *UserId, opts ...grpc.CallOption) (*UserGetByIdResponse, error)
 	UsersGetByPrefixFirstNameAndSecondName(ctx context.Context, in *UserSearchRequest, opts ...grpc.CallOption) (*UserSearchResponse, error)
+	GetUserIdByToken(ctx context.Context, in *UserToken, opts ...grpc.CallOption) (*UserId, error)
 }
 
 type authorizationServiceClient struct {
@@ -54,7 +55,7 @@ func (c *authorizationServiceClient) UserLogin(ctx context.Context, in *UserLogi
 	return out, nil
 }
 
-func (c *authorizationServiceClient) UserGetById(ctx context.Context, in *UserIdRequest, opts ...grpc.CallOption) (*UserGetByIdResponse, error) {
+func (c *authorizationServiceClient) UserGetById(ctx context.Context, in *UserId, opts ...grpc.CallOption) (*UserGetByIdResponse, error) {
 	out := new(UserGetByIdResponse)
 	err := c.cc.Invoke(ctx, "/proto.AuthorizationService/UserGetById", in, out, opts...)
 	if err != nil {
@@ -72,14 +73,24 @@ func (c *authorizationServiceClient) UsersGetByPrefixFirstNameAndSecondName(ctx 
 	return out, nil
 }
 
+func (c *authorizationServiceClient) GetUserIdByToken(ctx context.Context, in *UserToken, opts ...grpc.CallOption) (*UserId, error) {
+	out := new(UserId)
+	err := c.cc.Invoke(ctx, "/proto.AuthorizationService/GetUserIdByToken", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AuthorizationServiceServer is the server API for AuthorizationService service.
 // All implementations must embed UnimplementedAuthorizationServiceServer
 // for forward compatibility
 type AuthorizationServiceServer interface {
 	UserRegister(context.Context, *CreateUserRequest) (*CreateUserResponse, error)
 	UserLogin(context.Context, *UserLoginRequest) (*UserLoginResponse, error)
-	UserGetById(context.Context, *UserIdRequest) (*UserGetByIdResponse, error)
+	UserGetById(context.Context, *UserId) (*UserGetByIdResponse, error)
 	UsersGetByPrefixFirstNameAndSecondName(context.Context, *UserSearchRequest) (*UserSearchResponse, error)
+	GetUserIdByToken(context.Context, *UserToken) (*UserId, error)
 	mustEmbedUnimplementedAuthorizationServiceServer()
 }
 
@@ -93,11 +104,14 @@ func (UnimplementedAuthorizationServiceServer) UserRegister(context.Context, *Cr
 func (UnimplementedAuthorizationServiceServer) UserLogin(context.Context, *UserLoginRequest) (*UserLoginResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UserLogin not implemented")
 }
-func (UnimplementedAuthorizationServiceServer) UserGetById(context.Context, *UserIdRequest) (*UserGetByIdResponse, error) {
+func (UnimplementedAuthorizationServiceServer) UserGetById(context.Context, *UserId) (*UserGetByIdResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UserGetById not implemented")
 }
 func (UnimplementedAuthorizationServiceServer) UsersGetByPrefixFirstNameAndSecondName(context.Context, *UserSearchRequest) (*UserSearchResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UsersGetByPrefixFirstNameAndSecondName not implemented")
+}
+func (UnimplementedAuthorizationServiceServer) GetUserIdByToken(context.Context, *UserToken) (*UserId, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUserIdByToken not implemented")
 }
 func (UnimplementedAuthorizationServiceServer) mustEmbedUnimplementedAuthorizationServiceServer() {}
 
@@ -149,7 +163,7 @@ func _AuthorizationService_UserLogin_Handler(srv interface{}, ctx context.Contex
 }
 
 func _AuthorizationService_UserGetById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UserIdRequest)
+	in := new(UserId)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -161,7 +175,7 @@ func _AuthorizationService_UserGetById_Handler(srv interface{}, ctx context.Cont
 		FullMethod: "/proto.AuthorizationService/UserGetById",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthorizationServiceServer).UserGetById(ctx, req.(*UserIdRequest))
+		return srv.(AuthorizationServiceServer).UserGetById(ctx, req.(*UserId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -180,6 +194,24 @@ func _AuthorizationService_UsersGetByPrefixFirstNameAndSecondName_Handler(srv in
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AuthorizationServiceServer).UsersGetByPrefixFirstNameAndSecondName(ctx, req.(*UserSearchRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AuthorizationService_GetUserIdByToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserToken)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthorizationServiceServer).GetUserIdByToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/proto.AuthorizationService/GetUserIdByToken",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthorizationServiceServer).GetUserIdByToken(ctx, req.(*UserToken))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -206,6 +238,10 @@ var AuthorizationService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UsersGetByPrefixFirstNameAndSecondName",
 			Handler:    _AuthorizationService_UsersGetByPrefixFirstNameAndSecondName_Handler,
+		},
+		{
+			MethodName: "GetUserIdByToken",
+			Handler:    _AuthorizationService_GetUserIdByToken_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

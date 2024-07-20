@@ -36,10 +36,51 @@
             "dockerBuild": {
                 "context": "${workspaceFolder}/homework-backend",
                 "dockerfile": "${workspaceFolder}/homework-backend/build/Dockerfile",
-                "tag": "homework_backend:0.0.17"
+                "tag": "homework_backend:0.0.18"
             },
             "dependsOn": [
                 "go: build package"
+            ]
+        },
+        {
+            "type": "go",
+            "label": "go: build homework-dialogs",
+            "options": {
+                "cwd": "${workspaceFolder}/homework-dialogs/",
+                "env": {
+                    "CGO_ENABLED": "0",
+                    "GOOS": "linux"
+                }
+            },
+            "command": "build",
+            "args": [
+                "-a",
+                "-installsuffix",
+                "cgo",
+                "-o",
+                "${workspaceFolder}/homework-dialogs/build/",
+                ".",
+                "."
+            ],
+            "problemMatcher": [
+                "$go"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "cd ${workspaceFolder}/homework-dialogs;CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o  ${workspaceFolder}/homework-dialogs/build/homework_dialogs ."
+        },
+        {
+            "label": "Build homework-dialogs docker image",
+            "type": "docker-build",
+            "dockerBuild": {
+                "context": "${workspaceFolder}/homework-dialogs",
+                "dockerfile": "${workspaceFolder}/homework-dialogs/build/Dockerfile",
+                "tag": "homework_dialogs:0.0.4"
+            },
+            "dependsOn": [
+                "go: build homework-dialogs"
             ]
         },
         // {

@@ -16,6 +16,17 @@
             ]
         },
         {
+            "name": "develop_homework_dialogs",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/homework-dialogs",
+            "args": [
+                "-config",
+                "${workspaceFolder}/homework-dialogs/internal/config/config.yaml"
+            ]
+        },
+        {
             "name": "develop_homework_faker",
             "type": "go",
             "request": "launch",

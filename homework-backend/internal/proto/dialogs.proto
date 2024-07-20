@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package="./proto";
+
+import "google/api/annotations.proto";
+
+service DialogService {
+    rpc Send(DialogSendRequest) returns (DialogSendResponse){
+        option (google.api.http) = {
+            post: "/dialog/{user_id}/send"
+            body: "*" 
+        };
+    };
+    rpc List(DialogListRequest) returns(DialogListResponse){
+        option (google.api.http) = {
+            get: "/dialog/{user_id}/list"            
+        };
+    };
+   
+}
+
+
+message DialogSendRequest {
+    string user_id = 1;
+    string from = 2;
+    string text = 3;
+}
+
+message DialogSendResponse {
+    uint32 status = 1;
+    string message = 2;   
+}
+
+message DialogListRequest {
+    string user_id = 1;
+    string from = 2;    
+}
+
+message DialogListResponse{
+    uint32 status = 1;
+    string message = 2;   
+    repeated DialogMessage messages = 3;
+    
+}
+
+message DialogMessage {
+    string from = 1;    
+    string to = 2;    
+    string text = 3;    
+}
+

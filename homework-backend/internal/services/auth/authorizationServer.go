@@ -13,7 +13,7 @@ type GrpcAuth interface {
 	LoginUser(user_id, password string, app models.App) (string, error)
 	GetUserById(user_id string) (models.User, error)
 	UsersGetByPrefixFirstNameAndSecondName(first_name, last_name string) ([]models.User, error)
-
+	GetUUIDfrom(token string) (string, error)
 	// FriendSet(user_id string, friend_id string) error
 	// FriendDelete(user_id string, friend_id string) error
 	// GetFriends(user_id string) (user_ids []string, err error)
@@ -69,7 +69,7 @@ func (as *AuthorizationServer) UserLogin(ctx context.Context, req *proto.UserLog
 	}, err
 }
 
-func (as *AuthorizationServer) UserGetById(ctx context.Context, req *proto.UserIdRequest) (*proto.UserGetByIdResponse, error) {
+func (as *AuthorizationServer) UserGetById(ctx context.Context, req *proto.UserId) (*proto.UserGetByIdResponse, error) {
 	user, err := as.auth.GetUserById(req.UserId)
 	if err != nil {
 		return &proto.UserGetByIdResponse{
@@ -115,6 +115,23 @@ func (as *AuthorizationServer) UsersGetByPrefixFirstNameAndSecondName(ctx contex
 	return &proto.UserSearchResponse{
 		Users: usersToResponse,
 	}, nil
+}
+
+func (as *AuthorizationServer) GetUUIDfrom(token string) (string, error) {
+	id, err := as.auth.GetUUIDfrom(token)
+	if err != nil {
+		return "", err
+	}
+	return id, nil
+}
+
+func (as *AuthorizationServer) GetUserIdByToken(ctx context.Context, req *proto.UserToken) (*proto.UserId, error) {
+	id, err := as.GetUUIDfrom(req.Token)
+	if err != nil {
+		return &proto.UserId{}, err
+	}
+	return &proto.UserId{UserId: id}, nil
+
 }
 
 // func (as *AuthorizationServer) GetFriends(user_id string) (user_ids []string, err error) {

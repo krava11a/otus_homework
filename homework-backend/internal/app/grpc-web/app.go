@@ -41,6 +41,10 @@ func Run(grpcPort, grpcWebPort, wsPort uint, queuePath string, log *slog.Logger)
 	if err != nil {
 		log.Error("Error strating server: %v", err)
 	}
+	err = proto.RegisterAuthorizationServiceHandlerFromEndpoint(ctx, mux, fmt.Sprintf(":%d", grpcPort), opts)
+	if err != nil {
+		log.Error("Error strating server: %v", err)
+	}
 
 	// Запустим HTTP сервер для проксирования gRPC вызовов
 	log.Info("grpc-web server started", slog.String("addr", fmt.Sprintf(":%d", grpcWebPort)))
