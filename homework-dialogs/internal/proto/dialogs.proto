@@ -18,6 +18,17 @@ service DialogService {
             get: "/dialog/{user_id}/list"            
         };
     };
+    rpc SendWithoutToken(DialogSendWTRequest) returns (DialogSendResponse){
+        option (google.api.http) = {
+            post: "/dialog/{user_from}/{user_to}/send"
+            body: "*" 
+        };
+    };
+    rpc ListWithoutToken(DialogListWTRequest) returns(DialogListResponse){
+        option (google.api.http) = {
+            get: "/dialog/{user_from}/{user_to}/list"            
+        };
+    };
    
 }
 
@@ -25,6 +36,12 @@ service DialogService {
 message DialogSendRequest {
     string user_id = 1;
     string from = 2;
+    string text = 3;
+}
+
+message DialogSendWTRequest {
+    string user_from = 1;
+    string user_to = 2;
     string text = 3;
 }
 
@@ -36,6 +53,11 @@ message DialogSendResponse {
 message DialogListRequest {
     string user_id = 1;
     string from = 2;    
+}
+
+message DialogListWTRequest {
+    string user_from = 1;
+    string user_to = 2;  
 }
 
 message DialogListResponse{

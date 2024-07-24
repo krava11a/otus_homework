@@ -41,6 +41,14 @@
             "mode": "auto",
             "program": "${workspaceFolder}/utils/parserPosts/"
             
+        },
+        {
+            "name": "develop_homework_taranrool",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/homework6-tarantool/tarantool/"
+            
         }
     ]
 }

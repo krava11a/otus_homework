@@ -58,3 +58,12 @@
 2. Отдельно стоит заметить, что я получаю id_пользователя от имени которого пишу или читаю сообщения посредством метода основного приложения из JWT токена, не уверена правильное ли это архитектурное решение.
 3. Также проделала с целью изучения возможности горизонтального масштабирования путем шардирования пункты из [readme.md](homework7-sharding/readme.md) файла, используя таблицу, созданную для микросервиса сообщений. Все проделанные шаги описаны в указанном файле readme.md. Хотела как ключ шардирования использовать составной ключ из полей "from","to", но citus не разрешил. Поэтому в текущей реализации использую ключ шардирования по первичному ключу id из таблицы dialogs. В целом все работает, однако в таком случае предполагаю, что сообщения двух пользователей могут храниться на разных шардах, а этого хотелось избежать, чтобы не ходить во все шарды сразу при запросе.
 4. Файл [docker-compose.yml](homework7-sharding/docker-compose.yml) для запуска всего стэка. [Dokerfile](homework-dialogs/build/Dockerfile) для создания образа с микросервисом dialogs. Я создавала с помощью задачи "Build homework-dialogs docker image" из файла [tasks.json](.vscode/tasks.json).
+
+
+# Домашнее задание №6 In-memory СУБД. tarantool.
+
+1. Провела нагрузочные тесты микросервиса [homework-dialogs](homework-dialogs/) с помощью Jmeter. [.jmx файл](homework6-tarantool/Homework6-tarantool.jmx) тестов, как и все остальные связанные с ДЗ файлы, лежат в директории [homework6-tarantool](homework6-tarantool/). Графики с результатами тестов до переезда сервиса на тарантул по критериям latencies,transactions и response time лежат в директории [graphs](homework6-tarantool/wt_tarantool/graphs/). 
+2. Образ для docker с tarantool со стартовым скриптом [app.lua](homework6-tarantool/tarantool/app.lua) описан в файле [Dockerfile](homework6-tarantool/tarantool/Dockerfile).
+3. Добавила в микросервис [homework-dialogs](homework-dialogs/) возможность работать с tarantool для методов Send и List. Файл настроек приложения для Docker образа - [config_dialogs.yaml](homework6-tarantool/configs/config_dialogs.yaml).
+4. Файл [docker-compose.yml](homework6-tarantool/docker-compose.yml) для запуска всего стэка.
+5. Графики с результатами тестов после переезда сервиса на тарантул по критериям latencies,transactions и response time лежат в директории [graphs](homework6-tarantool/tarantool/graphs/). Странно но результаты не сильно отличаются. Я ожидала что как минимум чтение будет из RAM быстрее. Возможно, что в моем ноутбуке очень быстрый nvme диск.

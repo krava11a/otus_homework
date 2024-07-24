@@ -77,10 +77,22 @@
             "dockerBuild": {
                 "context": "${workspaceFolder}/homework-dialogs",
                 "dockerfile": "${workspaceFolder}/homework-dialogs/build/Dockerfile",
-                "tag": "homework_dialogs:0.0.4"
+                "tag": "homework_dialogs:0.0.6"
             },
             "dependsOn": [
                 "go: build homework-dialogs"
+            ]
+        },
+        {
+            "label": "Build tarantool docker image",
+            "type": "docker-build",
+            "dockerBuild": {
+                "context": "${workspaceFolder}/homework6-tarantool/tarantool",
+                "dockerfile": "${workspaceFolder}/homework6-tarantool/tarantool/Dockerfile",
+                "tag": "tarantool_dialogs:0.0.2"
+            },
+            "dependsOn": [
+                // "go: build homework-dialogs"
             ]
         },
         // {

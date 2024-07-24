@@ -24,6 +24,8 @@ const _ = grpc.SupportPackageIsVersion7
 type DialogServiceClient interface {
 	Send(ctx context.Context, in *DialogSendRequest, opts ...grpc.CallOption) (*DialogSendResponse, error)
 	List(ctx context.Context, in *DialogListRequest, opts ...grpc.CallOption) (*DialogListResponse, error)
+	SendWithoutToken(ctx context.Context, in *DialogSendWTRequest, opts ...grpc.CallOption) (*DialogSendResponse, error)
+	ListWithoutToken(ctx context.Context, in *DialogListWTRequest, opts ...grpc.CallOption) (*DialogListResponse, error)
 }
 
 type dialogServiceClient struct {
@@ -52,12 +54,32 @@ func (c *dialogServiceClient) List(ctx context.Context, in *DialogListRequest, o
 	return out, nil
 }
 
+func (c *dialogServiceClient) SendWithoutToken(ctx context.Context, in *DialogSendWTRequest, opts ...grpc.CallOption) (*DialogSendResponse, error) {
+	out := new(DialogSendResponse)
+	err := c.cc.Invoke(ctx, "/proto.DialogService/SendWithoutToken", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dialogServiceClient) ListWithoutToken(ctx context.Context, in *DialogListWTRequest, opts ...grpc.CallOption) (*DialogListResponse, error) {
+	out := new(DialogListResponse)
+	err := c.cc.Invoke(ctx, "/proto.DialogService/ListWithoutToken", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DialogServiceServer is the server API for DialogService service.
 // All implementations must embed UnimplementedDialogServiceServer
 // for forward compatibility
 type DialogServiceServer interface {
 	Send(context.Context, *DialogSendRequest) (*DialogSendResponse, error)
 	List(context.Context, *DialogListRequest) (*DialogListResponse, error)
+	SendWithoutToken(context.Context, *DialogSendWTRequest) (*DialogSendResponse, error)
+	ListWithoutToken(context.Context, *DialogListWTRequest) (*DialogListResponse, error)
 	mustEmbedUnimplementedDialogServiceServer()
 }
 
@@ -70,6 +92,12 @@ func (UnimplementedDialogServiceServer) Send(context.Context, *DialogSendRequest
 }
 func (UnimplementedDialogServiceServer) List(context.Context, *DialogListRequest) (*DialogListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
+}
+func (UnimplementedDialogServiceServer) SendWithoutToken(context.Context, *DialogSendWTRequest) (*DialogSendResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SendWithoutToken not implemented")
+}
+func (UnimplementedDialogServiceServer) ListWithoutToken(context.Context, *DialogListWTRequest) (*DialogListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListWithoutToken not implemented")
 }
 func (UnimplementedDialogServiceServer) mustEmbedUnimplementedDialogServiceServer() {}
 
@@ -120,6 +148,42 @@ func _DialogService_List_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DialogService_SendWithoutToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DialogSendWTRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DialogServiceServer).SendWithoutToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/proto.DialogService/SendWithoutToken",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DialogServiceServer).SendWithoutToken(ctx, req.(*DialogSendWTRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DialogService_ListWithoutToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DialogListWTRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DialogServiceServer).ListWithoutToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/proto.DialogService/ListWithoutToken",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DialogServiceServer).ListWithoutToken(ctx, req.(*DialogListWTRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DialogService_ServiceDesc is the grpc.ServiceDesc for DialogService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -134,6 +198,14 @@ var DialogService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "List",
 			Handler:    _DialogService_List_Handler,
+		},
+		{
+			MethodName: "SendWithoutToken",
+			Handler:    _DialogService_SendWithoutToken_Handler,
+		},
+		{
+			MethodName: "ListWithoutToken",
+			Handler:    _DialogService_ListWithoutToken_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

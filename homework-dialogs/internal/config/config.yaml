@@ -1,6 +1,7 @@
 env: "local"
 # storage_path: "host=pg_dialogs port=5432 user=postgres password=example dbname=postgres sslmode=disable"
-storage_path: "host=localhost port=7432 user=postgres password=postgres dbname=postgres sslmode=disable"
+# storage_path: "host=localhost port=7432 user=postgres password=postgres dbname=postgres sslmode=disable"
+storage_path: "localhost:3301"
 grpc:  
   port: 9002  
   web_port: 9087

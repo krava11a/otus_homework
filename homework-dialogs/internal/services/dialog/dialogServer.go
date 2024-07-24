@@ -50,6 +50,22 @@ func (ds *DialogServer) Send(ctx context.Context, req *proto.DialogSendRequest) 
 	}, err
 }
 
+func (ds *DialogServer) SendWithoutToken(ctx context.Context, req *proto.DialogSendWTRequest) (*proto.DialogSendResponse, error) {
+
+	err := ds.grpcDialog.Send(models.Dialog{From: req.UserFrom, To: req.UserTo, Text: req.Text})
+	if err != nil {
+		return &proto.DialogSendResponse{
+			Status:  500,
+			Message: err.Error(),
+		}, err
+	}
+
+	return &proto.DialogSendResponse{
+		Status:  200,
+		Message: "Сообщение отправлено",
+	}, err
+}
+
 func (ds *DialogServer) List(ctx context.Context, req *proto.DialogListRequest) (*proto.DialogListResponse, error) {
 	md, _ := metadata.FromIncomingContext(ctx)
 	auth := md.Get("authorization")[0]
@@ -63,6 +79,33 @@ func (ds *DialogServer) List(ctx context.Context, req *proto.DialogListRequest) 
 	}
 
 	msgs, err := ds.grpcDialog.List(id, req.UserId)
+	if err != nil {
+		return &proto.DialogListResponse{
+			Status:   500,
+			Message:  err.Error(),
+			Messages: []*proto.DialogMessage{},
+		}, err
+	}
+
+	var resMsgs = []*proto.DialogMessage{}
+	for _, m := range msgs {
+		resMsgs = append(resMsgs, &proto.DialogMessage{
+			From: m.From,
+			To:   m.To,
+			Text: m.Text,
+		})
+	}
+
+	return &proto.DialogListResponse{
+		Status:   200,
+		Message:  "Все хорошо",
+		Messages: resMsgs,
+	}, err
+}
+
+func (ds *DialogServer) ListWithoutToken(ctx context.Context, req *proto.DialogListWTRequest) (*proto.DialogListResponse, error) {
+
+	msgs, err := ds.grpcDialog.List(req.UserFrom, req.UserTo)
 	if err != nil {
 		return &proto.DialogListResponse{
 			Status:   500,

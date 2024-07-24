@@ -1,0 +1,176 @@
+services:
+  db:
+    container_name: pg_master
+    image: postgres
+    command: -c 'max_connections=2000'
+    #restart: always
+    # set shared memory limit when using docker-compose
+    shm_size: 128mb
+    # or set shared memory limit when deploy via swarm stack
+    #volumes:
+    #  - type: tmpfs
+    #    target: /dev/shm
+    #    tmpfs:
+    #      size: 134217728 # 128*2^20 bytes = 128Mb
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: example
+      POSTGRES_DB: otus_homework
+    volumes:
+      - /home/krava/DOCKER/OTUS/HIGHLOAD/pg_master:/var/lib/postgresql/data
+    networks:
+      - pgnet
+
+  slave:
+    container_name: pg_slave
+    image: postgres
+    command: -c 'max_connections=2000'
+    #restart: always
+    # set shared memory limit when using docker-compose
+    shm_size: 128mb
+    # or set shared memory limit when deploy via swarm stack
+    #volumes:
+    #  - type: tmpfs
+    #    target: /dev/shm
+    #    tmpfs:
+    #      size: 134217728 # 128*2^20 bytes = 128Mb
+    ports:
+      - 15432:5432
+    environment:
+      POSTGRES_PASSWORD: pass
+      # POSTGRES_DB: otus_homework
+    volumes:
+      - /home/krava/DOCKER/OTUS/HIGHLOAD/pg_slave:/var/lib/postgresql/data
+    networks:
+      - pgnet
+  
+  asyncslave:
+    container_name: pg_asyncslave
+    image: postgres 
+    command: -c 'max_connections=2000'
+    #restart: always
+    # set shared memory limit when using docker-compose
+    shm_size: 128mb
+    # or set shared memory limit when deploy via swarm stack
+    #volumes:
+    #  - type: tmpfs
+    #    target: /dev/shm
+    #    tmpfs:
+    #      size: 134217728 # 128*2^20 bytes = 128Mb
+    ports:
+      - 25432:5432
+    environment:
+      POSTGRES_PASSWORD: pass
+      # POSTGRES_DB: otus_homework
+    volumes:
+      - /home/krava/DOCKER/OTUS/HIGHLOAD/pg_asyncslave:/var/lib/postgresql/data
+    networks:
+      - pgnet
+
+
+  adminer:
+    container_name: adminer
+    image: adminer
+    # restart: always
+    ports:
+      - 8081:8080
+    networks:
+      - pgnet
+
+  backend:
+    container_name: app
+    image: homework_backend:0.0.17
+    ports:
+      - 9001:9001
+      - 8088:8088
+      - 8087:8087
+    
+    networks:
+      - pgnet
+
+  redis:
+    container_name: cache_master
+    image: "redis:alpine"
+    # command: redis-server --requirepass sOmE_sEcUrE_pAsS
+    ports:
+     - "6379:6379"
+    volumes:
+     - $PWD/redis-data:/var/lib/redis
+     - $PWD/redis.conf:/usr/local/etc/redis/redis.conf
+    environment:
+     - REDIS_REPLICATION_MODE=master
+    networks:
+      - pgnet
+
+  rabbit:
+    container_name: rabbit
+    image: "rabbitmq:3-management"
+    # command: redis-server --requirepass sOmE_sEcUrE_pAsS
+    ports:
+     - 5672:5672
+     - 15672:15672   
+    networks:
+      - pgnet
+
+  # pg_dialogs:
+  #   container_name: pg_dialogs
+  #   image: postgres
+  #   command: -c 'max_connections=2000'
+  #   #restart: always
+  #   # set shared memory limit when using docker-compose
+  #   shm_size: 128mb
+  #   # or set shared memory limit when deploy via swarm stack
+  #   #volumes:
+  #   #  - type: tmpfs
+  #   #    target: /dev/shm
+  #   #    tmpfs:
+  #   #      size: 134217728 # 128*2^20 bytes = 128Mb
+  #   ports:
+  #     - 6432:5432
+  #   environment:
+  #     POSTGRES_PASSWORD: example
+  #     POSTGRES_DB: dialogs
+  #   volumes:
+  #     - /home/krava/DOCKER/OTUS/HIGHLOAD/pg_dialogs:/var/lib/postgresql/data
+  #   networks:
+  #     - pgnet
+
+  ms_dialogs:
+    container_name: ms_dialogs
+    image: homework_dialogs:0.0.6
+    ports:
+      - 9002:9002
+      - 9088:9088
+      - 9087:9087
+    volumes:
+      - ./configs/config_dialogs.yaml:/config.yaml
+    
+    networks:
+      - pgnet 
+  
+  tarantool:
+    container_name: tara
+    image: tarantool_dialogs:0.0.2
+    networks:
+      - pgnet
+    volumes:
+      - ./tarantool/app.lua:/opt/tarantool/app.lua
+    ports:
+      - "3301:3301"
+ 
+
+networks:
+  pgnet:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.28.0.0/16
+          ip_range: 172.28.5.0/24
+          gateway: 172.28.5.254
+          # aux_addresses:
+          #   host1: 172.28.1.5
+          #   host2: 172.28.1.6
+          #   host3: 172.28.1.7
+      # options:
+      #   foo: bar
