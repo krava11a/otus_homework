@@ -63,7 +63,20 @@
 # Домашнее задание №6 In-memory СУБД. tarantool.
 
 1. Провела нагрузочные тесты микросервиса [homework-dialogs](homework-dialogs/) с помощью Jmeter. [.jmx файл](homework6-tarantool/Homework6-tarantool.jmx) тестов, как и все остальные связанные с ДЗ файлы, лежат в директории [homework6-tarantool](homework6-tarantool/). Графики с результатами тестов до переезда сервиса на тарантул по критериям latencies,transactions и response time лежат в директории [graphs](homework6-tarantool/wt_tarantool/graphs/). 
-2. Образ для docker с tarantool со стартовым скриптом [app.lua](homework6-tarantool/tarantool/app.lua) описан в файле [Dockerfile](homework6-tarantool/tarantool/Dockerfile). Отдельно стоит отметить, что в файле [app.lua](homework6-tarantool/tarantool/app.lua) описаны хранимые процедуры, на которых и построено взаимодействие приложения с СУБД tarantool. Интересный момент был в том, чтобы искать по полям "from" и "to" нкжно было создать два индекса - primary(уникальный) по id записа сообщения в диалоге и spatial (типа TREE, не уникальный) по полям "from" и "to".  
+2. Образ для docker с tarantool со стартовым скриптом [app.lua](homework6-tarantool/tarantool/app.lua) описан в файле [Dockerfile](homework6-tarantool/tarantool/Dockerfile). Отдельно стоит отметить, что в файле [app.lua](homework6-tarantool/tarantool/app.lua) описаны хранимые процедуры, на которых и построено взаимодействие приложения с СУБД tarantool. Интересный момент был в том, чтобы искать по полям "from" и "to" нкжно было создать два индекса - primary(уникальный) по id записи сообщения в диалоге и spatial (типа TREE, не уникальный) по полям "from" и "to".  
 3. Добавила в микросервис [homework-dialogs](homework-dialogs/) возможность работать с tarantool для методов Send и List. Файл настроек приложения для Docker образа - [config_dialogs.yaml](homework6-tarantool/configs/config_dialogs.yaml).
 4. Файл [docker-compose.yml](homework6-tarantool/docker-compose.yml) для запуска всего стэка.
 5. Графики с результатами тестов после переезда сервиса на тарантул по критериям latencies,transactions и response time лежат в директории [graphs](homework6-tarantool/tarantool/graphs/). Странно но результаты не сильно отличаются. Я ожидала что как минимум чтение будет из RAM быстрее. Возможно, что в моем ноутбуке очень быстрый nvme диск.
+
+
+# Домашнее задание №8 Microservices. X-request-Id.
+
+    К ДЗ определен ряд требований:
+    - Взаимодействия монолитного сервиса и сервиса чатов реализовать на REST API или gRPC.
+    - Организовать сквозное логирование запросов (x-request-id).
+    - Предусмотреть то, что не все клиенты обновляют приложение быстро и кто-то может ходить через старое API (сохранение обратной совместимости).
+
+1. Добавила в стэк Docker nginx для проксирования запросов и добавления к каждому запросу X-Request-ID. Стэк описан в файле [docker-compose.yml](homework8-microservice/docker-compose.yml). Файл конфигурации nginx - [nginx.conf](homework8-microservice/nginx.conf). В файле описан функционал по добавлению  X-Request-ID.
+2. В моем случае функционал диалогов изначально был организован как отдельный микросервис еще в ДЗ № 6. Микросервис работает по gRPC ([файл dialogs.proto](homework-dialogs/internal/proto/dialogs.proto)). Также для поддержки взаимодействия по REST API реализована HTTP обвязка над gRPC. HTTP запросы в соответсвтии с OpenApi. Добавила в существующем микросервисе [homework-dialogs](homework-dialogs/) возможность получения из Headers HTTP X-Request-ID и дальнейшего использования его в логировании работы приложения. 
+3. Для экономии времени не стала добавлять обработку X-Request-Id в весь функционал монолитной части системы. Обработка X-Request-Id реализована в микросервисе ms_dialogs для всех методов, а в монолитной части приложения только для методов, отвечающих за авторизацию - GetUserIdByToken() и GetUUIDFrom().
+4. Требование по обратной соместимости отпало само собой, так как функционал диалогов и уже был на микросервисе. 

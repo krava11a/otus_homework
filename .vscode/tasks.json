@@ -36,7 +36,7 @@
             "dockerBuild": {
                 "context": "${workspaceFolder}/homework-backend",
                 "dockerfile": "${workspaceFolder}/homework-backend/build/Dockerfile",
-                "tag": "homework_backend:0.0.18"
+                "tag": "homework_backend:0.0.19"
             },
             "dependsOn": [
                 "go: build package"
@@ -77,7 +77,7 @@
             "dockerBuild": {
                 "context": "${workspaceFolder}/homework-dialogs",
                 "dockerfile": "${workspaceFolder}/homework-dialogs/build/Dockerfile",
-                "tag": "homework_dialogs:0.0.6"
+                "tag": "homework_dialogs:0.0.8"
             },
             "dependsOn": [
                 "go: build homework-dialogs"

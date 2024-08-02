@@ -53,7 +53,7 @@ func New(taraConnectionAddr string) (*Storage, error) {
 	return &Storage{addr: taraConnectionAddr}, nil
 }
 
-func (s *Storage) Send(dialog models.Dialog) error {
+func (s *Storage) Send(dialog models.Dialog, xid string) error {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 	fmt.Println(dialog)
@@ -69,7 +69,7 @@ func (s *Storage) Send(dialog models.Dialog) error {
 	conn, err := tarantool.Connect(ctx, dialer, opts)
 	if err != nil {
 
-		return fmt.Errorf("Tarantool Connection refused:", err)
+		return fmt.Errorf("Request ID: %s .Tarantool Connection refused:", xid, err)
 	}
 
 	defer conn.CloseGraceful()
@@ -79,15 +79,15 @@ func (s *Storage) Send(dialog models.Dialog) error {
 	).Get()
 	if err != nil {
 		if err.Error() != "msgpack: unknown ext id=2" {
-			return fmt.Errorf("Tarantool Got an error:", err)
+			return fmt.Errorf("Request ID: %s .Tarantool Got an error:", xid, err)
 		}
 
 	}
-	fmt.Println("Tarantool Stored procedure result:", data)
+	fmt.Println("Request ID: %s .Tarantool Stored procedure result:", xid, data)
 	return nil
 }
 
-func (s *Storage) List(from, to string) ([]models.Dialog, error) {
+func (s *Storage) List(from, to, xid string) ([]models.Dialog, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
 	dialer := tarantool.NetDialer{
@@ -102,7 +102,7 @@ func (s *Storage) List(from, to string) ([]models.Dialog, error) {
 	conn, err := tarantool.Connect(ctx, dialer, opts)
 	if err != nil {
 
-		return nil, fmt.Errorf("Tarantool Connection refused:", err)
+		return nil, fmt.Errorf("Request ID: %s .Tarantool Connection refused:", xid, err)
 	}
 
 	defer conn.CloseGraceful()
@@ -111,7 +111,7 @@ func (s *Storage) List(from, to string) ([]models.Dialog, error) {
 		tarantool.NewCallRequest("list").Args([]interface{}{from, to}),
 	).GetTyped(&res)
 	if err != nil {
-		return nil, fmt.Errorf("Tarantool Got an error:", err)
+		return nil, fmt.Errorf("Request ID: %s .Tarantool Got an error:", xid, err)
 	}
 	r := []models.Dialog{}
 	for _, v := range res.Ds {

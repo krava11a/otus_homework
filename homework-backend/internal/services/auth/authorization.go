@@ -231,11 +231,12 @@ func (a *Auth) UsersGetByPrefixFirstNameAndSecondName(first_name, second_name st
 
 }
 
-func (a *Auth) GetUUIDfrom(token string) (string, error) {
+func (a *Auth) GetUUIDfrom(token, xid string) (string, error) {
 	const op = "Auth.GetUUIDdrom"
 	log := a.log.With(
 		slog.String("op", op),
 		slog.String(fmt.Sprintf("Get uuid from token : %s", token), ""),
+		slog.String("X-Request-Id", xid),
 	)
 	log.Info("attempting to get uuid from token")
 

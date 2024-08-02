@@ -2,10 +2,12 @@ package auth
 
 import (
 	"context"
+	"fmt"
 	"homework-backend/internal/models"
 	"homework-backend/internal/proto"
 
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/metadata"
 )
 
 type GrpcAuth interface {
@@ -13,7 +15,7 @@ type GrpcAuth interface {
 	LoginUser(user_id, password string, app models.App) (string, error)
 	GetUserById(user_id string) (models.User, error)
 	UsersGetByPrefixFirstNameAndSecondName(first_name, last_name string) ([]models.User, error)
-	GetUUIDfrom(token string) (string, error)
+	GetUUIDfrom(token, xid string) (string, error)
 	// FriendSet(user_id string, friend_id string) error
 	// FriendDelete(user_id string, friend_id string) error
 	// GetFriends(user_id string) (user_ids []string, err error)
@@ -117,18 +119,20 @@ func (as *AuthorizationServer) UsersGetByPrefixFirstNameAndSecondName(ctx contex
 	}, nil
 }
 
-func (as *AuthorizationServer) GetUUIDfrom(token string) (string, error) {
-	id, err := as.auth.GetUUIDfrom(token)
+func (as *AuthorizationServer) GetUUIDfrom(token, xid string) (string, error) {
+	id, err := as.auth.GetUUIDfrom(token, xid)
 	if err != nil {
-		return "", err
+		return "", fmt.Errorf("AuthorizationServer.GetUUIDFrom() : Error in request ID:%s. Error:%s", xid, err)
 	}
 	return id, nil
 }
 
 func (as *AuthorizationServer) GetUserIdByToken(ctx context.Context, req *proto.UserToken) (*proto.UserId, error) {
-	id, err := as.GetUUIDfrom(req.Token)
+	md, _ := metadata.FromIncomingContext(ctx)
+	xid := md.Get("xid")[0]
+	id, err := as.GetUUIDfrom(req.Token, xid)
 	if err != nil {
-		return &proto.UserId{}, err
+		return &proto.UserId{}, fmt.Errorf("AuthorizationServer.GetUserIdByToken() :Error in request ID:%s. Error:%s", xid, err)
 	}
 	return &proto.UserId{UserId: id}, nil
 

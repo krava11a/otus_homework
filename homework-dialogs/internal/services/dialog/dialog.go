@@ -26,12 +26,13 @@ func New(log *slog.Logger, dialogSender DialogSender, dialogListener DialogListe
 	return &d
 }
 
-func (d *Dialog) Send(dialog models.Dialog) error {
+func (d *Dialog) Send(dialog models.Dialog, xid string) error {
 	const op = "Dialog Send"
 
 	log := d.log.With(
 		slog.String("op", op),
 		slog.String("dialog", fmt.Sprintf("dialog: from= %s,to= %s, text= %s", dialog.From, dialog.To, dialog.Text)),
+		slog.String("X-Request-ID", xid),
 	)
 	log.Info("sending message Dialog")
 	if dialog.From == "" {
@@ -41,16 +42,17 @@ func (d *Dialog) Send(dialog models.Dialog) error {
 		return status.Error(codes.InvalidArgument, "To is required")
 	}
 
-	return d.dlgSender.Send(dialog)
+	return d.dlgSender.Send(dialog, xid)
 }
 
-func (d *Dialog) List(from, to string) (dialogs []models.Dialog, err error) {
+func (d *Dialog) List(from, to, xid string) (dialogs []models.Dialog, err error) {
 	const op = "Dialog List"
 
 	log := d.log.With(
 		slog.String("op", op),
 		slog.String("from", from),
 		slog.String("to", to),
+		slog.String("X-Request-ID", xid),
 	)
 	log.Info("sending message Dialog")
 	if from == "" {
@@ -61,5 +63,5 @@ func (d *Dialog) List(from, to string) (dialogs []models.Dialog, err error) {
 		return nil, status.Error(codes.InvalidArgument, "User_id to is required")
 	}
 
-	return d.dlgListener.List(from, to)
+	return d.dlgListener.List(from, to, xid)
 }

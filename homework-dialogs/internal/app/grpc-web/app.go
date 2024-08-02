@@ -26,7 +26,10 @@ func Run(grpcPort, grpcWebPort, wsPort uint, log *slog.Logger) {
 	mux := runtime.NewServeMux(runtime.WithMetadata(func(ctx context.Context, request *http.Request) metadata.MD {
 		header := request.Header.Get("Authorization")
 		// send all the headers received from the client
-		md := metadata.Pairs("auth", header)
+		xid := request.Header.Get("X-Request-ID")
+		md := metadata.Pairs("auth", header, "xid", xid)
+		// md = metadata.Pairs("X-Request-ID", xid)
+		// fmt.Println(xid)
 		return md
 	}))
 	opts := []grpc.DialOption{grpc.WithTransportCredentials(insecure.NewCredentials())}

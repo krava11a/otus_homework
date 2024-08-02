@@ -20,13 +20,21 @@ func New(authPath string) *AuthRemoteService {
 	return &AuthRemoteService{authPath: authPath}
 }
 
-func (ars *AuthRemoteService) GetUUIDBy(token string) (id string, err error) {
+func (ars *AuthRemoteService) GetUUIDBy(token, xid string) (id string, err error) {
 
 	response := res{}
 
-	resp, err := http.Get(fmt.Sprintf("%s/%s", ars.authPath, token))
+	client := &http.Client{}
+	req, err := http.NewRequest("GET", fmt.Sprintf("%s/%s", ars.authPath, token), nil)
 	if err != nil {
-		return "", err
+		return "", fmt.Errorf("Error ms_dialogs.auth in request ID:%s. Error:%s", xid, err)
+	}
+	req.Header.Set("X-Request-Id", xid)
+
+	// resp, err := http.Get(fmt.Sprintf("%s/%s", ars.authPath, token))
+	resp, err := client.Do(req)
+	if err != nil {
+		return "", fmt.Errorf("Error ms_dialogs.auth in request ID:%s. Error:%s", xid, err)
 	}
 
 	defer resp.Body.Close()
