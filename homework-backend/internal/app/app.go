@@ -3,6 +3,7 @@ package app
 import (
 	"context"
 	grpcapp "homework-backend/internal/app/grpc"
+	"homework-backend/internal/models"
 	"homework-backend/internal/services/auth"
 	"homework-backend/internal/services/post"
 	"homework-backend/internal/storage/pgx"
@@ -24,13 +25,14 @@ func New(
 	cachePath string,
 	queuePath string,
 	tokenTTL time.Duration,
+	app models.App,
 ) *App {
-	storage, err := pgx.New(storagePath)
+	storage, err := pgx.New(storagePath, app)
 	if err != nil {
 		panic(err)
 	}
 
-	storageForRead, err := pgx.New(storagePathForRead)
+	storageForRead, err := pgx.New(storagePathForRead, app)
 	if err != nil {
 		panic(err)
 	}

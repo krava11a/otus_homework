@@ -14,9 +14,10 @@ import (
 
 type Storage struct {
 	dbpool *pgxpool.Pool
+	app    models.App
 }
 
-func New(pgConnectioString string) (*Storage, error) {
+func New(pgConnectioString string, app models.App) (*Storage, error) {
 	const op = "storage.pgx.New"
 
 	dbpool, err := pgxpool.New(context.Background(), pgConnectioString)
@@ -24,7 +25,7 @@ func New(pgConnectioString string) (*Storage, error) {
 		fmt.Fprintf(os.Stderr, "Unable to create connection pool: %v\n", err)
 		os.Exit(1)
 	}
-	return &Storage{dbpool: dbpool}, nil
+	return &Storage{dbpool: dbpool, app: app}, nil
 }
 
 func (s *Storage) CreateUser(user models.User) (string, error) {
@@ -121,11 +122,7 @@ func (s *Storage) UsersGetByPrefixFirstNameAndSecondName(first_name, second_name
 }
 
 func (s *Storage) App() (models.App, error) {
-	return models.App{
-		ID:     1,
-		Name:   "otus_homework",
-		Secret: "",
-	}, nil
+	return s.app, nil
 }
 
 func (s *Storage) FriendSet(user_id, friend_id string) error {

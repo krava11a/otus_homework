@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"homework-backend/internal/models"
 	"homework-backend/internal/proto"
+	"net"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/metadata"
@@ -120,6 +121,7 @@ func (as *AuthorizationServer) UsersGetByPrefixFirstNameAndSecondName(ctx contex
 }
 
 func (as *AuthorizationServer) GetUUIDfrom(token, xid string) (string, error) {
+
 	id, err := as.auth.GetUUIDfrom(token, xid)
 	if err != nil {
 		return "", fmt.Errorf("AuthorizationServer.GetUUIDFrom() : Error in request ID:%s. Error:%s", xid, err)
@@ -128,6 +130,7 @@ func (as *AuthorizationServer) GetUUIDfrom(token, xid string) (string, error) {
 }
 
 func (as *AuthorizationServer) GetUserIdByToken(ctx context.Context, req *proto.UserToken) (*proto.UserId, error) {
+
 	md, _ := metadata.FromIncomingContext(ctx)
 	xid := md.Get("xid")[0]
 	id, err := as.GetUUIDfrom(req.Token, xid)
@@ -136,6 +139,18 @@ func (as *AuthorizationServer) GetUserIdByToken(ctx context.Context, req *proto.
 	}
 	return &proto.UserId{UserId: id}, nil
 
+}
+
+func (as *AuthorizationServer) GetLocalIP(xid string) (string, error) {
+	conn, err := net.Dial("udp", "nginx:80")
+	if err != nil {
+		return "", fmt.Errorf("AuthorizationServer.GetLocalIP :Error in request ID:%s. Error:%s", xid, err)
+	}
+	defer conn.Close()
+
+	localAddress := conn.LocalAddr().(*net.UDPAddr)
+
+	return localAddress.IP.String(), nil
 }
 
 // func (as *AuthorizationServer) GetFriends(user_id string) (user_ids []string, err error) {

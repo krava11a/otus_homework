@@ -8,3 +8,6 @@ grpc:
   web_port: 8087
   ws_port:  8088
   timeout: 10h
+app:
+  name: "app-1"
+  id: 1

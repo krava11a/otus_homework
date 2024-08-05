@@ -1,0 +1,226 @@
+services:
+  nginx:
+    container_name: nginx
+    image: nginx:1.16.0-alpine
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - "8080:80"
+    networks:
+      - pgnet
+    depends_on:
+      - backend-1
+      - backend-2
+
+  haproxy:
+    image: haproxy:2.4
+    container_name: haproxy-lb
+    restart: "no"
+    networks:
+      - pgnet
+    volumes:
+      - "./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg"
+    ports:
+      - "4080:80"
+      - "8404:8404"
+    depends_on:
+      - slave
+      - db
+      - asyncslave
+
+  db:
+    container_name: pg_master
+    image: postgres
+    command: -c 'max_connections=2000'
+    #restart: always
+    # set shared memory limit when using docker-compose
+    shm_size: 128mb
+    # or set shared memory limit when deploy via swarm stack
+    #volumes:
+    #  - type: tmpfs
+    #    target: /dev/shm
+    #    tmpfs:
+    #      size: 134217728 # 128*2^20 bytes = 128Mb
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: example
+      POSTGRES_DB: otus_homework
+    volumes:
+      - /home/krava/DOCKER/OTUS/HIGHLOAD/pg_master:/var/lib/postgresql/data
+    networks:
+      - pgnet
+
+  slave:
+    container_name: pg_slave
+    image: postgres
+    command: -c 'max_connections=2000'
+    #restart: always
+    # set shared memory limit when using docker-compose
+    shm_size: 128mb
+    # or set shared memory limit when deploy via swarm stack
+    #volumes:
+    #  - type: tmpfs
+    #    target: /dev/shm
+    #    tmpfs:
+    #      size: 134217728 # 128*2^20 bytes = 128Mb
+    ports:
+      - 15432:5432
+    environment:
+      POSTGRES_PASSWORD: pass
+      # POSTGRES_DB: otus_homework
+    volumes:
+      - /home/krava/DOCKER/OTUS/HIGHLOAD/pg_slave:/var/lib/postgresql/data
+    networks:
+      - pgnet
+  
+  asyncslave:
+    container_name: pg_asyncslave
+    image: postgres 
+    command: -c 'max_connections=2000'
+    #restart: always
+    # set shared memory limit when using docker-compose
+    shm_size: 128mb
+    # or set shared memory limit when deploy via swarm stack
+    #volumes:
+    #  - type: tmpfs
+    #    target: /dev/shm
+    #    tmpfs:
+    #      size: 134217728 # 128*2^20 bytes = 128Mb
+    ports:
+      - 25432:5432
+    environment:
+      POSTGRES_PASSWORD: pass
+      # POSTGRES_DB: otus_homework
+    volumes:
+      - /home/krava/DOCKER/OTUS/HIGHLOAD/pg_asyncslave:/var/lib/postgresql/data
+    networks:
+      - pgnet
+
+
+  adminer:
+    container_name: adminer
+    image: adminer
+    # restart: always
+    ports:
+      - 8081:8080
+    networks:
+      - pgnet
+
+  backend-1:
+    container_name: app-1
+    image: homework_backend:0.0.23
+    # ports:
+    #   - 9001:9001
+    #   - 8088:8088
+    #   - 8087:8087
+    volumes:
+      - ./configs/config_app1.yaml:/config_for_docker.yaml  
+    networks:
+      - pgnet
+    depends_on:
+      - haproxy
+      - redis
+
+  backend-2:
+    container_name: app-2
+    image: homework_backend:0.0.23
+    #   - 9001:9001
+    #   - 8088:8088
+    #   - 8087:8087
+    volumes:
+     - ./configs/config_app2.yaml:/config_for_docker.yaml
+    networks:
+      - pgnet
+    depends_on:
+      - haproxy
+      - redis
+
+
+  redis:
+    container_name: cache_master
+    image: "redis:alpine"
+    # command: redis-server --requirepass sOmE_sEcUrE_pAsS
+    ports:
+     - "6379:6379"
+    volumes:
+     - $PWD/redis-data:/var/lib/redis
+     - $PWD/redis.conf:/usr/local/etc/redis/redis.conf
+    environment:
+     - REDIS_REPLICATION_MODE=master
+    networks:
+      - pgnet
+
+  rabbit:
+    container_name: rabbit
+    image: "rabbitmq:3-management"
+    # command: redis-server --requirepass sOmE_sEcUrE_pAsS
+    ports:
+     - 5672:5672
+     - 15672:15672   
+    networks:
+      - pgnet
+
+  # pg_dialogs:
+  #   container_name: pg_dialogs
+  #   image: postgres
+  #   command: -c 'max_connections=2000'
+  #   #restart: always
+  #   # set shared memory limit when using docker-compose
+  #   shm_size: 128mb
+  #   # or set shared memory limit when deploy via swarm stack
+  #   #volumes:
+  #   #  - type: tmpfs
+  #   #    target: /dev/shm
+  #   #    tmpfs:
+  #   #      size: 134217728 # 128*2^20 bytes = 128Mb
+  #   ports:
+  #     - 6432:5432
+  #   environment:
+  #     POSTGRES_PASSWORD: example
+  #     POSTGRES_DB: dialogs
+  #   volumes:
+  #     - /home/krava/DOCKER/OTUS/HIGHLOAD/pg_dialogs:/var/lib/postgresql/data
+  #   networks:
+  #     - pgnet
+
+  ms_dialogs:
+    container_name: ms_dialogs
+    image: homework_dialogs:0.0.8
+    ports:
+      - 9002:9002
+      - 9088:9088
+      - 9087:9087
+    volumes:
+      - ./configs/config_dialogs.yaml:/config.yaml
+    
+    networks:
+      - pgnet 
+    depends_on:
+      - tarantool
+  
+  tarantool:
+    container_name: tara
+    image: tarantool_dialogs:0.0.2
+    networks:
+      - pgnet
+    volumes:
+      - ./tarantool/app.lua:/opt/tarantool/app.lua
+    ports:
+      - "3301:3301"
+ 
+
+networks:
+  pgnet:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.28.0.0/16
+          ip_range: 172.28.5.0/24
+          gateway: 172.28.5.254
+          # aux_addresses:
+          #   host1: 172.28.1.5
+          #   host2: 172.28.1.6
+          #   host3: 172.28.1.7
+      # options:
+      #   foo: bar

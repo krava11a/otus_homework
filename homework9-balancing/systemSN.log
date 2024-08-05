@@ -1,0 +1,445 @@
+Attaching to pg_slave, pg_asyncslave, pg_master, rabbit, cache_master, adminer, tara, haproxy-lb, app-1, app-2, ms_dialogs, nginx
+[33mapp-1         |[0m time=2024-08-05T20:51:55.504Z level=ERROR msg="dial tcp 172.28.5.4:5672: connect: connection refused"
+[33mapp-1         |[0m time=2024-08-05T20:51:55.504Z level=INFO msg="grpc-web server started" addr=:8087
+[33mapp-1         |[0m time=2024-08-05T20:51:55.504Z level=INFO msg="attempting to update ALL feed posts" op=Post.UpdateFeedAll
+[33mapp-1         |[0m time=2024-08-05T20:51:55.504Z level=INFO msg="grpc server started" addr=[::]:9001
+[32mapp-2         |[0m time=2024-08-05T20:51:55.504Z level=ERROR msg="dial tcp 172.28.5.4:5672: connect: connection refused"
+[32mapp-2         |[0m time=2024-08-05T20:51:55.504Z level=INFO msg="grpc-web server started" addr=:8087
+[36madminer       |[0m [Mon Aug  5 20:51:55 2024] PHP 7.4.33 Development Server (http://[::]:8080) started
+[34mhaproxy-lb    |[0m [NOTICE]   (1) : New worker #1 (8) forked
+[35mcache_master  |[0m 1:C 05 Aug 2024 20:51:55.102 * oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+[35mcache_master  |[0m 1:C 05 Aug 2024 20:51:55.102 * Redis version=7.2.5, bits=64, commit=00000000, modified=0, pid=1, just started
+[35mcache_master  |[0m 1:C 05 Aug 2024 20:51:55.102 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+[35mcache_master  |[0m 1:M 05 Aug 2024 20:51:55.102 * monotonic clock: POSIX clock_gettime
+[32mapp-2         |[0m time=2024-08-05T20:51:55.504Z level=INFO msg="attempting to update ALL feed posts" op=Post.UpdateFeedAll
+[32;1mpg_asyncslave |[0m 
+[32;1mpg_asyncslave |[0m PostgreSQL Database directory appears to contain a database; Skipping initialization
+[32;1mpg_asyncslave |[0m 
+[36;1mms_dialogs    |[0m pgx.new error Unable to create connection pool: cannot parse `tara:3301`: failed to parse as keyword/value (invalid keyword/value)
+[32mapp-2         |[0m time=2024-08-05T20:51:55.505Z level=INFO msg="grpc server started" addr=[::]:9001
+[34;1mpg_slave      |[0m 
+[34;1mpg_slave      |[0m PostgreSQL Database directory appears to contain a database; Skipping initialization
+[34;1mpg_slave      |[0m 
+[35;1mpg_master     |[0m 
+[35;1mpg_master     |[0m PostgreSQL Database directory appears to contain a database; Skipping initialization
+[35;1mpg_master     |[0m 
+[33mtara          |[0m started
+[32;1mpg_asyncslave |[0m 2024-08-05 20:51:55.203 UTC [1] LOG:  starting PostgreSQL 16.3 (Debian 16.3-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+[34;1mpg_slave      |[0m 2024-08-05 20:51:55.047 UTC [1] LOG:  starting PostgreSQL 16.3 (Debian 16.3-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+[35mcache_master  |[0m 1:M 05 Aug 2024 20:51:55.103 * Running mode=standalone, port=6379.
+[35mcache_master  |[0m 1:M 05 Aug 2024 20:51:55.103 * Server initialized
+[35mcache_master  |[0m 1:M 05 Aug 2024 20:51:55.103 * Loading RDB produced by version 7.2.5
+[35mcache_master  |[0m 1:M 05 Aug 2024 20:51:55.103 * RDB age 26 seconds
+[35mcache_master  |[0m 1:M 05 Aug 2024 20:51:55.103 * RDB memory usage when created 12.31 Mb
+[34;1mpg_slave      |[0m 2024-08-05 20:51:55.049 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+[34;1mpg_slave      |[0m 2024-08-05 20:51:55.050 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+[32;1mpg_asyncslave |[0m 2024-08-05 20:51:55.203 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+[32;1mpg_asyncslave |[0m 2024-08-05 20:51:55.203 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+[34;1mpg_slave      |[0m 2024-08-05 20:51:55.073 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+[32;1mpg_asyncslave |[0m 2024-08-05 20:51:55.208 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+[35mcache_master  |[0m 1:M 05 Aug 2024 20:51:55.136 * Done loading RDB, keys loaded: 1027, keys expired: 0.
+[36;1mms_dialogs    |[0m time=2024-08-05T20:51:55.514Z level=INFO msg="grpc-web server started" addr=:9087
+[36;1mms_dialogs    |[0m time=2024-08-05T20:51:55.514Z level=INFO msg="grpc server started" addr=[::]:9002
+[35mcache_master  |[0m 1:M 05 Aug 2024 20:51:55.136 * DB loaded from disk: 0.034 seconds
+[34;1mpg_slave      |[0m 2024-08-05 20:51:55.082 UTC [29] LOG:  database system was shut down at 2024-08-05 20:51:29 UTC
+[34;1mpg_slave      |[0m 2024-08-05 20:51:55.091 UTC [1] LOG:  database system is ready to accept connections
+[32;1mpg_asyncslave |[0m 2024-08-05 20:51:55.215 UTC [29] LOG:  database system was shut down in recovery at 2024-08-05 20:51:29 UTC
+[32;1mpg_asyncslave |[0m 2024-08-05 20:51:55.217 UTC [29] LOG:  entering standby mode
+[32;1mpg_asyncslave |[0m 2024-08-05 20:51:55.228 UTC [29] LOG:  consistent recovery state reached at 0/66C3B680
+[32;1mpg_asyncslave |[0m 2024-08-05 20:51:55.228 UTC [29] LOG:  redo starts at 0/66C3B680
+[32;1mpg_asyncslave |[0m 2024-08-05 20:51:55.228 UTC [1] LOG:  database system is ready to accept read-only connections
+[32;1mpg_asyncslave |[0m 2024-08-05 20:51:55.229 UTC [29] LOG:  invalid record length at 0/66C3B6B8: expected at least 24, got 0
+[32;1mpg_asyncslave |[0m 2024-08-05 20:51:55.242 UTC [30] LOG:  started streaming WAL from primary at 0/66000000 on timeline 2
+[33mtara          |[0m 2024-08-05 20:51:55.245 [1] main/104/app.lua I> Tarantool 3.1.0-0-g96f6d88597 Linux-x86_64-RelWithDebInfo
+[33mtara          |[0m 2024-08-05 20:51:55.245 [1] main/104/app.lua I> log level 5 (INFO)
+[33mtara          |[0m 2024-08-05 20:51:55.245 [1] main/104/app.lua I> wal/engine cleanup is paused
+[33mtara          |[0m 2024-08-05 20:51:55.245 [1] main/104/app.lua I> mapping 268435456 bytes for memtx tuple arena...
+[33mtara          |[0m 2024-08-05 20:51:55.245 [1] main/104/app.lua I> Actual slab_alloc_factor calculated on the basis of desired slab_alloc_factor = 1.044274
+[33mtara          |[0m 2024-08-05 20:51:55.246 [1] main/104/app.lua I> mapping 134217728 bytes for vinyl tuple arena...
+[33mtara          |[0m 2024-08-05 20:51:55.250 [1] main/104/app.lua I> update replication_synchro_quorum = 1
+[33mtara          |[0m 2024-08-05 20:51:55.250 [1] main/104/app.lua I> instance uuid 4e66fe5c-d9d5-46bd-bae5-a8da15066249
+[34;1mpg_slave      |[0m 2024-08-05 20:51:55.254 UTC [33] LOG:  standby "pg_master" is now a candidate for quorum synchronous standby
+[34;1mpg_slave      |[0m 2024-08-05 20:51:55.254 UTC [33] STATEMENT:  START_REPLICATION 0/66000000 TIMELINE 2
+[34;1mpg_slave      |[0m 2024-08-05 20:51:55.276 UTC [34] LOG:  standby "pg_asyncslave" is now a candidate for quorum synchronous standby
+[34;1mpg_slave      |[0m 2024-08-05 20:51:55.276 UTC [34] STATEMENT:  START_REPLICATION 0/66000000 TIMELINE 2
+[33mtara          |[0m 2024-08-05 20:51:55.252 [1] main/104/app.lua I> tx_binary: bound to 0.0.0.0:3301
+[35;1mpg_master     |[0m 2024-08-05 20:51:55.196 UTC [1] LOG:  starting PostgreSQL 16.3 (Debian 16.3-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+[35;1mpg_master     |[0m 2024-08-05 20:51:55.196 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+[35;1mpg_master     |[0m 2024-08-05 20:51:55.196 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+[35;1mpg_master     |[0m 2024-08-05 20:51:55.200 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+[35;1mpg_master     |[0m 2024-08-05 20:51:55.210 UTC [29] LOG:  database system was shut down in recovery at 2024-08-05 20:51:29 UTC
+[35;1mpg_master     |[0m 2024-08-05 20:51:55.211 UTC [29] LOG:  entering standby mode
+[35;1mpg_master     |[0m 2024-08-05 20:51:55.218 UTC [29] LOG:  consistent recovery state reached at 0/66C3B680
+[35;1mpg_master     |[0m 2024-08-05 20:51:55.218 UTC [29] LOG:  redo starts at 0/66C3B680
+[35;1mpg_master     |[0m 2024-08-05 20:51:55.218 UTC [1] LOG:  database system is ready to accept read-only connections
+[35;1mpg_master     |[0m 2024-08-05 20:51:55.219 UTC [29] LOG:  invalid record length at 0/66C3B6B8: expected at least 24, got 0
+[35;1mpg_master     |[0m 2024-08-05 20:51:55.230 UTC [30] LOG:  started streaming WAL from primary at 0/66000000 on timeline 2
+[33mtara          |[0m 2024-08-05 20:51:55.252 [1] main/104/app.lua I> initializing an empty data directory
+[33mtara          |[0m 2024-08-05 20:51:55.263 [1] main/104/app.lua I> assigned id 1 to replica 4e66fe5c-d9d5-46bd-bae5-a8da15066249
+[33mtara          |[0m 2024-08-05 20:51:55.263 [1] main/104/app.lua I> update replication_synchro_quorum = 1
+[33mtara          |[0m 2024-08-05 20:51:55.263 [1] main/104/app.lua I> assigned name instance-001 to replica 4e66fe5c-d9d5-46bd-bae5-a8da15066249
+[33mtara          |[0m 2024-08-05 20:51:55.263 [1] main/104/app.lua I> replicaset uuid 98974e2a-2df5-4c8f-b6c7-dca00a5db746
+[33mtara          |[0m 2024-08-05 20:51:55.263 [1] main/104/app.lua I> replicaset name: replicaset-001
+[33mtara          |[0m 2024-08-05 20:51:55.264 [1] snapshot/101/main I> saving snapshot `/var/lib/tarantool/sys_env/default/instance-001/00000000000000000000.snap.inprogress'
+[35mcache_master  |[0m 1:M 05 Aug 2024 20:51:55.137 * Ready to accept connections tcp
+[33mtara          |[0m 2024-08-05 20:51:55.267 [1] snapshot/101/main I> done
+[33mtara          |[0m 2024-08-05 20:51:55.267 [1] main/104/app.lua I> ready to accept requests
+[33mtara          |[0m 2024-08-05 20:51:55.267 [1] main/106/gc I> wal/engine cleanup is resumed
+[33mtara          |[0m 2024-08-05 20:51:55.267 [1] main/104/app.lua/box.load_cfg I> set 'instance_name' configuration option to "instance-001"
+[33mtara          |[0m 2024-08-05 20:51:55.267 [1] main/104/app.lua/box.load_cfg I> set 'custom_proc_title' configuration option to "tarantool - instance-001"
+[33mtara          |[0m 2024-08-05 20:51:55.267 [1] main/104/app.lua/box.load_cfg I> set 'log_nonblock' configuration option to false
+[33mtara          |[0m 2024-08-05 20:51:55.267 [1] main/104/app.lua/box.load_cfg I> set 'replicaset_name' configuration option to "replicaset-001"
+[33mtara          |[0m 2024-08-05 20:51:55.267 [1] main/104/app.lua/box.load_cfg I> set 'listen' configuration option to [{"uri":"0.0.0.0:3301"}]
+[33mtara          |[0m 2024-08-05 20:51:55.267 [1] main/107/checkpoint_daemon I> scheduled next checkpoint for Mon Aug  5 22:48:54 2024
+[33mtara          |[0m 2024-08-05 20:51:55.267 [1] main/104/app.lua/box.load_cfg I> set 'metrics' configuration option to {"labels":{"alias":"instance-001"},"include":["all"],"exclude":[]}
+[33mtara          |[0m 2024-08-05 20:51:55.270 [1] main I> entering the event loop
+[36mrabbit        |[0m 2024-08-05 20:51:56.816157+00:00 [notice] <0.44.0> Application syslog exited with reason: stopped
+[36mrabbit        |[0m 2024-08-05 20:51:56.818877+00:00 [notice] <0.254.0> Logging: switching to configured handler(s); following messages may not be visible in this log output
+[36mrabbit        |[0m [38;5;87m2024-08-05 20:51:56.819212+00:00 [notice] <0.254.0> Logging: configured log handlers are now ACTIVE[0m
+[36mrabbit        |[0m 2024-08-05 20:51:56.822971+00:00 [info] <0.254.0> ra: starting system quorum_queues[0m
+[36mrabbit        |[0m 2024-08-05 20:51:56.823017+00:00 [info] <0.254.0> starting Ra system: quorum_queues in directory: /var/lib/rabbitmq/mnesia/rabbit@38d6b051c522/quorum/rabbit@38d6b051c522[0m
+[36mrabbit        |[0m 2024-08-05 20:51:56.848819+00:00 [info] <0.268.0> ra system 'quorum_queues' running pre init for 0 registered servers[0m
+[36mrabbit        |[0m 2024-08-05 20:51:56.852937+00:00 [info] <0.269.0> ra: meta data store initialised for system quorum_queues. 0 record(s) recovered[0m
+[36mrabbit        |[0m [38;5;87m2024-08-05 20:51:56.858923+00:00 [notice] <0.274.0> WAL: ra_log_wal init, open tbls: ra_log_open_mem_tables, closed tbls: ra_log_closed_mem_tables[0m
+[36mrabbit        |[0m 2024-08-05 20:51:56.882435+00:00 [info] <0.254.0> ra: starting system coordination[0m
+[36mrabbit        |[0m 2024-08-05 20:51:56.882488+00:00 [info] <0.254.0> starting Ra system: coordination in directory: /var/lib/rabbitmq/mnesia/rabbit@38d6b051c522/coordination/rabbit@38d6b051c522[0m
+[36mrabbit        |[0m 2024-08-05 20:51:56.883185+00:00 [info] <0.282.0> ra system 'coordination' running pre init for 1 registered servers[0m
+[36mrabbit        |[0m 2024-08-05 20:51:56.886626+00:00 [info] <0.283.0> ra: meta data store initialised for system coordination. 1 record(s) recovered[0m
+[36mrabbit        |[0m [38;5;87m2024-08-05 20:51:56.886737+00:00 [notice] <0.288.0> WAL: ra_coordination_log_wal init, open tbls: ra_coordination_log_open_mem_tables, closed tbls: ra_coordination_log_closed_mem_tables[0m
+[36mrabbit        |[0m 2024-08-05 20:51:56.889656+00:00 [info] <0.254.0> ra: starting system coordination[0m
+[36mrabbit        |[0m 2024-08-05 20:51:56.889691+00:00 [info] <0.254.0> starting Ra system: coordination in directory: /var/lib/rabbitmq/mnesia/rabbit@38d6b051c522/coordination/rabbit@38d6b051c522[0m
+[36mrabbit        |[0m 2024-08-05 20:51:56.923632+00:00 [info] <0.254.0> Waiting for Khepri leader for 30000 ms, 9 retries left[0m
+[36mrabbit        |[0m 2024-08-05 20:51:56.934795+00:00 [info] <0.254.0> Khepri leader elected[0m
+[36mrabbit        |[0m [38;5;87m2024-08-05 20:51:57.266485+00:00 [notice] <0.293.0> RabbitMQ metadata store: candidate -> leader in term: 3 machine version: 0[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.445394+00:00 [info] <0.254.0> [0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.445394+00:00 [info] <0.254.0>  Starting RabbitMQ 3.13.3 on Erlang 26.2.5 [jit][0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.445394+00:00 [info] <0.254.0>  Copyright (c) 2007-2024 Broadcom Inc and/or its subsidiaries[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.445394+00:00 [info] <0.254.0>  Licensed under the MPL 2.0. Website: https://rabbitmq.com[0m
+[36mrabbit        |[0m 
+[36mrabbit        |[0m   ##  ##      RabbitMQ 3.13.3
+[36mrabbit        |[0m   ##  ##
+[36mrabbit        |[0m   ##########  Copyright (c) 2007-2024 Broadcom Inc and/or its subsidiaries
+[36mrabbit        |[0m   ######  ##
+[36mrabbit        |[0m   ##########  Licensed under the MPL 2.0. Website: https://rabbitmq.com
+[36mrabbit        |[0m 
+[36mrabbit        |[0m   Erlang:      26.2.5 [jit]
+[36mrabbit        |[0m   TLS Library: OpenSSL - OpenSSL 3.1.6 4 Jun 2024
+[36mrabbit        |[0m   Release series support status: supported
+[36mrabbit        |[0m 
+[36mrabbit        |[0m   Doc guides:  https://www.rabbitmq.com/docs
+[36mrabbit        |[0m   Support:     https://www.rabbitmq.com/docs/contact
+[36mrabbit        |[0m   Tutorials:   https://www.rabbitmq.com/tutorials
+[36mrabbit        |[0m   Monitoring:  https://www.rabbitmq.com/docs/monitoring
+[36mrabbit        |[0m   Upgrading:   https://www.rabbitmq.com/docs/upgrade
+[36mrabbit        |[0m 
+[36mrabbit        |[0m   Logs: <stdout>
+[36mrabbit        |[0m 
+[36mrabbit        |[0m   Config file(s): /etc/rabbitmq/conf.d/10-defaults.conf
+[36mrabbit        |[0m 
+[36mrabbit        |[0m   Starting broker...2024-08-05 20:51:57.446372+00:00 [info] <0.254.0> [0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.446372+00:00 [info] <0.254.0>  node           : rabbit@38d6b051c522[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.446372+00:00 [info] <0.254.0>  home dir       : /var/lib/rabbitmq[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.446372+00:00 [info] <0.254.0>  config file(s) : /etc/rabbitmq/conf.d/10-defaults.conf[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.446372+00:00 [info] <0.254.0>  cookie hash    : wfrfDpgwaColw4iOrRYbeg==[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.446372+00:00 [info] <0.254.0>  log(s)         : <stdout>[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.446372+00:00 [info] <0.254.0>  data dir       : /var/lib/rabbitmq/mnesia/rabbit@38d6b051c522[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.626590+00:00 [info] <0.254.0> Running boot step pre_boot defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.626674+00:00 [info] <0.254.0> Running boot step rabbit_global_counters defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.626866+00:00 [info] <0.254.0> Running boot step rabbit_osiris_metrics defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.626959+00:00 [info] <0.254.0> Running boot step rabbit_core_metrics defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.627451+00:00 [info] <0.254.0> Running boot step rabbit_alarm defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.632665+00:00 [info] <0.385.0> Memory high watermark set to 1505 MiB (1578342809 bytes) of 3763 MiB (3945857024 bytes) total[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.634313+00:00 [info] <0.387.0> Enabling free disk space monitoring (disk free space: 49738129408, total memory: 3945857024)[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.634357+00:00 [info] <0.387.0> Disk free limit set to 50MB[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.635321+00:00 [info] <0.254.0> Running boot step code_server_cache defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.635391+00:00 [info] <0.254.0> Running boot step file_handle_cache defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.638313+00:00 [info] <0.390.0> Limiting to approx 1048479 file handles (943629 sockets)[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.638420+00:00 [info] <0.391.0> FHC read buffering: OFF[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.638447+00:00 [info] <0.391.0> FHC write buffering: ON[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.638696+00:00 [info] <0.254.0> Running boot step worker_pool defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.638767+00:00 [info] <0.339.0> Will use 8 processes for default worker pool[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.638826+00:00 [info] <0.339.0> Starting worker pool 'worker_pool' with 8 processes in it[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.639194+00:00 [info] <0.254.0> Running boot step database defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.639406+00:00 [info] <0.254.0> Peer discovery: configured backend: rabbit_peer_discovery_classic_config[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.640112+00:00 [info] <0.254.0> Waiting for Mnesia tables for 30000 ms, 9 retries left[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.656312+00:00 [info] <0.254.0> Successfully synced tables from a peer[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.661812+00:00 [info] <0.254.0> Waiting for Mnesia tables for 30000 ms, 9 retries left[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.661904+00:00 [info] <0.254.0> Successfully synced tables from a peer[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.661993+00:00 [info] <0.254.0> Running boot step tracking_metadata_store defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.662050+00:00 [info] <0.409.0> Setting up a table for connection tracking on this node: tracked_connection[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.662108+00:00 [info] <0.409.0> Setting up a table for per-vhost connection counting on this node: tracked_connection_per_vhost[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.662164+00:00 [info] <0.409.0> Setting up a table for per-user connection counting on this node: tracked_connection_per_user[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.662207+00:00 [info] <0.409.0> Setting up a table for channel tracking on this node: tracked_channel[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.662251+00:00 [info] <0.409.0> Setting up a table for channel tracking on this node: tracked_channel_per_user[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.662294+00:00 [info] <0.254.0> Running boot step networking_metadata_store defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.662351+00:00 [info] <0.254.0> Running boot step feature_flags defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.662420+00:00 [info] <0.254.0> Running boot step codec_correctness_check defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.662445+00:00 [info] <0.254.0> Running boot step external_infrastructure defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.662488+00:00 [info] <0.254.0> Running boot step rabbit_event defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.662569+00:00 [info] <0.254.0> Running boot step rabbit_registry defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.662615+00:00 [info] <0.254.0> Running boot step rabbit_auth_mechanism_amqplain defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.662667+00:00 [info] <0.254.0> Running boot step rabbit_auth_mechanism_cr_demo defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.662702+00:00 [info] <0.254.0> Running boot step rabbit_auth_mechanism_plain defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.662771+00:00 [info] <0.254.0> Running boot step rabbit_exchange_type_direct defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.662818+00:00 [info] <0.254.0> Running boot step rabbit_exchange_type_fanout defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.662861+00:00 [info] <0.254.0> Running boot step rabbit_exchange_type_headers defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.662903+00:00 [info] <0.254.0> Running boot step rabbit_exchange_type_topic defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.662969+00:00 [info] <0.254.0> Running boot step rabbit_mirror_queue_mode_all defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.663014+00:00 [info] <0.254.0> Running boot step rabbit_mirror_queue_mode_exactly defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.663051+00:00 [info] <0.254.0> Running boot step rabbit_mirror_queue_mode_nodes defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.663095+00:00 [info] <0.254.0> Running boot step rabbit_priority_queue defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.663117+00:00 [info] <0.254.0> Priority queues enabled, real BQ is rabbit_variable_queue[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.663158+00:00 [info] <0.254.0> Running boot step rabbit_queue_location_client_local defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.663193+00:00 [info] <0.254.0> Running boot step rabbit_queue_location_min_masters defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.663226+00:00 [info] <0.254.0> Running boot step rabbit_queue_location_random defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.663265+00:00 [info] <0.254.0> Running boot step kernel_ready defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.663286+00:00 [info] <0.254.0> Running boot step rabbit_sysmon_minder defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.663385+00:00 [info] <0.254.0> Running boot step rabbit_epmd_monitor defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.663842+00:00 [info] <0.417.0> epmd monitor knows us, inter-node communication (distribution) port: 25672[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.663929+00:00 [info] <0.254.0> Running boot step guid_generator defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.665819+00:00 [info] <0.254.0> Running boot step rabbit_node_monitor defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.665985+00:00 [info] <0.421.0> Starting rabbit_node_monitor (in ignore mode)[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.666078+00:00 [info] <0.254.0> Running boot step delegate_sup defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.666504+00:00 [info] <0.254.0> Running boot step rabbit_memory_monitor defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.666646+00:00 [info] <0.254.0> Running boot step rabbit_fifo_dlx_sup defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.666706+00:00 [info] <0.254.0> Running boot step core_initialized defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.666754+00:00 [info] <0.254.0> Running boot step rabbit_channel_tracking_handler defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.666800+00:00 [info] <0.254.0> Running boot step rabbit_connection_tracking_handler defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.666832+00:00 [info] <0.254.0> Running boot step rabbit_definitions_hashing defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.666887+00:00 [info] <0.254.0> Running boot step rabbit_exchange_parameters defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.671710+00:00 [info] <0.254.0> Running boot step rabbit_mirror_queue_misc defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.672018+00:00 [info] <0.254.0> Running boot step rabbit_policies defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.672223+00:00 [info] <0.254.0> Running boot step rabbit_policy defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.672270+00:00 [info] <0.254.0> Running boot step rabbit_queue_location_validator defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.672308+00:00 [info] <0.254.0> Running boot step rabbit_quorum_memory_manager defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.672333+00:00 [info] <0.254.0> Running boot step rabbit_quorum_queue defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.672411+00:00 [info] <0.254.0> Running boot step rabbit_stream_coordinator defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.672488+00:00 [info] <0.254.0> Running boot step rabbit_vhost_limit defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.672541+00:00 [info] <0.254.0> Running boot step rabbit_federation_parameters defined by app rabbitmq_federation[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.672649+00:00 [info] <0.254.0> Running boot step rabbit_federation_supervisor defined by app rabbitmq_federation[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.676110+00:00 [info] <0.254.0> Running boot step rabbit_federation_queue defined by app rabbitmq_federation[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.676214+00:00 [info] <0.254.0> Running boot step rabbit_federation_upstream_exchange defined by app rabbitmq_federation[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.676256+00:00 [info] <0.254.0> Running boot step rabbit_mgmt_reset_handler defined by app rabbitmq_management[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.676323+00:00 [info] <0.254.0> Running boot step rabbit_mgmt_db_handler defined by app rabbitmq_management_agent[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.676369+00:00 [info] <0.254.0> Management plugin: using rates mode 'basic'[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.676561+00:00 [info] <0.254.0> Running boot step recovery defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.683666+00:00 [info] <0.471.0> Making sure data directory '/var/lib/rabbitmq/mnesia/rabbit@38d6b051c522/msg_stores/vhosts/628WB79CIFDYO9LJI6DKMI09L' for vhost '/' exists[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.689551+00:00 [info] <0.471.0> Starting message stores for vhost '/'[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.689674+00:00 [info] <0.480.0> Message store "628WB79CIFDYO9LJI6DKMI09L/msg_store_transient": using rabbit_msg_store_ets_index to provide index[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.690500+00:00 [info] <0.471.0> Started message store of type transient for vhost '/'[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.690609+00:00 [info] <0.484.0> Message store "628WB79CIFDYO9LJI6DKMI09L/msg_store_persistent": using rabbit_msg_store_ets_index to provide index[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.691493+00:00 [info] <0.471.0> Started message store of type persistent for vhost '/'[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.691583+00:00 [info] <0.471.0> Recovering 0 queues of type rabbit_classic_queue took 7ms[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.691624+00:00 [info] <0.471.0> Recovering 0 queues of type rabbit_quorum_queue took 0ms[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.691681+00:00 [info] <0.471.0> Recovering 0 queues of type rabbit_stream_queue took 0ms[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.692566+00:00 [info] <0.254.0> Running boot step empty_db_check defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.692612+00:00 [info] <0.254.0> Will not seed default virtual host and user: have definitions to load...[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.692630+00:00 [info] <0.254.0> Running boot step rabbit_observer_cli defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.692661+00:00 [info] <0.254.0> Running boot step rabbit_looking_glass defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.692680+00:00 [info] <0.254.0> Running boot step rabbit_core_metrics_gc defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.692760+00:00 [info] <0.254.0> Running boot step background_gc defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.692856+00:00 [info] <0.254.0> Running boot step routing_ready defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.692891+00:00 [info] <0.254.0> Running boot step pre_flight defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.692952+00:00 [info] <0.254.0> Running boot step notify_cluster defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.693002+00:00 [info] <0.254.0> Running boot step networking defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.693035+00:00 [info] <0.254.0> Running boot step rabbit_quorum_queue_periodic_membership_reconciliation defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.693189+00:00 [info] <0.254.0> Running boot step definition_import_worker_pool defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.693238+00:00 [info] <0.339.0> Starting worker pool 'definition_import_pool' with 8 processes in it[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.693653+00:00 [info] <0.254.0> Running boot step cluster_name defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.693700+00:00 [info] <0.254.0> Running boot step direct_client defined by app rabbit[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.693758+00:00 [info] <0.254.0> Running boot step rabbit_federation_exchange defined by app rabbitmq_federation[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.693883+00:00 [info] <0.254.0> Running boot step rabbit_management_load_definitions defined by app rabbitmq_management[0m
+[36mrabbit        |[0m 2024-08-05 20:51:57.693975+00:00 [info] <0.526.0> Resetting node maintenance status[0m
+[36mrabbit        |[0m [38;5;214m2024-08-05 20:51:57.755708+00:00 [warning] <0.555.0> Deprecated features: `management_metrics_collection`: Feature `management_metrics_collection` is deprecated.[0m
+[36mrabbit        |[0m [38;5;214m2024-08-05 20:51:57.755708+00:00 [warning] <0.555.0> By default, this feature can still be used for now.[0m
+[36mrabbit        |[0m [38;5;214m2024-08-05 20:51:57.755708+00:00 [warning] <0.555.0> Its use will not be permitted by default in a future minor RabbitMQ version and the feature will be removed from a future major RabbitMQ version; actual versions to be determined.[0m
+[36mrabbit        |[0m [38;5;214m2024-08-05 20:51:57.755708+00:00 [warning] <0.555.0> To continue using this feature when it is not permitted by default, set the following parameter in your configuration:[0m
+[36mrabbit        |[0m [38;5;214m2024-08-05 20:51:57.755708+00:00 [warning] <0.555.0>     "deprecated_features.permit.management_metrics_collection = true"[0m
+[36mrabbit        |[0m [38;5;214m2024-08-05 20:51:57.755708+00:00 [warning] <0.555.0> To test RabbitMQ as if the feature was removed, set this in your configuration:[0m
+[36mrabbit        |[0m [38;5;214m2024-08-05 20:51:57.755708+00:00 [warning] <0.555.0>     "deprecated_features.permit.management_metrics_collection = false"[0m
+[36mrabbit        |[0m 2024-08-05 20:51:58.898069+00:00 [info] <0.592.0> Management plugin: HTTP (non-TLS) listener started on port 15672[0m
+[36mrabbit        |[0m 2024-08-05 20:51:58.898189+00:00 [info] <0.622.0> Statistics database started.[0m
+[36mrabbit        |[0m 2024-08-05 20:51:58.898244+00:00 [info] <0.621.0> Starting worker pool 'management_worker_pool' with 3 processes in it[0m
+[36mrabbit        |[0m 2024-08-05 20:51:58.904065+00:00 [info] <0.640.0> Prometheus metrics: HTTP (non-TLS) listener started on port 15692[0m
+[36mrabbit        |[0m 2024-08-05 20:51:58.904181+00:00 [info] <0.526.0> Ready to start client connection listeners[0m
+[36mrabbit        |[0m 2024-08-05 20:51:58.905445+00:00 [info] <0.684.0> started TCP listener on [::]:5672[0m
+[36mrabbit        |[0m  completed with 5 plugins.
+[36mrabbit        |[0m 2024-08-05 20:51:58.941789+00:00 [info] <0.526.0> Server startup complete; 5 plugins started.[0m
+[36mrabbit        |[0m 2024-08-05 20:51:58.941789+00:00 [info] <0.526.0>  * rabbitmq_prometheus[0m
+[36mrabbit        |[0m 2024-08-05 20:51:58.941789+00:00 [info] <0.526.0>  * rabbitmq_federation[0m
+[36mrabbit        |[0m 2024-08-05 20:51:58.941789+00:00 [info] <0.526.0>  * rabbitmq_management[0m
+[36mrabbit        |[0m 2024-08-05 20:51:58.941789+00:00 [info] <0.526.0>  * rabbitmq_management_agent[0m
+[36mrabbit        |[0m 2024-08-05 20:51:58.941789+00:00 [info] <0.526.0>  * rabbitmq_web_dispatch[0m
+[36mrabbit        |[0m 2024-08-05 20:51:59.103141+00:00 [info] <0.9.0> Time to start RabbitMQ: 3753 ms[0m
+[34mhaproxy-lb    |[0m [WARNING]  (1) : Exiting Master process...
+[34mhaproxy-lb    |[0m [WARNING]  (8) : Proxy stats stopped (cumulated conns: FE: 0, BE: 0).
+[34mhaproxy-lb    |[0m [WARNING]  (8) : Proxy pgReadWrite stopped (cumulated conns: FE: 0, BE: 0).
+[34mhaproxy-lb    |[0m [WARNING]  (8) : Proxy pgReadOnly stopped (cumulated conns: FE: 2, BE: 2).
+[34mhaproxy-lb    |[0m [WARNING]  (8) : Stopping frontend GLOBAL in 0 ms.
+[34mhaproxy-lb exited with code 137
+[0m[32mapp-2 exited with code 2
+[0m[36mrabbit        |[0m 2024-08-05 20:55:36.141085+00:00 [info] <0.696.0> accepting AMQP connection <0.696.0> (172.28.5.10:59584 -> 172.28.5.4:5672)[0m
+[36mrabbit        |[0m 2024-08-05 20:55:36.142329+00:00 [info] <0.696.0> connection <0.696.0> (172.28.5.10:59584 -> 172.28.5.4:5672): user 'guest' authenticated and granted access to vhost '/'[0m
+[33mapp-1 exited with code 2
+[0m[36mrabbit        |[0m 2024-08-05 20:55:56.478988+00:00 [info] <0.706.0> accepting AMQP connection <0.706.0> (172.28.5.9:46260 -> 172.28.5.4:5672)[0m
+[36mrabbit        |[0m 2024-08-05 20:55:56.480095+00:00 [info] <0.706.0> connection <0.706.0> (172.28.5.9:46260 -> 172.28.5.4:5672): user 'guest' authenticated and granted access to vhost '/'[0m
+[33;1mnginx exited with code 0
+[0m[34mapp-1         |[0m time=2024-08-05T20:56:30.513Z level=INFO msg="request received" protocol=grpc grpc.component=server grpc.service=proto.PostService grpc.method=PostGet grpc.method_type=unary peer.address=127.0.0.1:52728 grpc.start_time=2024-08-05T20:56:30Z grpc.recv.duration=14.414µs grpc.request.content="post_id:\"ebbefbc4-c8c3-4c91-b067-2890a303e1b1\""
+[34mapp-1         |[0m time=2024-08-05T20:56:30.513Z level=INFO msg="attempting to SEARCH post by post_id" op=Post.Get post_id=ebbefbc4-c8c3-4c91-b067-2890a303e1b1
+[36;1mnginx         |[0m 172.28.5.254 - - [05/Aug/2024:20:56:30 +0000] "GET /post/get/ebbefbc4-c8c3-4c91-b067-2890a303e1b1 HTTP/1.1" 200 241 "-" "PostmanRuntime/7.40.0"
+[35mapp-2         |[0m time=2024-08-05T20:56:45.326Z level=INFO msg="request received" protocol=grpc grpc.component=server grpc.service=proto.PostService grpc.method=PostGet grpc.method_type=unary peer.address=127.0.0.1:48860 grpc.start_time=2024-08-05T20:56:45Z grpc.recv.duration=13.278µs grpc.request.content="post_id:\"ebbefbc4-c8c3-4c91-b067-2890a303e1b1\""
+[35mapp-2         |[0m time=2024-08-05T20:56:45.326Z level=INFO msg="attempting to SEARCH post by post_id" op=Post.Get post_id=ebbefbc4-c8c3-4c91-b067-2890a303e1b1
+[36;1mnginx         |[0m 172.28.5.254 - - [05/Aug/2024:20:56:45 +0000] "GET /post/get/ebbefbc4-c8c3-4c91-b067-2890a303e1b1 HTTP/1.1" 200 241 "-" "PostmanRuntime/7.40.0"
+[34mapp-1         |[0m time=2024-08-05T20:56:47.135Z level=INFO msg="request received" protocol=grpc grpc.component=server grpc.service=proto.PostService grpc.method=PostGet grpc.method_type=unary peer.address=127.0.0.1:52728 grpc.start_time=2024-08-05T20:56:47Z grpc.recv.duration=15.958µs grpc.request.content="post_id:\"ebbefbc4-c8c3-4c91-b067-2890a303e1b1\""
+[34mapp-1         |[0m time=2024-08-05T20:56:47.135Z level=INFO msg="attempting to SEARCH post by post_id" op=Post.Get post_id=ebbefbc4-c8c3-4c91-b067-2890a303e1b1
+[36;1mnginx         |[0m 172.28.5.254 - - [05/Aug/2024:20:56:47 +0000] "GET /post/get/ebbefbc4-c8c3-4c91-b067-2890a303e1b1 HTTP/1.1" 200 241 "-" "PostmanRuntime/7.40.0"
+[35mapp-2         |[0m time=2024-08-05T20:56:47.979Z level=INFO msg="request received" protocol=grpc grpc.component=server grpc.service=proto.PostService grpc.method=PostGet grpc.method_type=unary peer.address=127.0.0.1:48860 grpc.start_time=2024-08-05T20:56:47Z grpc.recv.duration=19.43µs grpc.request.content="post_id:\"ebbefbc4-c8c3-4c91-b067-2890a303e1b1\""
+[35mapp-2         |[0m time=2024-08-05T20:56:47.979Z level=INFO msg="attempting to SEARCH post by post_id" op=Post.Get post_id=ebbefbc4-c8c3-4c91-b067-2890a303e1b1
+[36;1mnginx         |[0m 172.28.5.254 - - [05/Aug/2024:20:56:47 +0000] "GET /post/get/ebbefbc4-c8c3-4c91-b067-2890a303e1b1 HTTP/1.1" 200 241 "-" "PostmanRuntime/7.40.0"
+[34;1mpg_slave      |[0m 2024-08-05 20:56:55.089 UTC [27] LOG:  checkpoint starting: time
+[34;1mpg_slave      |[0m 2024-08-05 20:56:55.146 UTC [27] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.001 s, total=0.057 s; sync files=2, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=0 kB; lsn=0/66C3B7A0, redo lsn=0/66C3B768
+[32;1mpg_asyncslave |[0m 2024-08-05 20:56:55.291 UTC [27] LOG:  restartpoint starting: time
+[35;1mpg_master     |[0m 2024-08-05 20:56:55.300 UTC [27] LOG:  restartpoint starting: time
+[32;1mpg_asyncslave |[0m 2024-08-05 20:56:55.313 UTC [27] LOG:  restartpoint complete: wrote 1 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.001 s, total=0.023 s; sync files=0, longest=0.000 s, average=0.000 s; distance=0 kB, estimate=0 kB; lsn=0/66C3B7A0, redo lsn=0/66C3B768
+[32;1mpg_asyncslave |[0m 2024-08-05 20:56:55.313 UTC [27] LOG:  recovery restart point at 0/66C3B768
+[35;1mpg_master     |[0m 2024-08-05 20:56:55.313 UTC [27] LOG:  restartpoint complete: wrote 1 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.001 s, total=0.014 s; sync files=0, longest=0.000 s, average=0.000 s; distance=0 kB, estimate=0 kB; lsn=0/66C3B7A0, redo lsn=0/66C3B768
+[35;1mpg_master     |[0m 2024-08-05 20:56:55.313 UTC [27] LOG:  recovery restart point at 0/66C3B768
+[35mcache_master  |[0m 1:M 05 Aug 2024 20:56:56.099 * 100 changes in 300 seconds. Saving...
+[35mcache_master  |[0m 1:M 05 Aug 2024 20:56:56.099 * Background saving started by pid 20
+[35mcache_master  |[0m 20:C 05 Aug 2024 20:56:56.166 * DB saved on disk
+[35mcache_master  |[0m 20:C 05 Aug 2024 20:56:56.166 * Fork CoW for RDB: current 0 MB, peak 0 MB, average 0 MB
+[35mcache_master  |[0m 1:M 05 Aug 2024 20:56:56.200 * Background saving terminated with success
+[32;1mpg_asyncslave |[0m 2024-08-05 21:11:46.000 UTC [1] LOG:  received fast shutdown request
+[32;1mpg_asyncslave |[0m 2024-08-05 21:11:46.001 UTC [1] LOG:  aborting any active transactions
+[32;1mpg_asyncslave |[0m 2024-08-05 21:11:46.001 UTC [30] FATAL:  terminating walreceiver process due to administrator command
+[32;1mpg_asyncslave |[0m 2024-08-05 21:11:46.002 UTC [109] FATAL:  terminating connection due to administrator command
+[32;1mpg_asyncslave |[0m 2024-08-05 21:11:46.006 UTC [27] LOG:  shutting down
+[32;1mpg_asyncslave |[0m 2024-08-05 21:11:46.014 UTC [1] LOG:  database system is shut down
+[32;1mpg_asyncslave exited with code 0
+[0m[32mhaproxy-lb    |[0m [WARNING]  (7) : Server pgReadOnly/pg_asyncslave is DOWN, reason: Layer4 timeout, check duration: 3003ms. 1 active and 0 backup servers left. 1 sessions active, 0 requeued, 0 remaining in queue.
+[34mapp-1         |[0m time=2024-08-05T21:14:02.995Z level=INFO msg="request received" protocol=grpc grpc.component=server grpc.service=proto.PostService grpc.method=PostGet grpc.method_type=unary peer.address=127.0.0.1:52728 grpc.start_time=2024-08-05T21:14:02Z grpc.recv.duration=14.987µs grpc.request.content="post_id:\"ebbefbc4-c8c3-4c91-b067-2890a303e1b1\""
+[34mapp-1         |[0m time=2024-08-05T21:14:02.995Z level=INFO msg="attempting to SEARCH post by post_id" op=Post.Get post_id=ebbefbc4-c8c3-4c91-b067-2890a303e1b1
+[36;1mnginx         |[0m 172.28.5.254 - - [05/Aug/2024:21:14:03 +0000] "GET /post/get/ebbefbc4-c8c3-4c91-b067-2890a303e1b1 HTTP/1.1" 200 241 "-" "PostmanRuntime/7.40.0"
+[35mapp-2         |[0m time=2024-08-05T21:14:04.170Z level=INFO msg="request received" protocol=grpc grpc.component=server grpc.service=proto.PostService grpc.method=PostGet grpc.method_type=unary peer.address=127.0.0.1:48860 grpc.start_time=2024-08-05T21:14:04Z grpc.recv.duration=15.978µs grpc.request.content="post_id:\"ebbefbc4-c8c3-4c91-b067-2890a303e1b1\""
+[35mapp-2         |[0m time=2024-08-05T21:14:04.170Z level=INFO msg="attempting to SEARCH post by post_id" op=Post.Get post_id=ebbefbc4-c8c3-4c91-b067-2890a303e1b1
+[36;1mnginx         |[0m 172.28.5.254 - - [05/Aug/2024:21:14:04 +0000] "GET /post/get/ebbefbc4-c8c3-4c91-b067-2890a303e1b1 HTTP/1.1" 200 241 "-" "PostmanRuntime/7.40.0"
+[34mapp-1         |[0m time=2024-08-05T21:14:05.755Z level=INFO msg="request received" protocol=grpc grpc.component=server grpc.service=proto.PostService grpc.method=PostGet grpc.method_type=unary peer.address=127.0.0.1:52728 grpc.start_time=2024-08-05T21:14:05Z grpc.recv.duration=16.617µs grpc.request.content="post_id:\"ebbefbc4-c8c3-4c91-b067-2890a303e1b1\""
+[34mapp-1         |[0m time=2024-08-05T21:14:05.755Z level=INFO msg="attempting to SEARCH post by post_id" op=Post.Get post_id=ebbefbc4-c8c3-4c91-b067-2890a303e1b1
+[36;1mnginx         |[0m 172.28.5.254 - - [05/Aug/2024:21:14:05 +0000] "GET /post/get/ebbefbc4-c8c3-4c91-b067-2890a303e1b1 HTTP/1.1" 200 241 "-" "PostmanRuntime/7.40.0"
+[35mapp-2         |[0m time=2024-08-05T21:14:07.310Z level=INFO msg="request received" protocol=grpc grpc.component=server grpc.service=proto.PostService grpc.method=PostGet grpc.method_type=unary peer.address=127.0.0.1:48860 grpc.start_time=2024-08-05T21:14:07Z grpc.recv.duration=24.431µs grpc.request.content="post_id:\"ebbefbc4-c8c3-4c91-b067-2890a303e1b1\""
+[35mapp-2         |[0m time=2024-08-05T21:14:07.310Z level=INFO msg="attempting to SEARCH post by post_id" op=Post.Get post_id=ebbefbc4-c8c3-4c91-b067-2890a303e1b1
+[36;1mnginx         |[0m 172.28.5.254 - - [05/Aug/2024:21:14:07 +0000] "GET /post/get/ebbefbc4-c8c3-4c91-b067-2890a303e1b1 HTTP/1.1" 200 241 "-" "PostmanRuntime/7.40.0"
+[36mrabbit        |[0m [38;5;214m2024-08-05 21:19:02.618017+00:00 [warning] <0.706.0> closing AMQP connection <0.706.0> (172.28.5.9:46260 -> 172.28.5.4:5672, vhost: '/', user: 'guest'):[0m
+[36mrabbit        |[0m [38;5;214m2024-08-05 21:19:02.618017+00:00 [warning] <0.706.0> client unexpectedly closed TCP connection[0m
+[34mapp-1 exited with code 2
+[0m[36;1mnginx         |[0m 2024/08/05 21:20:06 [error] 7#7: *13 connect() failed (113: Host is unreachable) while connecting to upstream, client: 172.28.5.254, server: , request: "GET /post/get/ebbefbc4-c8c3-4c91-b067-2890a303e1b1 HTTP/1.1", upstream: "http://172.28.5.9:8087/post/get/ebbefbc4-c8c3-4c91-b067-2890a303e1b1", host: "localhost:8080"
+[35mapp-2         |[0m time=2024-08-05T21:20:06.254Z level=INFO msg="request received" protocol=grpc grpc.component=server grpc.service=proto.PostService grpc.method=PostGet grpc.method_type=unary peer.address=127.0.0.1:48860 grpc.start_time=2024-08-05T21:20:06Z grpc.recv.duration=17.434µs grpc.request.content="post_id:\"ebbefbc4-c8c3-4c91-b067-2890a303e1b1\""
+[35mapp-2         |[0m time=2024-08-05T21:20:06.254Z level=INFO msg="attempting to SEARCH post by post_id" op=Post.Get post_id=ebbefbc4-c8c3-4c91-b067-2890a303e1b1
+[36;1mnginx         |[0m 172.28.5.254 - - [05/Aug/2024:21:20:06 +0000] "GET /post/get/ebbefbc4-c8c3-4c91-b067-2890a303e1b1 HTTP/1.1" 200 241 "-" "PostmanRuntime/7.40.0"
+[35mapp-2         |[0m time=2024-08-05T21:20:29.980Z level=INFO msg="request received" protocol=grpc grpc.component=server grpc.service=proto.PostService grpc.method=PostGet grpc.method_type=unary peer.address=127.0.0.1:48860 grpc.start_time=2024-08-05T21:20:29Z grpc.recv.duration=15.179µs grpc.request.content="post_id:\"ebbefbc4-c8c3-4c91-b067-2890a303e1b1\""
+[35mapp-2         |[0m time=2024-08-05T21:20:29.980Z level=INFO msg="attempting to SEARCH post by post_id" op=Post.Get post_id=ebbefbc4-c8c3-4c91-b067-2890a303e1b1
+[36;1mnginx         |[0m 172.28.5.254 - - [05/Aug/2024:21:20:29 +0000] "GET /post/get/ebbefbc4-c8c3-4c91-b067-2890a303e1b1 HTTP/1.1" 200 241 "-" "PostmanRuntime/7.40.0"
+[35mapp-2         |[0m time=2024-08-05T21:20:31.385Z level=INFO msg="request received" protocol=grpc grpc.component=server grpc.service=proto.PostService grpc.method=PostGet grpc.method_type=unary peer.address=127.0.0.1:48860 grpc.start_time=2024-08-05T21:20:31Z grpc.recv.duration=14.713µs grpc.request.content="post_id:\"ebbefbc4-c8c3-4c91-b067-2890a303e1b1\""
+[35mapp-2         |[0m time=2024-08-05T21:20:31.385Z level=INFO msg="attempting to SEARCH post by post_id" op=Post.Get post_id=ebbefbc4-c8c3-4c91-b067-2890a303e1b1
+[36;1mnginx         |[0m 172.28.5.254 - - [05/Aug/2024:21:20:31 +0000] "GET /post/get/ebbefbc4-c8c3-4c91-b067-2890a303e1b1 HTTP/1.1" 200 241 "-" "PostmanRuntime/7.40.0"
+[35mapp-2         |[0m time=2024-08-05T21:20:33.342Z level=INFO msg="request received" protocol=grpc grpc.component=server grpc.service=proto.PostService grpc.method=PostGet grpc.method_type=unary peer.address=127.0.0.1:48860 grpc.start_time=2024-08-05T21:20:33Z grpc.recv.duration=23.12µs grpc.request.content="post_id:\"ebbefbc4-c8c3-4c91-b067-2890a303e1b1\""
+[35mapp-2         |[0m time=2024-08-05T21:20:33.343Z level=INFO msg="attempting to SEARCH post by post_id" op=Post.Get post_id=ebbefbc4-c8c3-4c91-b067-2890a303e1b1
+[36;1mnginx         |[0m 172.28.5.254 - - [05/Aug/2024:21:20:33 +0000] "GET /post/get/ebbefbc4-c8c3-4c91-b067-2890a303e1b1 HTTP/1.1" 200 241 "-" "PostmanRuntime/7.40.0"
+[36mrabbit        |[0m 2024-08-05 21:28:32.019003+00:00 [info] <0.822.0> accepting AMQP connection <0.822.0> (172.28.5.1:52044 -> 172.28.5.4:5672)[0m
+[36mrabbit        |[0m 2024-08-05 21:28:32.020303+00:00 [info] <0.822.0> connection <0.822.0> (172.28.5.1:52044 -> 172.28.5.4:5672): user 'guest' authenticated and granted access to vhost '/'[0m
+[35mcache_master  |[0m 1:M 05 Aug 2024 21:28:32.098 * 100 changes in 300 seconds. Saving...
+[35mcache_master  |[0m 1:M 05 Aug 2024 21:28:32.098 * Background saving started by pid 21
+[35mcache_master  |[0m 21:C 05 Aug 2024 21:28:32.168 * DB saved on disk
+[35mcache_master  |[0m 21:C 05 Aug 2024 21:28:32.169 * Fork CoW for RDB: current 1 MB, peak 1 MB, average 0 MB
+[35mcache_master  |[0m 1:M 05 Aug 2024 21:28:32.198 * Background saving terminated with success
+[32;1mpg_asyncslave |[0m 
+[32;1mpg_asyncslave |[0m PostgreSQL Database directory appears to contain a database; Skipping initialization
+[32;1mpg_asyncslave |[0m 
+[32;1mpg_asyncslave |[0m 2024-08-05 21:28:35.013 UTC [1] LOG:  starting PostgreSQL 16.3 (Debian 16.3-1.pgdg120+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.0, 64-bit
+[32;1mpg_asyncslave |[0m 2024-08-05 21:28:35.013 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+[32;1mpg_asyncslave |[0m 2024-08-05 21:28:35.013 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+[32;1mpg_asyncslave |[0m 2024-08-05 21:28:35.016 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+[32;1mpg_asyncslave |[0m 2024-08-05 21:28:35.020 UTC [29] LOG:  database system was shut down in recovery at 2024-08-05 21:11:46 UTC
+[32;1mpg_asyncslave |[0m 2024-08-05 21:28:35.021 UTC [29] LOG:  entering standby mode
+[32;1mpg_asyncslave |[0m 2024-08-05 21:28:35.025 UTC [29] LOG:  redo starts at 0/66C3B768
+[32;1mpg_asyncslave |[0m 2024-08-05 21:28:35.025 UTC [29] LOG:  consistent recovery state reached at 0/66C3B850
+[32;1mpg_asyncslave |[0m 2024-08-05 21:28:35.025 UTC [1] LOG:  database system is ready to accept read-only connections
+[32;1mpg_asyncslave |[0m 2024-08-05 21:28:35.025 UTC [29] LOG:  invalid record length at 0/66C3B850: expected at least 24, got 0
+[32;1mpg_asyncslave |[0m 2024-08-05 21:28:35.051 UTC [30] LOG:  started streaming WAL from primary at 0/66000000 on timeline 2
+[35mapp-2         |[0m time=2024-08-05T21:28:41.484Z level=INFO msg="request received" protocol=grpc grpc.component=server grpc.service=proto.PostService grpc.method=PostGet grpc.method_type=unary peer.address=127.0.0.1:48860 grpc.start_time=2024-08-05T21:28:41Z grpc.recv.duration=19.681µs grpc.request.content="post_id:\"ebbefbc4-c8c3-4c91-b067-2890a303e1b1\""
+[35mapp-2         |[0m time=2024-08-05T21:28:41.484Z level=INFO msg="attempting to SEARCH post by post_id" op=Post.Get post_id=ebbefbc4-c8c3-4c91-b067-2890a303e1b1
+[36;1mnginx         |[0m 172.28.5.254 - - [05/Aug/2024:21:28:41 +0000] "GET /post/get/ebbefbc4-c8c3-4c91-b067-2890a303e1b1 HTTP/1.1" 200 241 "-" "PostmanRuntime/7.40.0"
+[35mapp-2         |[0m time=2024-08-05T21:28:42.356Z level=INFO msg="request received" protocol=grpc grpc.component=server grpc.service=proto.PostService grpc.method=PostGet grpc.method_type=unary peer.address=127.0.0.1:48860 grpc.start_time=2024-08-05T21:28:42Z grpc.recv.duration=20.943µs grpc.request.content="post_id:\"ebbefbc4-c8c3-4c91-b067-2890a303e1b1\""
+[35mapp-2         |[0m time=2024-08-05T21:28:42.356Z level=INFO msg="attempting to SEARCH post by post_id" op=Post.Get post_id=ebbefbc4-c8c3-4c91-b067-2890a303e1b1
+[36;1mnginx         |[0m 172.28.5.254 - - [05/Aug/2024:21:28:42 +0000] "GET /post/get/ebbefbc4-c8c3-4c91-b067-2890a303e1b1 HTTP/1.1" 200 241 "-" "PostmanRuntime/7.40.0"
+[36;1mnginx         |[0m 2024/08/05 21:28:43 [error] 7#7: *20 connect() failed (111: Connection refused) while connecting to upstream, client: 172.28.5.254, server: , request: "GET /post/get/ebbefbc4-c8c3-4c91-b067-2890a303e1b1 HTTP/1.1", upstream: "http://172.28.5.9:8087/post/get/ebbefbc4-c8c3-4c91-b067-2890a303e1b1", host: "localhost:8080"
+[35mapp-2         |[0m time=2024-08-05T21:28:43.186Z level=INFO msg="request received" protocol=grpc grpc.component=server grpc.service=proto.PostService grpc.method=PostGet grpc.method_type=unary peer.address=127.0.0.1:48860 grpc.start_time=2024-08-05T21:28:43Z grpc.recv.duration=35.792µs grpc.request.content="post_id:\"ebbefbc4-c8c3-4c91-b067-2890a303e1b1\""
+[35mapp-2         |[0m time=2024-08-05T21:28:43.187Z level=INFO msg="attempting to SEARCH post by post_id" op=Post.Get post_id=ebbefbc4-c8c3-4c91-b067-2890a303e1b1
+[36;1mnginx         |[0m 172.28.5.254 - - [05/Aug/2024:21:28:43 +0000] "GET /post/get/ebbefbc4-c8c3-4c91-b067-2890a303e1b1 HTTP/1.1" 200 241 "-" "PostmanRuntime/7.40.0"
+[35mapp-2         |[0m time=2024-08-05T21:28:43.994Z level=INFO msg="request received" protocol=grpc grpc.component=server grpc.service=proto.PostService grpc.method=PostGet grpc.method_type=unary peer.address=127.0.0.1:48860 grpc.start_time=2024-08-05T21:28:43Z grpc.recv.duration=25.841µs grpc.request.content="post_id:\"ebbefbc4-c8c3-4c91-b067-2890a303e1b1\""
+[35mapp-2         |[0m time=2024-08-05T21:28:43.994Z level=INFO msg="attempting to SEARCH post by post_id" op=Post.Get post_id=ebbefbc4-c8c3-4c91-b067-2890a303e1b1
+[36;1mnginx         |[0m 172.28.5.254 - - [05/Aug/2024:21:28:43 +0000] "GET /post/get/ebbefbc4-c8c3-4c91-b067-2890a303e1b1 HTTP/1.1" 200 241 "-" "PostmanRuntime/7.40.0"
+[35mapp-2         |[0m time=2024-08-05T21:28:44.864Z level=INFO msg="request received" protocol=grpc grpc.component=server grpc.service=proto.PostService grpc.method=PostGet grpc.method_type=unary peer.address=127.0.0.1:48860 grpc.start_time=2024-08-05T21:28:44Z grpc.recv.duration=15.609µs grpc.request.content="post_id:\"ebbefbc4-c8c3-4c91-b067-2890a303e1b1\""
+[35mapp-2         |[0m time=2024-08-05T21:28:44.864Z level=INFO msg="attempting to SEARCH post by post_id" op=Post.Get post_id=ebbefbc4-c8c3-4c91-b067-2890a303e1b1
+[36;1mnginx         |[0m 172.28.5.254 - - [05/Aug/2024:21:28:44 +0000] "GET /post/get/ebbefbc4-c8c3-4c91-b067-2890a303e1b1 HTTP/1.1" 200 241 "-" "PostmanRuntime/7.40.0"
+[34;1mpg_slave      |[0m 2024-08-05 21:28:45.055 UTC [765] LOG:  standby "pg_asyncslave" is now a candidate for quorum synchronous standby
+[34;1mpg_slave      |[0m 2024-08-05 21:28:45.055 UTC [765] STATEMENT:  START_REPLICATION 0/66000000 TIMELINE 2
+[35mapp-2         |[0m time=2024-08-05T21:28:52.361Z level=INFO msg="request received" protocol=grpc grpc.component=server grpc.service=proto.PostService grpc.method=PostGet grpc.method_type=unary peer.address=127.0.0.1:48860 grpc.start_time=2024-08-05T21:28:52Z grpc.recv.duration=16.746µs grpc.request.content="post_id:\"ebbefbc4-c8c3-4c91-b067-2890a303e1b1\""
+[35mapp-2         |[0m time=2024-08-05T21:28:52.361Z level=INFO msg="attempting to SEARCH post by post_id" op=Post.Get post_id=ebbefbc4-c8c3-4c91-b067-2890a303e1b1
+[36;1mnginx         |[0m 172.28.5.254 - - [05/Aug/2024:21:28:52 +0000] "GET /post/get/ebbefbc4-c8c3-4c91-b067-2890a303e1b1 HTTP/1.1" 200 241 "-" "PostmanRuntime/7.40.0"
+[35mapp-2         |[0m time=2024-08-05T21:28:53.543Z level=INFO msg="request received" protocol=grpc grpc.component=server grpc.service=proto.PostService grpc.method=PostGet grpc.method_type=unary peer.address=127.0.0.1:48860 grpc.start_time=2024-08-05T21:28:53Z grpc.recv.duration=15.903µs grpc.request.content="post_id:\"ebbefbc4-c8c3-4c91-b067-2890a303e1b1\""
+[35mapp-2         |[0m time=2024-08-05T21:28:53.543Z level=INFO msg="attempting to SEARCH post by post_id" op=Post.Get post_id=ebbefbc4-c8c3-4c91-b067-2890a303e1b1
+[36;1mnginx         |[0m 172.28.5.254 - - [05/Aug/2024:21:28:53 +0000] "GET /post/get/ebbefbc4-c8c3-4c91-b067-2890a303e1b1 HTTP/1.1" 200 241 "-" "PostmanRuntime/7.40.0"
+[35mapp-2         |[0m time=2024-08-05T21:28:54.436Z level=INFO msg="request received" protocol=grpc grpc.component=server grpc.service=proto.PostService grpc.method=PostGet grpc.method_type=unary peer.address=127.0.0.1:48860 grpc.start_time=2024-08-05T21:28:54Z grpc.recv.duration=14.975µs grpc.request.content="post_id:\"ebbefbc4-c8c3-4c91-b067-2890a303e1b1\""
+[35mapp-2         |[0m time=2024-08-05T21:28:54.436Z level=INFO msg="attempting to SEARCH post by post_id" op=Post.Get post_id=ebbefbc4-c8c3-4c91-b067-2890a303e1b1
+[36;1mnginx         |[0m 172.28.5.254 - - [05/Aug/2024:21:28:54 +0000] "GET /post/get/ebbefbc4-c8c3-4c91-b067-2890a303e1b1 HTTP/1.1" 200 241 "-" "PostmanRuntime/7.40.0"
+[35mapp-2         |[0m time=2024-08-05T21:28:55.332Z level=INFO msg="request received" protocol=grpc grpc.component=server grpc.service=proto.PostService grpc.method=PostGet grpc.method_type=unary peer.address=127.0.0.1:48860 grpc.start_time=2024-08-05T21:28:55Z grpc.recv.duration=13.859µs grpc.request.content="post_id:\"ebbefbc4-c8c3-4c91-b067-2890a303e1b1\""
+[35mapp-2         |[0m time=2024-08-05T21:28:55.332Z level=INFO msg="attempting to SEARCH post by post_id" op=Post.Get post_id=ebbefbc4-c8c3-4c91-b067-2890a303e1b1
+[36;1mnginx         |[0m 172.28.5.254 - - [05/Aug/2024:21:28:55 +0000] "GET /post/get/ebbefbc4-c8c3-4c91-b067-2890a303e1b1 HTTP/1.1" 200 241 "-" "PostmanRuntime/7.40.0"
+[35mapp-2         |[0m time=2024-08-05T21:28:56.200Z level=INFO msg="request received" protocol=grpc grpc.component=server grpc.service=proto.PostService grpc.method=PostGet grpc.method_type=unary peer.address=127.0.0.1:48860 grpc.start_time=2024-08-05T21:28:56Z grpc.recv.duration=13.919µs grpc.request.content="post_id:\"ebbefbc4-c8c3-4c91-b067-2890a303e1b1\""
+[35mapp-2         |[0m time=2024-08-05T21:28:56.200Z level=INFO msg="attempting to SEARCH post by post_id" op=Post.Get post_id=ebbefbc4-c8c3-4c91-b067-2890a303e1b1
+[36;1mnginx         |[0m 172.28.5.254 - - [05/Aug/2024:21:28:56 +0000] "GET /post/get/ebbefbc4-c8c3-4c91-b067-2890a303e1b1 HTTP/1.1" 200 241 "-" "PostmanRuntime/7.40.0"
+[35mapp-2         |[0m time=2024-08-05T21:28:57.031Z level=INFO msg="request received" protocol=grpc grpc.component=server grpc.service=proto.PostService grpc.method=PostGet grpc.method_type=unary peer.address=127.0.0.1:48860 grpc.start_time=2024-08-05T21:28:57Z grpc.recv.duration=13.818µs grpc.request.content="post_id:\"ebbefbc4-c8c3-4c91-b067-2890a303e1b1\""
+[35mapp-2         |[0m time=2024-08-05T21:28:57.031Z level=INFO msg="attempting to SEARCH post by post_id" op=Post.Get post_id=ebbefbc4-c8c3-4c91-b067-2890a303e1b1
+[36;1mnginx         |[0m 172.28.5.254 - - [05/Aug/2024:21:28:57 +0000] "GET /post/get/ebbefbc4-c8c3-4c91-b067-2890a303e1b1 HTTP/1.1" 200 241 "-" "PostmanRuntime/7.40.0"
+[35mapp-2         |[0m time=2024-08-05T21:28:57.982Z level=INFO msg="request received" protocol=grpc grpc.component=server grpc.service=proto.PostService grpc.method=PostGet grpc.method_type=unary peer.address=127.0.0.1:48860 grpc.start_time=2024-08-05T21:28:57Z grpc.recv.duration=14.969µs grpc.request.content="post_id:\"ebbefbc4-c8c3-4c91-b067-2890a303e1b1\""
+[35mapp-2         |[0m time=2024-08-05T21:28:57.982Z level=INFO msg="attempting to SEARCH post by post_id" op=Post.Get post_id=ebbefbc4-c8c3-4c91-b067-2890a303e1b1
+[36;1mnginx         |[0m 172.28.5.254 - - [05/Aug/2024:21:28:57 +0000] "GET /post/get/ebbefbc4-c8c3-4c91-b067-2890a303e1b1 HTTP/1.1" 200 241 "-" "PostmanRuntime/7.40.0"
+[35mapp-2         |[0m time=2024-08-05T21:28:59.019Z level=INFO msg="request received" protocol=grpc grpc.component=server grpc.service=proto.PostService grpc.method=PostGet grpc.method_type=unary peer.address=127.0.0.1:48860 grpc.start_time=2024-08-05T21:28:59Z grpc.recv.duration=14.194µs grpc.request.content="post_id:\"ebbefbc4-c8c3-4c91-b067-2890a303e1b1\""
+[35mapp-2         |[0m time=2024-08-05T21:28:59.019Z level=INFO msg="attempting to SEARCH post by post_id" op=Post.Get post_id=ebbefbc4-c8c3-4c91-b067-2890a303e1b1
+[36;1mnginx         |[0m 172.28.5.254 - - [05/Aug/2024:21:28:59 +0000] "GET /post/get/ebbefbc4-c8c3-4c91-b067-2890a303e1b1 HTTP/1.1" 200 241 "-" "PostmanRuntime/7.40.0"
+[35mapp-2         |[0m time=2024-08-05T21:29:00.192Z level=INFO msg="request received" protocol=grpc grpc.component=server grpc.service=proto.PostService grpc.method=PostGet grpc.method_type=unary peer.address=127.0.0.1:48860 grpc.start_time=2024-08-05T21:29:00Z grpc.recv.duration=17.071µs grpc.request.content="post_id:\"ebbefbc4-c8c3-4c91-b067-2890a303e1b1\""
+[35mapp-2         |[0m time=2024-08-05T21:29:00.192Z level=INFO msg="attempting to SEARCH post by post_id" op=Post.Get post_id=ebbefbc4-c8c3-4c91-b067-2890a303e1b1
+[36;1mnginx         |[0m 172.28.5.254 - - [05/Aug/2024:21:29:00 +0000] "GET /post/get/ebbefbc4-c8c3-4c91-b067-2890a303e1b1 HTTP/1.1" 200 241 "-" "PostmanRuntime/7.40.0"
+[35mapp-2         |[0m time=2024-08-05T21:29:08.161Z level=INFO msg="request received" protocol=grpc grpc.component=server grpc.service=proto.PostService grpc.method=PostGet grpc.method_type=unary peer.address=127.0.0.1:48860 grpc.start_time=2024-08-05T21:29:08Z grpc.recv.duration=22.245µs grpc.request.content="post_id:\"ebbefbc4-c8c3-4c91-b067-2890a303e1b1\""
+[35mapp-2         |[0m time=2024-08-05T21:29:08.161Z level=INFO msg="attempting to SEARCH post by post_id" op=Post.Get post_id=ebbefbc4-c8c3-4c91-b067-2890a303e1b1
+[36;1mnginx         |[0m 172.28.5.254 - - [05/Aug/2024:21:29:08 +0000] "GET /post/get/ebbefbc4-c8c3-4c91-b067-2890a303e1b1 HTTP/1.1" 200 241 "-" "PostmanRuntime/7.40.0"
+[35mapp-2         |[0m time=2024-08-05T21:29:11.190Z level=INFO msg="request received" protocol=grpc grpc.component=server grpc.service=proto.PostService grpc.method=PostGet grpc.method_type=unary peer.address=127.0.0.1:48860 grpc.start_time=2024-08-05T21:29:11Z grpc.recv.duration=24.614µs grpc.request.content="post_id:\"ebbefbc4-c8c3-4c91-b067-2890a303e1b1\""
+[35mapp-2         |[0m time=2024-08-05T21:29:11.190Z level=INFO msg="attempting to SEARCH post by post_id" op=Post.Get post_id=ebbefbc4-c8c3-4c91-b067-2890a303e1b1
+[36;1mnginx         |[0m 172.28.5.254 - - [05/Aug/2024:21:29:11 +0000] "GET /post/get/ebbefbc4-c8c3-4c91-b067-2890a303e1b1 HTTP/1.1" 200 241 "-" "PostmanRuntime/7.40.0"
+[35mapp-2         |[0m time=2024-08-05T21:29:14.829Z level=INFO msg="request received" protocol=grpc grpc.component=server grpc.service=proto.PostService grpc.method=PostGet grpc.method_type=unary peer.address=127.0.0.1:48860 grpc.start_time=2024-08-05T21:29:14Z grpc.recv.duration=14.274µs grpc.request.content="post_id:\"ebbefbc4-c8c3-4c91-b067-2890a303e1b1\""
+[35mapp-2         |[0m time=2024-08-05T21:29:14.829Z level=INFO msg="attempting to SEARCH post by post_id" op=Post.Get post_id=ebbefbc4-c8c3-4c91-b067-2890a303e1b1
+[36;1mnginx         |[0m 172.28.5.254 - - [05/Aug/2024:21:29:14 +0000] "GET /post/get/ebbefbc4-c8c3-4c91-b067-2890a303e1b1 HTTP/1.1" 200 241 "-" "PostmanRuntime/7.40.0"
+[35mapp-2         |[0m time=2024-08-05T21:29:17.627Z level=INFO msg="request received" protocol=grpc grpc.component=server grpc.service=proto.PostService grpc.method=PostGet grpc.method_type=unary peer.address=127.0.0.1:48860 grpc.start_time=2024-08-05T21:29:17Z grpc.recv.duration=13.729µs grpc.request.content="post_id:\"ebbefbc4-c8c3-4c91-b067-2890a303e1b1\""
+[35mapp-2         |[0m time=2024-08-05T21:29:17.627Z level=INFO msg="attempting to SEARCH post by post_id" op=Post.Get post_id=ebbefbc4-c8c3-4c91-b067-2890a303e1b1
+[36;1mnginx         |[0m 172.28.5.254 - - [05/Aug/2024:21:29:17 +0000] "GET /post/get/ebbefbc4-c8c3-4c91-b067-2890a303e1b1 HTTP/1.1" 200 241 "-" "PostmanRuntime/7.40.0"
+[36;1mms_dialogs    |[0m time=2024-08-05T21:29:33.269Z level=INFO msg="request received" protocol=grpc grpc.component=server grpc.service=proto.DialogService grpc.method=List grpc.method_type=unary peer.address=127.0.0.1:38928 grpc.start_time=2024-08-05T21:29:33Z grpc.recv.duration=49.841µs grpc.request.content="user_id:\"e4928f51-f1a3-449a-83e0-37fe0e143ed6\"" grpc.time_ms=0.049
+[36;1mnginx         |[0m 2024/08/05 21:29:33 [error] 7#7: *42 connect() failed (111: Connection refused) while connecting to upstream, client: 172.28.5.8, server: , request: "GET /auth/get/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHAiOiJvdHVzX2hvbWV3b3JrIiwiZXhwIjoxNzIyNTQzMzY4LCJ1dWlkIjoiZTZjYWY1NTItMzdiYi00NDgyLTg2MzQtMmNmMTc1MDZmMjVjIn0.S6W8rauTYZxwjh2AWN6FJ-eq_G8B1NwyIFhDdXbmTKo HTTP/1.1", upstream: "http://172.28.5.9:8087/auth/get/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHAiOiJvdHVzX2hvbWV3b3JrIiwiZXhwIjoxNzIyNTQzMzY4LCJ1dWlkIjoiZTZjYWY1NTItMzdiYi00NDgyLTg2MzQtMmNmMTc1MDZmMjVjIn0.S6W8rauTYZxwjh2AWN6FJ-eq_G8B1NwyIFhDdXbmTKo", host: "nginx:80"
+[35mapp-2         |[0m time=2024-08-05T21:29:33.313Z level=INFO msg="request received" protocol=grpc grpc.component=server grpc.service=proto.AuthorizationService grpc.method=GetUserIdByToken grpc.method_type=unary peer.address=127.0.0.1:36518 grpc.start_time=2024-08-05T21:29:33Z grpc.recv.duration=12.626µs grpc.request.content="token:\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHAiOiJvdHVzX2hvbWV3b3JrIiwiZXhwIjoxNzIyNTQzMzY4LCJ1dWlkIjoiZTZjYWY1NTItMzdiYi00NDgyLTg2MzQtMmNmMTc1MDZmMjVjIn0.S6W8rauTYZxwjh2AWN6FJ-eq_G8B1NwyIFhDdXbmTKo\""
+[35mapp-2         |[0m time=2024-08-05T21:29:33.313Z level=INFO msg="attempting to get uuid from token" op=Auth.GetUUIDfrom "Get uuid from token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHAiOiJvdHVzX2hvbWV3b3JrIiwiZXhwIjoxNzIyNTQzMzY4LCJ1dWlkIjoiZTZjYWY1NTItMzdiYi00NDgyLTg2MzQtMmNmMTc1MDZmMjVjIn0.S6W8rauTYZxwjh2AWN6FJ-eq_G8B1NwyIFhDdXbmTKo"="" X-Request-Id=596d3df5a79df8b66c244564d9e7358c App=app-2
+[35mapp-2         |[0m time=2024-08-05T21:29:33.313Z level=ERROR msg="failed to get get uuid from token" op=Auth.GetUUIDfrom "Get uuid from token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHAiOiJvdHVzX2hvbWV3b3JrIiwiZXhwIjoxNzIyNTQzMzY4LCJ1dWlkIjoiZTZjYWY1NTItMzdiYi00NDgyLTg2MzQtMmNmMTc1MDZmMjVjIn0.S6W8rauTYZxwjh2AWN6FJ-eq_G8B1NwyIFhDdXbmTKo"="" X-Request-Id=596d3df5a79df8b66c244564d9e7358c App=app-2 error="token has invalid claims: token is expired"
+[36;1mnginx         |[0m 172.28.5.8 - - [05/Aug/2024:21:29:33 +0000] "GET /auth/get/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHAiOiJvdHVzX2hvbWV3b3JrIiwiZXhwIjoxNzIyNTQzMzY4LCJ1dWlkIjoiZTZjYWY1NTItMzdiYi00NDgyLTg2MzQtMmNmMTc1MDZmMjVjIn0.S6W8rauTYZxwjh2AWN6FJ-eq_G8B1NwyIFhDdXbmTKo HTTP/1.1" 500 299 "-" "Go-http-client/1.1"
+[36;1mnginx         |[0m 172.28.5.254 - - [05/Aug/2024:21:29:33 +0000] "GET /dialog/e4928f51-f1a3-449a-83e0-37fe0e143ed6/list HTTP/1.1" 500 301 "-" "PostmanRuntime/7.40.0"
+[36;1mms_dialogs    |[0m time=2024-08-05T21:29:36.321Z level=INFO msg="request received" protocol=grpc grpc.component=server grpc.service=proto.DialogService grpc.method=List grpc.method_type=unary peer.address=127.0.0.1:38928 grpc.start_time=2024-08-05T21:29:36Z grpc.recv.duration=29.322µs grpc.request.content="user_id:\"e4928f51-f1a3-449a-83e0-37fe0e143ed6\"" grpc.time_ms=0.029
+[35mapp-2         |[0m time=2024-08-05T21:29:36.322Z level=INFO msg="request received" protocol=grpc grpc.component=server grpc.service=proto.AuthorizationService grpc.method=GetUserIdByToken grpc.method_type=unary peer.address=127.0.0.1:36518 grpc.start_time=2024-08-05T21:29:36Z grpc.recv.duration=37.524µs grpc.request.content="token:\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHAiOiJvdHVzX2hvbWV3b3JrIiwiZXhwIjoxNzIyNTQzMzY4LCJ1dWlkIjoiZTZjYWY1NTItMzdiYi00NDgyLTg2MzQtMmNmMTc1MDZmMjVjIn0.S6W8rauTYZxwjh2AWN6FJ-eq_G8B1NwyIFhDdXbmTKo\""
+[35mapp-2         |[0m time=2024-08-05T21:29:36.322Z level=INFO msg="attempting to get uuid from token" op=Auth.GetUUIDfrom "Get uuid from token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHAiOiJvdHVzX2hvbWV3b3JrIiwiZXhwIjoxNzIyNTQzMzY4LCJ1dWlkIjoiZTZjYWY1NTItMzdiYi00NDgyLTg2MzQtMmNmMTc1MDZmMjVjIn0.S6W8rauTYZxwjh2AWN6FJ-eq_G8B1NwyIFhDdXbmTKo"="" X-Request-Id=cbd410cc7a20e58d719b8118f1838a92 App=app-2
+[35mapp-2         |[0m time=2024-08-05T21:29:36.322Z level=ERROR msg="failed to get get uuid from token" op=Auth.GetUUIDfrom "Get uuid from token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHAiOiJvdHVzX2hvbWV3b3JrIiwiZXhwIjoxNzIyNTQzMzY4LCJ1dWlkIjoiZTZjYWY1NTItMzdiYi00NDgyLTg2MzQtMmNmMTc1MDZmMjVjIn0.S6W8rauTYZxwjh2AWN6FJ-eq_G8B1NwyIFhDdXbmTKo"="" X-Request-Id=cbd410cc7a20e58d719b8118f1838a92 App=app-2 error="token has invalid claims: token is expired"
+[36;1mnginx         |[0m 172.28.5.8 - - [05/Aug/2024:21:29:36 +0000] "GET /auth/get/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHAiOiJvdHVzX2hvbWV3b3JrIiwiZXhwIjoxNzIyNTQzMzY4LCJ1dWlkIjoiZTZjYWY1NTItMzdiYi00NDgyLTg2MzQtMmNmMTc1MDZmMjVjIn0.S6W8rauTYZxwjh2AWN6FJ-eq_G8B1NwyIFhDdXbmTKo HTTP/1.1" 500 299 "-" "Go-http-client/1.1"
+[36;1mnginx         |[0m 172.28.5.254 - - [05/Aug/2024:21:29:36 +0000] "GET /dialog/e4928f51-f1a3-449a-83e0-37fe0e143ed6/list HTTP/1.1" 500 301 "-" "PostmanRuntime/7.40.0"
+[36;1mms_dialogs    |[0m time=2024-08-05T21:29:37.333Z level=INFO msg="request received" protocol=grpc grpc.component=server grpc.service=proto.DialogService grpc.method=List grpc.method_type=unary peer.address=127.0.0.1:38928 grpc.start_time=2024-08-05T21:29:37Z grpc.recv.duration=14.842µs grpc.request.content="user_id:\"e4928f51-f1a3-449a-83e0-37fe0e143ed6\"" grpc.time_ms=0.014
+[35mapp-2         |[0m time=2024-08-05T21:29:37.333Z level=INFO msg="request received" protocol=grpc grpc.component=server grpc.service=proto.AuthorizationService grpc.method=GetUserIdByToken grpc.method_type=unary peer.address=127.0.0.1:36518 grpc.start_time=2024-08-05T21:29:37Z grpc.recv.duration=16.207µs grpc.request.content="token:\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHAiOiJvdHVzX2hvbWV3b3JrIiwiZXhwIjoxNzIyNTQzMzY4LCJ1dWlkIjoiZTZjYWY1NTItMzdiYi00NDgyLTg2MzQtMmNmMTc1MDZmMjVjIn0.S6W8rauTYZxwjh2AWN6FJ-eq_G8B1NwyIFhDdXbmTKo\""
+[35mapp-2         |[0m time=2024-08-05T21:29:37.333Z level=INFO msg="attempting to get uuid from token" op=Auth.GetUUIDfrom "Get uuid from token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHAiOiJvdHVzX2hvbWV3b3JrIiwiZXhwIjoxNzIyNTQzMzY4LCJ1dWlkIjoiZTZjYWY1NTItMzdiYi00NDgyLTg2MzQtMmNmMTc1MDZmMjVjIn0.S6W8rauTYZxwjh2AWN6FJ-eq_G8B1NwyIFhDdXbmTKo"="" X-Request-Id=bd4f43cbb2c3d54f8cfab7163cd85f4d App=app-2
+[35mapp-2         |[0m time=2024-08-05T21:29:37.333Z level=ERROR msg="failed to get get uuid from token" op=Auth.GetUUIDfrom "Get uuid from token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHAiOiJvdHVzX2hvbWV3b3JrIiwiZXhwIjoxNzIyNTQzMzY4LCJ1dWlkIjoiZTZjYWY1NTItMzdiYi00NDgyLTg2MzQtMmNmMTc1MDZmMjVjIn0.S6W8rauTYZxwjh2AWN6FJ-eq_G8B1NwyIFhDdXbmTKo"="" X-Request-Id=bd4f43cbb2c3d54f8cfab7163cd85f4d App=app-2 error="token has invalid claims: token is expired"
+[36;1mnginx         |[0m 172.28.5.8 - - [05/Aug/2024:21:29:37 +0000] "GET /auth/get/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHAiOiJvdHVzX2hvbWV3b3JrIiwiZXhwIjoxNzIyNTQzMzY4LCJ1dWlkIjoiZTZjYWY1NTItMzdiYi00NDgyLTg2MzQtMmNmMTc1MDZmMjVjIn0.S6W8rauTYZxwjh2AWN6FJ-eq_G8B1NwyIFhDdXbmTKo HTTP/1.1" 500 299 "-" "Go-http-client/1.1"
+[36;1mnginx         |[0m 172.28.5.254 - - [05/Aug/2024:21:29:37 +0000] "GET /dialog/e4928f51-f1a3-449a-83e0-37fe0e143ed6/list HTTP/1.1" 500 301 "-" "PostmanRuntime/7.40.0"
+Gracefully stopping... (press Ctrl+C again to force)

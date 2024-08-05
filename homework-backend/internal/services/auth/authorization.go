@@ -47,10 +47,12 @@ func New(
 func (a *Auth) CreateUser(user models.User) (string, error) {
 
 	const op = "createUser"
+	app, _ := a.appProvider.App()
 
 	log := a.log.With(
 		slog.String("op", op),
 		slog.String("first name", user.First_name),
+		slog.String("App", app.Name),
 	)
 
 	log.Info("registering user")
@@ -144,6 +146,7 @@ func (a *Auth) LoginUser(user_id, password string, app models.App) (string, erro
 	log := a.log.With(
 		slog.String("op", op),
 		slog.String("user_id", user_id),
+		slog.String("App", app.Name),
 	)
 	log.Info("attempting to login user")
 
@@ -158,12 +161,12 @@ func (a *Auth) LoginUser(user_id, password string, app models.App) (string, erro
 	user, err := a.usrProvider.GetUserById(user_id)
 	if err != nil {
 		if errors.Is(err, storage.ErrUserNotFound) {
-			a.log.Warn("user not found", sl.Err(err))
+			log.Warn("user not found", sl.Err(err))
 
 			return "", fmt.Errorf("%s: %w", op, ErrInvalidCredentials)
 		}
 
-		a.log.Error("failed to get user", sl.Err(err))
+		log.Error("failed to get user", sl.Err(err))
 
 		return "", fmt.Errorf("%s: %w", op, err)
 	}
@@ -172,7 +175,7 @@ func (a *Auth) LoginUser(user_id, password string, app models.App) (string, erro
 	// CheckError(err)
 
 	if !CheckPasswordHash(password, user.Hp) {
-		a.log.Info("invalid credentials")
+		log.Info("invalid credentials")
 		return "", fmt.Errorf("%s: %w", op, ErrInvalidCredentials)
 	}
 
@@ -180,7 +183,7 @@ func (a *Auth) LoginUser(user_id, password string, app models.App) (string, erro
 
 	token, err := jwt.NewToken(user_id, app, a.tokenTTL)
 	if err != nil {
-		a.log.Error("failed to generate token", sl.Err(err))
+		log.Error("failed to generate token", sl.Err(err))
 
 		return "", fmt.Errorf("%s: %w", op, err)
 	}
@@ -188,10 +191,12 @@ func (a *Auth) LoginUser(user_id, password string, app models.App) (string, erro
 }
 
 func (a *Auth) GetUserById(user_id string) (user models.User, err error) {
+	app, _ := a.appProvider.App()
 	const op = "Auth.Login"
 	log := a.log.With(
 		slog.String("op", op),
 		slog.String("user_id", user_id),
+		slog.String("App", app.Name),
 	)
 	log.Info("attempting to GET user by ID")
 
@@ -201,9 +206,10 @@ func (a *Auth) GetUserById(user_id string) (user models.User, err error) {
 
 	user, err = a.usrProvider.GetUserById(user_id)
 	if err != nil {
-		a.log.Error("failed to get user by id", sl.Err(err))
+		log.Error("failed to get user by id", sl.Err(err))
 
-		return models.User{}, fmt.Errorf("%s: %w", op, err)
+		return models.User{}, fmt.Errorf("%s: %s: %w", app.Name, op, err)
+
 	}
 	return user, nil
 
@@ -211,8 +217,10 @@ func (a *Auth) GetUserById(user_id string) (user models.User, err error) {
 
 func (a *Auth) UsersGetByPrefixFirstNameAndSecondName(first_name, second_name string) (users []models.User, err error) {
 	const op = "Auth.Search"
+	app, _ := a.appProvider.App()
 	log := a.log.With(
 		slog.String("op", op),
+		slog.String("App", app.Name),
 		slog.String(fmt.Sprintf("User: first_name: %s ,second_name: %s", first_name, second_name), ""),
 	)
 	log.Info("attempting to SEARCH user by first_name and second_name")
@@ -223,33 +231,34 @@ func (a *Auth) UsersGetByPrefixFirstNameAndSecondName(first_name, second_name st
 
 	users, err = a.usrProvider.UsersGetByPrefixFirstNameAndSecondName(first_name, second_name)
 	if err != nil {
-		a.log.Error("failed to get user by Prefix First and Second Name", sl.Err(err))
+		log.Error("failed to get user by Prefix First and Second Name", sl.Err(err))
 
-		return []models.User{}, fmt.Errorf("%s: %w", op, err)
+		return []models.User{}, fmt.Errorf("%s: %s: %w", app.Name, op, err)
 	}
 	return users, nil
 
 }
 
 func (a *Auth) GetUUIDfrom(token, xid string) (string, error) {
-	const op = "Auth.GetUUIDdrom"
+	app, _ := a.appProvider.App()
+	const op = "Auth.GetUUIDfrom"
 	log := a.log.With(
 		slog.String("op", op),
 		slog.String(fmt.Sprintf("Get uuid from token : %s", token), ""),
 		slog.String("X-Request-Id", xid),
+		slog.String("App", app.Name),
 	)
 	log.Info("attempting to get uuid from token")
 
 	// if user_id == "" {
 	// 	return models.User{}, status.Error(codes.InvalidArgument, "user_id is required")
 	// }
-	app, _ := a.appProvider.App()
 
 	uuid, err := jwt.GetUserId(token, app)
 	if err != nil {
-		a.log.Error("failed to get get uuid from token", sl.Err(err))
+		log.Error("failed to get get uuid from token", sl.Err(err))
 
-		return "", fmt.Errorf("%s: %w", op, err)
+		return "", fmt.Errorf("%s: %s: %w", app.Name, op, err)
 	}
 	return uuid, nil
 

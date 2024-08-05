@@ -114,12 +114,12 @@ func (p *Post) PostUpdate(post_id, text string) error {
 	err := p.pstCreater.PostUpdate(post_id, text)
 	if err != nil {
 		if errors.Is(err, storage.ErrPostNotFound) {
-			p.log.Warn("post not found", sl.Err(err))
+			log.Warn("post not found", sl.Err(err))
 
-			return fmt.Errorf("%s: %w", op)
+			return fmt.Errorf("%s: %w", op, err)
 		}
 
-		p.log.Error("failed to get post", sl.Err(err))
+		log.Error("failed to get post", sl.Err(err))
 
 		return fmt.Errorf("%s: %w", op, err)
 	}
@@ -142,14 +142,14 @@ func (p *Post) PostDelete(post_id string) error {
 
 	post, err := p.pstProvider.PostGet(post_id)
 	if err != nil {
-		p.log.Error("failed to delete post by id", sl.Err(err))
+		log.Error("failed to delete post by id", sl.Err(err))
 
 		return fmt.Errorf("%s: %w", op, err)
 	}
 
 	err = p.pstCreater.PostDelete(post_id)
 	if err != nil {
-		p.log.Error("failed to delete post by id", sl.Err(err))
+		log.Error("failed to delete post by id", sl.Err(err))
 
 		return fmt.Errorf("%s: %w", op, err)
 	}
@@ -171,14 +171,14 @@ func (p *Post) PostGet(post_id string) (post models.Post, err error) {
 	post, err = p.pstProvider.PostGet(post_id)
 	if err != nil {
 		if errors.Is(err, storage.ErrPostNotFound) {
-			p.log.Warn("post not found", sl.Err(err))
+			log.Warn("post not found", sl.Err(err))
 
-			return models.Post{}, fmt.Errorf("%s: %w", op)
+			return models.Post{}, fmt.Errorf("%s: %w", op, err)
 		}
 
-		p.log.Error("failed to get post", sl.Err(err))
+		log.Error("failed to get post", sl.Err(err))
 
-		return models.Post{}, fmt.Errorf("%s: %w", op)
+		return models.Post{}, fmt.Errorf("%s: %w", op, err)
 	}
 	return post, nil
 
@@ -206,7 +206,7 @@ func (p *Post) PostFeed(user_id string, offset, limit uint32) (models.Posts, err
 	if err != nil {
 		psDb, err := p.pstProvider.PostFeed(user_id, offset, limit)
 		if err != nil {
-			p.log.Error("failed to feed posts by user_id", sl.Err(err))
+			log.Error("failed to feed posts by user_id", sl.Err(err))
 
 			return models.Posts{}, fmt.Errorf("%s: %w", op, err)
 		}
@@ -246,14 +246,14 @@ func (p *Post) UpdateFeed(author_id string) error {
 
 	f_ids, err := p.getFriends(author_id)
 	if err != nil {
-		p.log.Error("failed to get friends by user_id", sl.Err(err))
+		log.Error("failed to get friends by user_id", sl.Err(err))
 
 		return fmt.Errorf("%s: %w", op, err)
 	}
 	for _, f_id := range f_ids {
 		posts, err := p.pstProvider.PostFeed(f_id, 0, 1000)
 		if err != nil {
-			p.log.Error("failed to feed posts by user_id", sl.Err(err))
+			log.Error("failed to feed posts by user_id", sl.Err(err))
 
 			return fmt.Errorf("%s: %w", op, err)
 		}
@@ -290,7 +290,7 @@ func (p *Post) UpdateFeedAll() error {
 
 	f_ids, err := p.pstProvider.PostFriends("0")
 	if err != nil {
-		p.log.Error("failed to get friends by user_id", sl.Err(err))
+		log.Error("failed to get friends by user_id", sl.Err(err))
 
 		return fmt.Errorf("%s: %w", op, err)
 	}
@@ -298,7 +298,7 @@ func (p *Post) UpdateFeedAll() error {
 	for _, f_id := range f_ids {
 		posts, err := p.pstProvider.PostFeed(f_id, 0, 1000)
 		if err != nil {
-			p.log.Error("failed to feed posts by user_id", sl.Err(err))
+			log.Error("failed to feed posts by user_id", sl.Err(err))
 
 			return fmt.Errorf("%s: %w", op, err)
 		}
@@ -327,7 +327,7 @@ func (p *Post) FriendSet(user_id, friend_id string) (err error) {
 
 	err = p.pstCreater.FriendSet(user_id, friend_id)
 	if err != nil {
-		p.log.Error("failed to set friend for user by id", sl.Err(err))
+		log.Error("failed to set friend for user by id", sl.Err(err))
 
 		return fmt.Errorf("%s: %w", op, err)
 	}
@@ -355,7 +355,7 @@ func (p *Post) FriendDelete(user_id, friend_id string) (err error) {
 
 	err = p.pstCreater.FriendDelete(user_id, friend_id)
 	if err != nil {
-		p.log.Error("failed to delete friend for user by id", sl.Err(err))
+		log.Error("failed to delete friend for user by id", sl.Err(err))
 
 		return fmt.Errorf("%s: %w", op, err)
 	}
@@ -382,6 +382,11 @@ func (p *Post) PublishTo(name, message string) {
 
 	for _, id_subscriber := range f_ids {
 		err = p.rqueue.PublishTo(id_subscriber, message)
+		if err != nil {
+			log.Error("failed to publish messages to RQUEUE", sl.Err(err))
+
+			return
+		}
 	}
 
 }

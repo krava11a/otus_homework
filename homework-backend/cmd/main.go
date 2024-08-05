@@ -4,6 +4,7 @@ import (
 	"homework-backend/internal/app"
 	grpcweb "homework-backend/internal/app/grpc-web"
 	"homework-backend/internal/config"
+	"homework-backend/internal/models"
 	"log/slog"
 	"os"
 )
@@ -18,14 +19,16 @@ func Run() {
 	// TODO: инициализировать объект конфига
 	cfg := config.MustLoad()
 
+	ap := models.App{ID: cfg.App.ID, Name: cfg.App.Name}
+
 	// TODO: инициализировать логгер
 	log := setupLogger(cfg.Env)
 	// TODO: инициализировать приложение (app)
 	var application *app.App
 	if cfg.StoragePathForRead == "" {
-		application = app.New(log, cfg.GRPC.Port, cfg.StoragePath, cfg.StoragePath, cfg.CachePath, cfg.QueuePath, cfg.TokenTTL)
+		application = app.New(log, cfg.GRPC.Port, cfg.StoragePath, cfg.StoragePath, cfg.CachePath, cfg.QueuePath, cfg.TokenTTL, ap)
 	}
-	application = app.New(log, cfg.GRPC.Port, cfg.StoragePath, cfg.StoragePathForRead, cfg.CachePath, cfg.QueuePath, cfg.TokenTTL)
+	application = app.New(log, cfg.GRPC.Port, cfg.StoragePath, cfg.StoragePathForRead, cfg.CachePath, cfg.QueuePath, cfg.TokenTTL, ap)
 
 	// TODO: запустить gRPC-сервер приложения
 	go application.GRPCServer.MustRun()

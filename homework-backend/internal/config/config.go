@@ -2,6 +2,7 @@ package config
 
 import (
 	"flag"
+	"homework-backend/internal/models"
 	"os"
 	"time"
 
@@ -17,6 +18,7 @@ type Config struct {
 	GRPC               GRPCConfig `yaml:"grpc"`
 	MigrationsPath     string
 	TokenTTL           time.Duration `yaml:"token_ttl" env-default:"1h"`
+	App                models.App    `yaml:"app"`
 }
 
 type GRPCConfig struct {
